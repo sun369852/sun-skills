@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the conversation as late-stage and continues from the existing entitlement-record context",
+      "passed": true,
+      "evidence": "It stays in the existing entitlement-record context and performs a late-stage closeout summary rather than restarting discovery."
+    },
+    {
+      "text": "Identifies the unresolved account-merge migration rule as one clearly blocking gap and explains why it blocks reliable generation",
+      "passed": false,
+      "evidence": "It surfaces the account-merge migration rule, but immediately defaults it to '不迁移、不重解释' instead of keeping it as an unresolved blocking prerequisite tied to ownership and historical interpretation."
+    },
+    {
+      "text": "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation",
+      "passed": false,
+      "evidence": "It does not ask a blocking clarification question; it proposes a default and says it will continue into formal requirement generation."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 29.996,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 29.996
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-14 based on response.txt."
+  }
+}

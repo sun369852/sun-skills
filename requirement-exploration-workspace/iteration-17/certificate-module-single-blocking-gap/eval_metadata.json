@@ -1,0 +1,10 @@
+{
+  "eval_id": 6,
+  "eval_name": "certificate-module-single-blocking-gap",
+  "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个课程证书发放模块，给培训运营用。\n助手：第一版先覆盖哪些能力？\n用户：课程完课后可发电子证书；后台可配置证书模板；支持按课程查看发放记录；支持手动作废并重发。\n助手：哪些规则已经定了？\n用户：只有完课用户能拿证；证书带唯一编号；作废后原证书状态变失效；重发保留历史记录。\n助手：还有哪些地方没定？\n用户：模板样式细节、短信通知文案这些都还没细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：用户改名之后，历史已发证书是否允许按新姓名重新生成，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+  "assertions": [
+    "Treats the conversation as late-stage and continues from the existing certificate-module context",
+    "Identifies the unresolved rename-and-regeneration rule as one clearly blocking gap and explains why it blocks reliable generation",
+    "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+  ]
+}

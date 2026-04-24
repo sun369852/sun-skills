@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Continues from the late-stage pricing-plan context instead of reopening discovery from scratch",
+      "passed": true,
+      "evidence": "It stays inside the existing pricing-plan conversation and treats the remaining work as late-stage cleanup rather than restarting discovery."
+    },
+    {
+      "text": "Performs a review that separates confirmed pricing rules from unresolved but non-blocking commercial boundaries",
+      "passed": true,
+      "evidence": "It identifies the four remaining undecided commercial items as non-blocking pending rules and says the rest of the pricing scope is already sufficient to continue."
+    },
+    {
+      "text": "Asks for explicit generation authorization now instead of requiring approval of several default pricing decisions first",
+      "passed": false,
+      "evidence": "It does not ask whether to proceed; it unilaterally says it will continue producing the next output based on the current information."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 28.846,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 28.846
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-10 based on response.txt."
+  }
+}

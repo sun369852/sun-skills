@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the existing PRD as incomplete input rather than complete truth",
+      "passed": false,
+      "evidence": "The response does not ask to inspect the existing draft; it reframes the problem around subscription rights and starts clarifying from scratch."
+    },
+    {
+      "text": "Continues clarification on missing product rules",
+      "passed": true,
+      "evidence": "It asks whether the subscription is for a single course, series, or platform membership and asks what remains after expiry."
+    },
+    {
+      "text": "Avoids direct PRD writing in the first response",
+      "passed": true,
+      "evidence": "The response explicitly says '先不写 PRD' and does not generate a document."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 162,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 0.0,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 0.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Baseline still asks good rule questions, but it misses the skill-specific behavior of treating the existing draft as input material."
+  }
+}

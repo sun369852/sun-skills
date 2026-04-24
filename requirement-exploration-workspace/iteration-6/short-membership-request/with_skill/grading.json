@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Does not immediately output a final downstream prompt in the first response",
+      "passed": true,
+      "evidence": "The response asks for clarification first and does not generate the downstream prompt in the first turn."
+    },
+    {
+      "text": "Asks one focused clarification question about the highest-value missing product detail",
+      "passed": true,
+      "evidence": "It stays centered on the highest-value product framing gap: who the membership is for and what business goal it serves."
+    },
+    {
+      "text": "Keeps the first response to one primary clarification theme rather than a multi-part intake form",
+      "passed": true,
+      "evidence": "The reply is shorter than iteration-5 and no longer expands into an example-filled intake template; it remains within one compact clarification theme."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 52,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 37.969,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 37.969
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "The first-turn shape is back under control: still focused, but no longer reads like a small intake form."
+  }
+}

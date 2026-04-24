@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the prior PRD draft discussion as authoritative input context rather than restarting from zero",
+      "passed": true,
+      "evidence": "The baseline continues directly from the existing PRD draft and references the already confirmed subscription rules."
+    },
+    {
+      "text": "Performs a gap review covering confirmed rules plus any remaining boundary, risk, or missing-decision items",
+      "passed": true,
+      "evidence": "It summarizes what is already confirmed and classifies the remaining timing and effective-date details as non-blocking pending items."
+    },
+    {
+      "text": "Makes a readiness judgment and explicitly asks for permission before generating the final downstream prompt",
+      "passed": true,
+      "evidence": "It explicitly judges the requirement ready enough and asks whether to proceed with the more complete downstream prompt now."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 22.349,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 22.349
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-10 based on response.txt."
+  }
+}

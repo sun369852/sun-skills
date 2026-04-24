@@ -1,0 +1,10 @@
+{
+  "eval_id": 9,
+  "eval_name": "entitlement-snapshot-history-freeze",
+  "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个会员权益快照模块，给运营和售后用。\n助手：第一版先覆盖哪些能力？\n用户：支持查看用户在某个时点拥有哪些会员权益；支持导出快照；支持按订单和活动来源追溯；支持人工备注。\n助手：哪些规则已经定了？\n用户：快照生成后要留痕；后续权益变更不能直接改掉原始流水；售后需要能回看当时用户实际拥有的权益组合。\n助手：还有哪些地方没定？\n用户：导出字段顺序和页面筛选条件还没完全细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：如果用户后面升降级了会员等级，历史快照里展示的权益内容，是保持当时的冻结结果，还是跟着当前等级规则一起回写更新，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+  "assertions": [
+    "Treats the conversation as late-stage and continues from the existing entitlement-snapshot context",
+    "Identifies the unresolved snapshot freeze-versus-rewrite rule as one clearly blocking gap and explains why it blocks reliable generation",
+    "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+  ]
+}

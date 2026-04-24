@@ -1,0 +1,10 @@
+{
+  "eval_id": 5,
+  "eval_name": "content-permission-late-stage-boundaries",
+  "prompt": "下面是一段基于现有内容权限 PRD 草稿继续补洞的对话，请直接续写最后一句，不要重开流程。\n\n用户：我已经写了一版内容权限中心的 PRD 草稿，目标是控制不同角色能看哪些课程、专题和资料。\n助手：先贴现有草稿关键点，我基于现有内容继续补洞。\n用户：目前已明确：后台由运营配置角色；角色可关联课程、专题、资料包；用户登录后按角色看内容；支持手动给用户加角色；角色变更要留痕。\n助手：还有哪些关键规则没定？\n用户：生效时间、角色叠加冲突、内容下架后的权限表现、历史已下载资料是否回收，这些还没完全定。\n助手：我先不生成，继续把高风险规则问清。你目前倾向呢？\n用户：先定成角色变更支持立即生效；角色可叠加；内容下架后前台不可见；已下载资料先不做远程回收。\n助手：明白。还有一个边界：权限是只控制查看，还是也控制下载和导出？\n用户：下载要管，导出首版不做。\n助手：收到。\n用户：这些差不多了，你看看还缺不缺，如果够了就往下走。",
+  "assertions": [
+    "Treats the prior content-permission PRD draft as authoritative late-stage context rather than restarting discovery",
+    "Performs a closeout review that separates confirmed permission rules from remaining boundary or assumption items",
+    "Makes a readiness judgment and asks whether to generate now instead of reopening a bundled follow-up round"
+  ]
+}

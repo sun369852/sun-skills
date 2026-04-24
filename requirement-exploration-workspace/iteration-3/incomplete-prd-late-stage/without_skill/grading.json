@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the prior PRD draft discussion as authoritative input context rather than restarting from zero",
+      "passed": true,
+      "evidence": "It continues from the existing subscription discussion and keeps working off the draft-derived context."
+    },
+    {
+      "text": "Performs a gap review covering confirmed rules plus any remaining boundary, risk, or missing-decision items",
+      "passed": false,
+      "evidence": "It lists five more missing points, but it does not first separate what has already been confirmed from what remains open."
+    },
+    {
+      "text": "Makes a readiness judgment and explicitly asks for permission before generating the final downstream prompt",
+      "passed": false,
+      "evidence": "It recommends default rules and asks for confirmation on those gaps, but it does not ask for permission to begin final generation based on current information."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 411,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 50.782,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 50.782
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Baseline still stays in gap-filling mode and does not perform the intended late-stage authorization handoff."
+  }
+}

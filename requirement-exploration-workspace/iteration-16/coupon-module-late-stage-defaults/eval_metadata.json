@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "coupon-module-late-stage-defaults",
+  "prompt": "下面是一段已经接近收口、但还留着一些默认边界没拍板的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个 B 端后台的优惠券活动配置模块，给运营用。\n助手：第一版主要要支持哪些能力？\n用户：创建满减券、折扣券；设置有效期、库存、领取次数；能看到发放和核销数据。\n助手：优惠券主要发给谁？\n用户：先给 C 端用户，活动页和站内消息里领。\n助手：使用限制有哪些？\n用户：可以限制商品范围、限制新老用户、限制每人领取次数。\n助手：退款、过期、作废这些规则定了吗？\n用户：过期自动失效，退款后如果订单整单退了，优惠券资格回退；作废只允许运营后台手动作废。\n助手：还有哪些地方你觉得没完全定？\n用户：叠加规则、是否支持白名单发放、核销数据的统计口径还没细想。\n助手：明白。\n用户：目前应该差不多了，你看看还缺不缺，如果能往下走就往下走。",
+  "assertions": [
+    "Continues from the late-stage coupon-module context instead of restarting requirement discovery",
+    "Performs a review that separates confirmed coupon rules from unresolved but non-blocking boundary items",
+    "Offers explicit generation authorization now instead of defaulting to another clarification round for remaining defaults"
+  ]
+}

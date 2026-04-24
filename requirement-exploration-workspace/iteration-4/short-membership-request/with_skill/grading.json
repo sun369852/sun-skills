@@ -1,0 +1,52 @@
+{
+  "expectations": [
+    {
+      "text": "Does not immediately output a final downstream prompt in the first response",
+      "passed": true,
+      "evidence": "The response asks for clarification and does not generate the final downstream prompt."
+    },
+    {
+      "text": "Asks one focused clarification question about the highest-value missing product detail",
+      "passed": true,
+      "evidence": "It stays centered on the core product positioning: what business this membership supports and what rights paid members get."
+    },
+    {
+      "text": "Keeps the first response to one primary clarification theme rather than a multi-part intake form",
+      "passed": true,
+      "evidence": "The reply format is short and stays within one theme instead of broadening into a large intake questionnaire."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 99,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 35.938,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 35.938
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "This eval is no longer very discriminating in iteration-4 because the baseline also stays concise and focused."
+      }
+    ],
+    "overall": "Good sanity check for first-turn restraint, but it now separates versions less clearly than before."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Does not immediately output a final downstream prompt in the first response",
+      "passed": true,
+      "evidence": "The response starts with '先收第一条最关键的信息' and asks for more information; it does not generate the final downstream prompt."
+    },
+    {
+      "text": "Asks one focused clarification question about the highest-value missing product detail",
+      "passed": false,
+      "evidence": "It asks for target users, core value, business goal, and optionally a reference product, which is broader than one focused clarification question."
+    },
+    {
+      "text": "Keeps the first response to one primary clarification theme rather than a multi-part intake form",
+      "passed": false,
+      "evidence": "The reply is structured as a mini intake form with three required bullets plus an optional extra item."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 281,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 74.134,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 74.134
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Good discriminating baseline comparison: the baseline stays clarification-first but expands into a broader intake form."
+  }
+}

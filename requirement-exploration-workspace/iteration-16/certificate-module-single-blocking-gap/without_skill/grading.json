@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the conversation as late-stage and continues from the existing certificate-module context",
+      "passed": true,
+      "evidence": "The baseline also continues from the existing certificate-module discussion rather than restarting discovery from scratch."
+    },
+    {
+      "text": "Identifies the unresolved rename-and-regeneration rule as one clearly blocking gap and explains why it blocks reliable generation",
+      "passed": false,
+      "evidence": "It surfaces the rename-and-regeneration rule as a remaining decision, but treats it as something that can be deferred into a pending decision list rather than a blocking prerequisite for reliable output."
+    },
+    {
+      "text": "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation",
+      "passed": false,
+      "evidence": "It does not ask any blocking clarification question; it directly says it will mark the unresolved rule as pending and continue the next-stage write-up."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 25.42,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 25.42
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-15 based on response.txt."
+  }
+}

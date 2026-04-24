@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Continues from the late-stage coupon-module context instead of restarting requirement discovery",
+      "passed": true,
+      "evidence": "It continues from the near-complete coupon-module context and performs a late-stage review rather than restarting discovery."
+    },
+    {
+      "text": "Performs a review that separates confirmed coupon rules from unresolved but non-blocking boundary items",
+      "passed": true,
+      "evidence": "It summarizes the confirmed coupon rules first, then separates stacking, whitelist issuance, and redemption metrics as non-blocking pending boundaries."
+    },
+    {
+      "text": "Offers explicit generation authorization now instead of defaulting to another clarification round for remaining defaults",
+      "passed": true,
+      "evidence": "It states generation can begin now and asks whether to proceed as-is or first answer one preferred open point."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 28.695,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 28.695
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-14 based on response.txt."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "eval_id": 2,
+  "eval_name": "incomplete-prd-late-stage",
+  "prompt": "下面是一段基于现有 PRD 草稿继续补洞的对话，请直接续写最后一句。\n\n用户：我已经写了一版 PRD 草稿，核心是做一个课程订阅功能，用户可以按月订阅内容。\n助手：请先贴现有草稿的关键部分，我基于现有文本继续补洞。\n用户：目前草稿里已有背景、目标、页面说明。已经明确：用户订阅后可看全部付费课程；首页、课程详情、个人中心都有订阅入口；支付支持微信和支付宝。\n助手：还有哪些关键规则没定？\n用户：试用规则、退款规则、到期后已解锁内容是否还能看、续费是否自动扣款，这些都没定。\n助手：目前我先不生成，继续把这些高风险规则问清。试用期你倾向怎么做？\n用户：先不做试用。退款暂时定成支付后 24 小时内且未学习超过 2 节课可退。到期后不能继续看付费内容。续费先不自动扣款，到期前提醒。\n助手：明白。还有一个边界：订阅权益是全站通用还是只覆盖课程内容？\n用户：先只覆盖课程内容，不含社群和 1 对 1 服务。\n助手：收到。\n用户：这些差不多了，你看看还缺不缺，如果够了就往下走。",
+  "assertions": [
+    "Treats the prior PRD draft discussion as authoritative input context rather than restarting from zero",
+    "Performs a gap review covering confirmed rules plus any remaining boundary, risk, or missing-decision items",
+    "Makes a readiness judgment and explicitly asks for permission before generating the final downstream prompt"
+  ]
+}

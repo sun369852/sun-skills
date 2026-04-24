@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Does not immediately output a final downstream prompt in the first response",
+      "passed": true,
+      "evidence": "The reply asks one clarification question first and does not generate any downstream prompt in the opening turn."
+    },
+    {
+      "text": "Asks one focused clarification question about the highest-value missing product detail",
+      "passed": true,
+      "evidence": "It focuses on the highest-value missing detail: who the membership is for and what core value the paid plan grants."
+    },
+    {
+      "text": "Keeps the first response to one primary clarification theme rather than a multi-part intake form",
+      "passed": true,
+      "evidence": "The response stays compact and centered on a single clarification theme instead of expanding into a mini intake template."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 26.119,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 26.119
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-7 based on response.txt."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the prior PRD draft discussion as authoritative input context rather than restarting from zero",
+      "passed": true,
+      "evidence": "The response continues from the existing subscription PRD draft context rather than restarting requirement discovery."
+    },
+    {
+      "text": "Performs a gap review covering confirmed rules plus any remaining boundary, risk, or missing-decision items",
+      "passed": true,
+      "evidence": "It reviews what is already confirmed about the subscription offering, classifies the remaining reminder, refund, timing, and coexistence edges as non-blocking assumptions, and says the current information is enough to continue."
+    },
+    {
+      "text": "Makes a readiness judgment and explicitly asks for permission before generating the final downstream prompt",
+      "passed": true,
+      "evidence": "It explicitly judges the requirement ready enough to continue and asks whether to proceed with the next version based on the confirmed information plus stated assumptions."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 27.29,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 27.29
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-12 based on response.txt."
+  }
+}

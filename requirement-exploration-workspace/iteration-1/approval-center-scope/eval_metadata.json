@@ -1,0 +1,10 @@
+{
+  "eval_id": 1,
+  "eval_name": "approval-center-scope",
+  "prompt": "我们要做一个企业后台里的审批中心，给运营和主管用，目标是把现在分散在微信和表格里的审批流程收回来。先不用写正式文档，你先帮我把需求问完整，最后整理成一个可以继续交给下游工具用的提示词。",
+  "assertions": [
+    "Starts with clarification instead of direct generation",
+    "Focuses on product roles, scenarios, rules, or scope rather than technical design",
+    "Does not skip to final prompt generation in the first response"
+  ]
+}

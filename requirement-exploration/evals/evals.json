@@ -1,0 +1,115 @@
+{
+  "skill_name": "requirement-exploration",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "我想做一个会员系统，Web 端，支持月付和年付，先帮我整理成后续可用的高质量提示词。",
+      "expected_output": "The assistant should not generate immediately. It should ask one focused clarification question first, and avoid turning the first response into a broad questionnaire or final downstream prompt.",
+      "files": [],
+      "assertions": [
+        "Does not immediately output a final downstream prompt in the first response",
+        "Asks one focused clarification question about the highest-value missing product detail",
+        "Keeps the first response to one primary clarification theme rather than a multi-part intake form"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "下面是一段已经进行到后期的需求澄清对话，请直接接着最后一句继续，不要重开流程，也不要假装没看到前文。\n\n用户：我们要做一个企业后台里的审批中心，给运营和主管用，目标是把现在分散在微信和表格里的审批流程收回来。\n助手：第一版审批中心先覆盖哪几类审批？\n用户：先做请款审批、活动报名审批、优惠申请审批。\n助手：这三类分别是谁发起、谁审批？\n用户：请款是运营发起、主管审批；活动报名是销售发起、运营主管审批；优惠申请是销售发起、销售主管审批。\n助手：通过后各自会发生什么？\n用户：请款通过后进入打款流程，活动报名通过后锁定名额，优惠申请通过后给客户打折资格。\n助手：驳回后呢？\n用户：都要退回发起人并允许重新提交。\n助手：还有什么规则你已经确定了吗？\n用户：有审批时限、可催办、审批要留痕，但是否支持转交、加签、撤回我还没想好。\n助手：明白。\n用户：目前差不多了，你先继续。",
+      "expected_output": "The assistant should behave like it is near the end of clarification: summarize confirmed information, surface unresolved or risky items, judge readiness, and explicitly ask whether to proceed with final generation instead of generating immediately.",
+      "files": [],
+      "assertions": [
+        "Uses the prior conversation as context instead of restarting requirement discovery from scratch",
+        "Provides a pre-generation review that separates confirmed points from unresolved or risky items",
+        "Asks explicitly whether to begin final downstream-prompt generation instead of generating immediately after '差不多了'"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "下面是一段基于现有 PRD 草稿继续补洞的对话，请直接续写最后一句。\n\n用户：我已经写了一版 PRD 草稿，核心是做一个课程订阅功能，用户可以按月订阅内容。\n助手：请先贴现有草稿的关键部分，我基于现有文本继续补洞。\n用户：目前草稿里已有背景、目标、页面说明。已经明确：用户订阅后可看全部付费课程；首页、课程详情、个人中心都有订阅入口；支付支持微信和支付宝。\n助手：还有哪些关键规则没定？\n用户：试用规则、退款规则、到期后已解锁内容是否还能看、续费是否自动扣款，这些都没定。\n助手：目前我先不生成，继续把这些高风险规则问清。试用期你倾向怎么做？\n用户：先不做试用。退款暂时定成支付后 24 小时内且未学习超过 2 节课可退。到期后不能继续看付费内容。续费先不自动扣款，到期前提醒。\n助手：明白。还有一个边界：订阅权益是全站通用还是只覆盖课程内容？\n用户：先只覆盖课程内容，不含社群和 1 对 1 服务。\n助手：收到。\n用户：这些差不多了，你看看还缺不缺，如果够了就往下走。",
+      "expected_output": "The assistant should continue from the existing-draft context, produce a gap review with confirmed rules and any remaining missing decisions, make a readiness judgment, and explicitly request permission before final generation.",
+      "files": [],
+      "assertions": [
+        "Treats the prior PRD draft discussion as authoritative input context rather than restarting from zero",
+        "Performs a gap review covering confirmed rules plus any remaining boundary, risk, or missing-decision items",
+        "Makes a readiness judgment and explicitly asks for permission before generating the final downstream prompt"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "下面是一段已经接近收口、但还留着一些默认边界没拍板的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个 B 端后台的优惠券活动配置模块，给运营用。\n助手：第一版主要要支持哪些能力？\n用户：创建满减券、折扣券；设置有效期、库存、领取次数；能看到发放和核销数据。\n助手：优惠券主要发给谁？\n用户：先给 C 端用户，活动页和站内消息里领。\n助手：使用限制有哪些？\n用户：可以限制商品范围、限制新老用户、限制每人领取次数。\n助手：退款、过期、作废这些规则定了吗？\n用户：过期自动失效，退款后如果订单整单退了，优惠券资格回退；作废只允许运营后台手动作废。\n助手：还有哪些地方你觉得没完全定？\n用户：叠加规则、是否支持白名单发放、核销数据的统计口径还没细想。\n助手：明白。\n用户：目前应该差不多了，你看看还缺不缺，如果能往下走就往下走。",
+      "expected_output": "The assistant should treat this as a late-stage near-complete requirement: review confirmed scope first, separate unresolved items from blocking gaps, avoid reopening discovery just to ask for default values, and explicitly ask whether to generate now with stated assumptions or fill one optional point first.",
+      "files": [],
+      "assertions": [
+        "Continues from the late-stage coupon-module context instead of restarting requirement discovery",
+        "Performs a review that separates confirmed coupon rules from unresolved but non-blocking boundary items",
+        "Offers explicit generation authorization now instead of defaulting to another clarification round for remaining defaults"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "下面是一段已经接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个 SaaS 的套餐与定价配置模块，给运营和销售管理用。\n助手：第一版先覆盖哪些核心能力？\n用户：配置基础套餐、企业套餐；可设置月付和年付；支持试用开关；可查看套餐变更记录。\n助手：套餐差异主要体现在哪？\n用户：账号数、项目数、数据看板、导出能力、审批流数量。\n助手：还有哪些规则已经定了？\n用户：购买后立即生效；到期后降级到免费版；企业套餐需要线下签约后由运营开通；价格币种首版只做人民币。\n助手：还有哪些地方没完全定？\n用户：年付折扣、试用时长、升级补差和降级何时生效还没完全拍板。\n助手：明白。\n用户：现在应该差不多了，你看看还缺不缺；如果够了就直接往下。",
+      "expected_output": "The assistant should continue from the late-stage pricing context, separate confirmed scope from remaining non-blocking commercial decisions, and explicitly ask for authorization before generation rather than reopening discovery or unilaterally continuing.",
+      "files": [],
+      "assertions": [
+        "Continues from the late-stage pricing-plan context instead of reopening discovery from scratch",
+        "Performs a review that separates confirmed pricing rules from unresolved but non-blocking commercial boundaries",
+        "Asks for explicit generation authorization now instead of requiring approval of several default pricing decisions first"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "下面是一段基于现有内容权限 PRD 草稿继续补洞的对话，请直接续写最后一句，不要重开流程。\n\n用户：我已经写了一版内容权限中心的 PRD 草稿，目标是控制不同角色能看哪些课程、专题和资料。\n助手：先贴现有草稿关键点，我基于现有内容继续补洞。\n用户：目前已明确：后台由运营配置角色；角色可关联课程、专题、资料包；用户登录后按角色看内容；支持手动给用户加角色；角色变更要留痕。\n助手：还有哪些关键规则没定？\n用户：生效时间、角色叠加冲突、内容下架后的权限表现、历史已下载资料是否回收，这些还没完全定。\n助手：我先不生成，继续把高风险规则问清。你目前倾向呢？\n用户：先定成角色变更支持立即生效；角色可叠加；内容下架后前台不可见；已下载资料先不做远程回收。\n助手：明白。还有一个边界：权限是只控制查看，还是也控制下载和导出？\n用户：下载要管，导出首版不做。\n助手：收到。\n用户：这些差不多了，你看看还缺不缺，如果够了就往下走。",
+      "expected_output": "The assistant should continue from the existing-draft late-stage context, do a closeout review, separate confirmed rules from remaining assumptions, and ask whether to proceed instead of reopening a bundled follow-up round or generating immediately.",
+      "files": [],
+      "assertions": [
+        "Treats the prior content-permission PRD draft as authoritative late-stage context rather than restarting discovery",
+        "Performs a closeout review that separates confirmed permission rules from remaining boundary or assumption items",
+        "Makes a readiness judgment and asks whether to generate now instead of reopening a bundled follow-up round"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个课程证书发放模块，给培训运营用。\n助手：第一版先覆盖哪些能力？\n用户：课程完课后可发电子证书；后台可配置证书模板；支持按课程查看发放记录；支持手动作废并重发。\n助手：哪些规则已经定了？\n用户：只有完课用户能拿证；证书带唯一编号；作废后原证书状态变失效；重发保留历史记录。\n助手：还有哪些地方没定？\n用户：模板样式细节、短信通知文案这些都还没细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：用户改名之后，历史已发证书是否允许按新姓名重新生成，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+      "expected_output": "The assistant should identify the unresolved rename-and-regeneration rule as a single potentially blocking gap, explain why it is blocking, and ask only that one blocking question instead of doing generation authorization or reopening a multi-part checklist.",
+      "files": [],
+      "assertions": [
+        "Treats the conversation as late-stage and continues from the existing certificate-module context",
+        "Identifies the unresolved rename-and-regeneration rule as one clearly blocking gap and explains why it blocks reliable generation",
+        "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "下面是一段已经做完收口 review 的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个活动报名管理模块，给运营后台用。\n助手：第一版先做活动创建、报名表单配置、名额上限、报名审核、导出名单。\n用户：对。\n助手：已明确的规则有：报名需登录；可限制报名人数；审核通过后占用名额；驳回可重新提交；活动结束后不可再报名。\n用户：对。\n助手：还没完全定的点有：候补机制、是否支持团队报名、导出字段默认范围。整体上这些更像非阻塞边界，不影响先整理下一版，我可以把它们列成待确认项。\n用户：嗯。\n助手：按当前信息，已经可以往下生成下一版提示词；如果你愿意，我就基于已确认规则继续，并把这几个未定项单列成假设与待确认边界。\n用户：你觉得行就行。",
+      "expected_output": "The assistant should not treat vague approval as generation authorization. It should ask again for explicit permission to generate, rather than starting generation or treating '你觉得行就行' as sufficient consent.",
+      "files": [],
+      "assertions": [
+        "Continues from the late-stage event-registration context instead of restarting discovery",
+        "Recognizes that '你觉得行就行' is vague approval rather than explicit generation authorization",
+        "Asks again for explicit permission before generating instead of starting the final downstream prompt"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个会员权益发放记录模块，给运营和客服用。\n助手：第一版先覆盖哪些能力？\n用户：支持给用户发放会员权益包；支持查看发放记录；支持人工撤销；支持补发。\n助手：哪些规则已经定了？\n用户：每次发放都要留流水；撤销后原记录状态要保留；补发不能覆盖原记录；客服要能看到完整历史。\n助手：还有哪些地方没定？\n用户：页面筛选项和提示文案还没细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：如果用户账号合并了，原账号上的历史权益发放记录，是否允许迁移到新账号名下并按新账号重新解释，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+      "expected_output": "The assistant should identify the unresolved account-merge and entitlement-record migration rule as a single blocking gap, explain that it changes ownership and historical interpretation of the record, and ask only that one blocking question.",
+      "files": [],
+      "assertions": [
+        "Treats the conversation as late-stage and continues from the existing entitlement-record context",
+        "Identifies the unresolved account-merge migration rule as one clearly blocking gap and explains why it blocks reliable generation",
+        "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个会员权益快照模块，给运营和售后用。\n助手：第一版先覆盖哪些能力？\n用户：支持查看用户在某个时点拥有哪些会员权益；支持导出快照；支持按订单和活动来源追溯；支持人工备注。\n助手：哪些规则已经定了？\n用户：快照生成后要留痕；后续权益变更不能直接改掉原始流水；售后需要能回看当时用户实际拥有的权益组合。\n助手：还有哪些地方没定？\n用户：导出字段顺序和页面筛选条件还没完全细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：如果用户后面升降级了会员等级，历史快照里展示的权益内容，是保持当时的冻结结果，还是跟着当前等级规则一起回写更新，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+      "expected_output": "The assistant should identify the unresolved snapshot freeze-versus-rewrite rule as a single blocking gap, explain that it changes the meaning of historical entitlement snapshots, and ask only that one blocking question.",
+      "files": [],
+      "assertions": [
+        "Treats the conversation as late-stage and continues from the existing entitlement-snapshot context",
+        "Identifies the unresolved snapshot freeze-versus-rewrite rule as one clearly blocking gap and explains why it blocks reliable generation",
+        "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+      ]
+    }
+  ]
+}

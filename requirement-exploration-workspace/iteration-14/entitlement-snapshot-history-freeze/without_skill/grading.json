@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the conversation as late-stage and continues from the existing entitlement-snapshot context",
+      "passed": true,
+      "evidence": "The baseline also continues from the existing entitlement-snapshot conversation rather than restarting requirement discovery."
+    },
+    {
+      "text": "Identifies the unresolved snapshot freeze-versus-rewrite rule as one clearly blocking gap and explains why it blocks reliable generation",
+      "passed": false,
+      "evidence": "It mentions the freeze-versus-rewrite rule, but then defaults to '冻结结果' and treats the issue as something that can be settled by recommendation rather than as a blocking prerequisite."
+    },
+    {
+      "text": "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation",
+      "passed": false,
+      "evidence": "It does not ask the user to resolve the blocking gap; it recommends a default freeze rule and says the rest can continue as pending details."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 13.066,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 13.066
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Manual grading for iteration-14 based on response.txt."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "returncode": 0,
+  "stdout_chars": 293,
+  "stderr_chars": 0,
+  "command": [
+    "claude",
+    "-p",
+    "--output-format",
+    "text",
+    "--permission-mode",
+    "bypassPermissions"
+  ],
+  "config": "without_skill",
+  "eval_id": 9,
+  "eval_dir": "C:\\Users\\sun\\.claude\\skills\\requirement-exploration-workspace\\iteration-17\\entitlement-snapshot-history-freeze"
+}

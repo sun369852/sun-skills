@@ -1,0 +1,10 @@
+{
+  "eval_id": 8,
+  "eval_name": "entitlement-record-identity-migration",
+  "prompt": "下面是一段已经非常接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个会员权益发放记录模块，给运营和客服用。\n助手：第一版先覆盖哪些能力？\n用户：支持给用户发放会员权益包；支持查看发放记录；支持人工撤销；支持补发。\n助手：哪些规则已经定了？\n用户：每次发放都要留流水；撤销后原记录状态要保留；补发不能覆盖原记录；客服要能看到完整历史。\n助手：还有哪些地方没定？\n用户：页面筛选项和提示文案还没细化。\n助手：还有没有更关键的边界没定？\n用户：有一个：如果用户账号合并了，原账号上的历史权益发放记录，是否允许迁移到新账号名下并按新账号重新解释，这个还没定。\n助手：明白。\n用户：现在应该差不多了，如果够了就往下。",
+  "assertions": [
+    "Treats the conversation as late-stage and continues from the existing entitlement-record context",
+    "Identifies the unresolved account-merge migration rule as one clearly blocking gap and explains why it blocks reliable generation",
+    "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
+  ]
+}

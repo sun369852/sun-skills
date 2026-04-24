@@ -1,0 +1,16 @@
+{
+  "returncode": 0,
+  "stdout_chars": 304,
+  "stderr_chars": 0,
+  "command": [
+    "claude",
+    "-p",
+    "--output-format",
+    "text",
+    "--permission-mode",
+    "bypassPermissions"
+  ],
+  "config": "with_skill",
+  "eval_id": 8,
+  "eval_dir": "C:\\Users\\sun\\.claude\\skills\\requirement-exploration-workspace\\iteration-14\\entitlement-record-identity-migration"
+}

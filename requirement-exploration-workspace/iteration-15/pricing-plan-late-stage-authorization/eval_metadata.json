@@ -1,0 +1,10 @@
+{
+  "eval_id": 4,
+  "eval_name": "pricing-plan-late-stage-authorization",
+  "prompt": "下面是一段已经接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们要做一个 SaaS 的套餐与定价配置模块，给运营和销售管理用。\n助手：第一版先覆盖哪些核心能力？\n用户：配置基础套餐、企业套餐；可设置月付和年付；支持试用开关；可查看套餐变更记录。\n助手：套餐差异主要体现在哪？\n用户：账号数、项目数、数据看板、导出能力、审批流数量。\n助手：还有哪些规则已经定了？\n用户：购买后立即生效；到期后降级到免费版；企业套餐需要线下签约后由运营开通；价格币种首版只做人民币。\n助手：还有哪些地方没完全定？\n用户：年付折扣、试用时长、升级补差和降级何时生效还没完全拍板。\n助手：明白。\n用户：现在应该差不多了，你看看还缺不缺；如果够了就直接往下。",
+  "assertions": [
+    "Continues from the late-stage pricing-plan context instead of reopening discovery from scratch",
+    "Performs a review that separates confirmed pricing rules from unresolved but non-blocking commercial boundaries",
+    "Asks for explicit generation authorization now instead of requiring approval of several default pricing decisions first"
+  ]
+}
