@@ -1,0 +1,10 @@
+{
+  "summary": { "passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0 },
+  "expectations": [
+    { "text": "Output includes a technical design artifact.", "passed": true, "evidence": "technical-design.md exists in with_skill/outputs." },
+    { "text": "Design covers awarding points exactly once, expiry, admin adjustment audit, member ledger, refund reversal, and immutable ledger entries.", "passed": true, "evidence": "The design covers idempotent awards, expiry jobs, audited adjustments, member ledger, refunds, and immutable ledger entries." },
+    { "text": "Design includes frontend and backend perspectives or collaboration notes.", "passed": true, "evidence": "Includes reviewer summaries and collaboration record." },
+    { "text": "Design includes API contract, data model, lifecycle/business rules, error handling, and testing strategy.", "passed": true, "evidence": "Contains the required technical sections using the skill template." },
+    { "text": "Output avoids task decomposition as the primary artifact.", "passed": true, "evidence": "The output is a technical design and does not center on tasks." }
+  ]
+}

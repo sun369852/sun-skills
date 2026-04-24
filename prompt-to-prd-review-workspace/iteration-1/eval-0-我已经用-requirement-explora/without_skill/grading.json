@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Treats the provided prompt as the authoritative source instead of reopening broad requirement exploration",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Creates a structured PRD with goals, users, scope, workflows, functional requirements, business rules, acceptance criteria, and open questions",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Uses frontend and backend reviewer subagents or clearly states a fallback if subagents are unavailable",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Does not save the final PRD until both reviewer perspectives approve",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Appends a review record to the saved PRD",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "notes": "Prompt explicitly requested reviewers, so baseline also performed a review-like pass."
+}

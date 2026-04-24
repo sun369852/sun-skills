@@ -1,0 +1,10 @@
+{
+  "summary": { "passed": 4, "failed": 1, "total": 5, "pass_rate": 0.8 },
+  "expectations": [
+    { "text": "Output includes a saved technical-design.md artifact.", "passed": true, "evidence": "technical-design.md exists in without_skill/outputs." },
+    { "text": "Design maps major PRD requirements including upload, validation preview, duplicate detection, background import, and import history.", "passed": true, "evidence": "The document covers the major lead-import requirements." },
+    { "text": "Design includes explicit frontend and backend collaboration record or reviewer summaries.", "passed": true, "evidence": "Includes frontend agent review, backend agent review, and joint decisions." },
+    { "text": "Design includes API contract, data model, status lifecycle, error handling, and testing strategy.", "passed": false, "evidence": "It has API/Data/State/Testing coverage, but error handling is not a distinct explicit section." },
+    { "text": "Output is a technical design, not primarily a task list.", "passed": true, "evidence": "The artifact is a design document rather than a task archive." }
+  ]
+}

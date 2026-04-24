@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "refund-approval-existing-project-compatibility",
+  "prompt": "这是旧项目新增需求，项目在 D:\\sun-skills\\prd-to-tech-design-review-workspace\\fixtures\\refund-app，PRD 在 docs/prd/refund-approval.md。请让 FE/BE reviewers 讨论一下现有实现兼容性，最后把技术设计保存到 docs/design/refund-approval-tech-design.md。",
+  "assertions": [
+    "Output saves the requested docs/design/refund-approval-tech-design.md or an equivalent copied artifact.",
+    "Design references existing project compatibility, including current refund status/type limitations.",
+    "Design maps high-value approval threshold, manager approve/reject flow, audit, notifications, and refund processor integration.",
+    "Design includes frontend and backend reviewer perspectives or collaboration notes.",
+    "Design includes API/data/status/error/testing sections and preserves open assumptions."
+  ]
+}

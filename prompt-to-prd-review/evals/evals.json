@@ -1,0 +1,124 @@
+{
+  "skill_name": "prompt-to-prd-review",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "我已经用 requirement-exploration 把会员订阅功能澄清完了，下面是最终提示词。请基于它生成 PRD，等内容比较完整后让前端和后端两个子代理复核，两个都认可后再保存成文件。\\n\\n提示词：我们要做一个 Web 端课程会员订阅功能。目标用户是 C 端学员，用户订阅后可观看全部付费课程。入口包括首页、课程详情页、个人中心。支付方式支持微信和支付宝。首版不做试用；退款规则为支付后 24 小时内且未学习超过 2 节课可退；订阅到期后不能继续观看付费内容；不自动续费，到期前提醒。订阅权益只覆盖课程内容，不包含社群和 1 对 1 服务。请生成完整 PRD。",
+      "expected_output": "The assistant should draft a PRD from the provided prompt, invite frontend and backend reviewer subagents once the draft is review-ready, revise based on their feedback, and only save the file after both approve.",
+      "files": [],
+      "assertions": [
+        "Treats the provided prompt as the authoritative source instead of reopening broad requirement exploration",
+        "Creates a structured PRD with goals, users, scope, workflows, functional requirements, business rules, acceptance criteria, and open questions",
+        "Uses frontend and backend reviewer subagents or clearly states a fallback if subagents are unavailable",
+        "Does not save the final PRD until both reviewer perspectives approve",
+        "Appends a review record to the saved PRD"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "基于这段探索后的提示词生成 PRD 文件。等你觉得 PRD 比较完整的时候，让前端和后端两个 agent 分别挑问题，修改到他们都说 ok 再落盘。\\n\\n提示词：我们要做 B 端优惠券活动配置模块，给运营使用。首版支持创建满减券和折扣券；可设置有效期、库存、每人领取次数、商品范围、新老用户限制；用户从活动页和站内消息领取。过期自动失效；整单退款后优惠券资格回退；作废只允许运营后台手动作废。未定项：叠加规则、白名单发放、核销统计口径，首版可先作为待确认边界记录。",
+      "expected_output": "The assistant should carry non-blocking unresolved items into the PRD, request frontend/backend review after drafting, update the PRD based on review findings, and save only after approvals.",
+      "files": [],
+      "assertions": [
+        "Preserves unresolved coupon rules as assumptions or open questions rather than inventing defaults",
+        "Includes frontend review concerns such as configuration UI states, validation, and visibility of restrictions",
+        "Includes backend review concerns such as coupon state transitions, inventory, refund rollback, and audit trail",
+        "Iterates after review feedback instead of treating the first draft as final",
+        "Saves a Markdown PRD only after both reviewer perspectives approve"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我有一段 requirement-exploration 产出的下游提示词，但里面还有一个核心点没定：用户改名后历史证书是否允许用新姓名重新生成。请用 prompt-to-prd-review 的方式处理，看能不能直接生成 PRD。\\n\\n提示词：做一个课程证书发放模块，给培训运营用。课程完课后可发电子证书；后台可配置证书模板；支持按课程查看发放记录；支持手动作废并重发。只有完课用户能拿证；证书带唯一编号；作废后原证书状态变失效；重发保留历史记录。未定：用户改名后，历史已发证书是否允许按新姓名重新生成。",
+      "expected_output": "The assistant should identify the unresolved rename/regeneration rule as a blocking product semantics gap and ask one focused clarification question before drafting or saving.",
+      "files": [],
+      "assertions": [
+        "Identifies the unresolved rename/regeneration rule as blocking because it changes certificate identity and historical record semantics",
+        "Asks one focused clarification question instead of drafting a misleading PRD",
+        "Does not spawn reviewers or save a PRD before the blocking gap is resolved"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "这是老项目的增量需求，当前仓库就是项目代码。requirement-exploration 已经产出下面这段提示词。请根据它生成 PRD，等你认为 PRD 比较完整后，让前端和后端两个子代理结合现有项目分别复核，修改到两个都认可后再保存 PRD。\\n\\n提示词：在现有订单售后模块增加“部分退款原因标签”。运营需要在审核部分退款时选择一个原因标签，标签包括商品缺货、商品破损、运费差额、客服补偿、其他。原因标签只对后台可见，C 端用户不展示。历史退款单不补录。退款列表需要支持按原因标签筛选；退款详情页展示标签和操作人。权限沿用现有售后审核权限；不新增角色。导出报表需要包含原因标签字段。未定项：是否允许运营修改已审核通过的标签，先作为开放问题记录。",
+      "expected_output": "The assistant should recognize this as an existing-project iteration, inspect or package relevant project context, draft a PRD with compatibility constraints, ask frontend and backend reviewers to review against current project reality, iterate on their feedback, and save only after both approve.",
+      "files": [],
+      "assertions": [
+        "Classifies the requirement as an existing-project iteration rather than a greenfield feature",
+        "Gathers or passes relevant existing project context before frontend/backend review",
+        "Includes PRD content for existing compatibility such as affected flows, permissions reuse, historical data behavior, list filtering, detail visibility, and export fields",
+        "Preserves the unresolved edit-after-approval rule as an open question instead of inventing an answer",
+        "Instructs frontend and backend reviewers to consider current project code or docs when giving feedback",
+        "Saves a Markdown PRD only after both reviewer perspectives approve and records the project context reviewed"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我有三份材料：1）requirement-exploration 最终提示词；2）旧 PRD；3）我刚刚补充的一条变更。请按 prompt-to-prd-review 流程生成新 PRD，前后端 review 通过后落盘。\\n\\n最终提示词：做一个企业空间成员邀请功能。管理员可通过邮箱邀请成员加入企业空间；邀请有效期 7 天；被邀请人接受后成为普通成员；管理员可撤销未接受邀请。\\n\\n旧 PRD 摘要：邀请有效期是 3 天，支持手机号邀请。\\n\\n最新补充：这版不要手机号邀请，只做邮箱；邀请有效期改成 14 天；过期邀请不允许重新激活，只能重新发送。",
+      "expected_output": "The assistant should merge multiple materials using explicit source priority, treat the latest user supplement as overriding older material, draft a PRD, run frontend/backend review, and save only after approval.",
+      "files": [],
+      "assertions": [
+        "Applies a clear source priority where latest user supplement overrides the requirement prompt and old PRD",
+        "Uses 14 days as the invitation validity period and excludes phone invitation",
+        "Records old PRD conflicts rather than silently mixing 3-day or phone-invite behavior into the PRD",
+        "Includes invitation expiration, revoke, resend, acceptance, roles, and acceptance criteria",
+        "Runs frontend/backend review before saving and records source priority in the review record"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "这是老项目增量需求。探索提示词已经完成，但我知道旧文档和代码可能不一致。请生成 PRD，等前端后端 agent 结合现有项目复核通过后落盘。\\n\\n提示词：在现有发票模块增加“电子发票重发”能力。财务后台可以对已开具成功的电子发票重发邮件；重发不改变发票号码、金额、抬头和开票状态；需要记录重发操作人、时间、收件邮箱。用户端不新增入口。旧文档说发票邮件只能发送一次，但当前线上客服已经有手工重发流程。未定：是否限制每天重发次数。",
+      "expected_output": "The assistant should treat this as an existing-project iteration, surface the doc-vs-current-behavior conflict, classify the daily resend limit as an open question, involve frontend/backend reviewers against project context, and save only if no blocking questions remain.",
+      "files": [],
+      "assertions": [
+        "Identifies old documentation versus current manual resend behavior as a current-state conflict",
+        "Does not silently choose documentation or current behavior as authoritative when product semantics differ",
+        "Classifies the daily resend limit as blocking or non-blocking with a clear reason",
+        "Includes audit trail, immutable invoice fields, backend state behavior, and no new user-facing entry",
+        "Stops to ask the user if an unresolved conflict or resend-limit decision blocks a trustworthy PRD",
+        "Saves only after reviewer approval and no blocking open questions remain"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "我已经用 requirement-exploration 得到了下面这段最终提示词。请基于它生成 PRD 文件。\\n\\n提示词：做一个后台公告发布功能，给运营发布站内公告。公告支持标题、正文、展示时间范围、目标用户类型（全部用户、新用户、付费用户）。公告到达展示结束时间后自动下线；运营可手动下线未结束公告；首版不支持富文本图片，只支持纯文本和链接。公告只在 Web 端站内信中心展示，不做短信、邮件、App push。未定项：公告是否需要审批流，首版先作为待确认事项记录。",
+      "expected_output": "The assistant should use the prompt-to-prd-review flow even though the user did not explicitly mention frontend/backend reviewers, draft a PRD, run frontend/backend review before saving, preserve the approval-flow question as non-blocking, and append a review record.",
+      "files": [],
+      "assertions": [
+        "Recognizes that a requirement-exploration final prompt to PRD file request should use this skill's review-gated flow",
+        "Does not save immediately after drafting; performs frontend/backend review or clearly records a real fallback",
+        "Includes announcement fields, display window behavior, target user types, automatic/manual offline behavior, and channel scope",
+        "Preserves the approval-flow question as a non-blocking open question or pending boundary instead of inventing an approval rule",
+        "Appends a review record with frontend/backend approval before saving"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "我不是从 requirement-exploration 过来的。我有一个旧 PRD 摘要和一个小改动，请按这个 skill 的方式更新成一份可落盘 PRD。\\n\\n旧 PRD 摘要：后台商品标签功能，运营可以创建标签、编辑标签名、启停标签；商品编辑页可以选择多个标签；前台商品详情展示标签。\\n\\n新增变更：本次只增加“标签排序权重”，运营可在后台标签列表维护权重，商品详情页按权重从高到低展示标签；同权重按标签创建时间从早到晚展示。不改变标签创建、启停、商品绑定规则。请生成 PRD，并在前后端评审认可后保存。",
+      "expected_output": "The assistant should use this skill even though the input is an old PRD plus a simple change, preserve old PRD decisions unless changed, draft an incremental PRD, run frontend/backend review, and include review history.",
+      "files": [],
+      "assertions": [
+        "Covers non-requirement-exploration input as an existing PRD iteration",
+        "Preserves existing label create/edit/enable/bind/display rules unless explicitly changed",
+        "Adds sorting weight behavior and tie-break by creation time",
+        "Includes source priority between old PRD baseline and new change request",
+        "Runs frontend/backend review before saving",
+        "Includes review history or review record explaining key feedback and changes"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "请根据这段描述生成 PRD 文件，并按前后端评审通过后落盘。这个需求主要是后端数据迁移，不是普通页面功能。\\n\\n描述：现有系统中用户等级字段 level 使用字符串 basic/pro/vip。新版本要迁移为数字等级 1/2/3，并保留历史等级变更记录。迁移后用户权益判断使用数字等级；历史订单、发票和已生成报表不重算。需要支持灰度迁移和回滚；迁移期间前台用户不应感知等级异常。未定：老接口是否继续兼容字符串 level 返回。",
+      "expected_output": "The assistant should choose a data migration/backend template variant, surface compatibility and rollback requirements, classify the old API compatibility question, run frontend/backend review, and save only if no blocking question remains.",
+      "files": [],
+      "assertions": [
+        "Uses a backend/data migration oriented PRD structure rather than forcing a normal UI feature template",
+        "Covers current state, target state, migration scope, historical records, validation/reconciliation, rollout, rollback, and user impact",
+        "States that historical orders, invoices, and generated reports are not recalculated",
+        "Classifies old API string-level compatibility as blocking or non-blocking with rationale",
+        "Triggers backend review and includes frontend impact review for user-facing continuity",
+        "Does not save if unresolved API compatibility blocks a trustworthy baseline"
+      ]
+    }
+  ]
+}

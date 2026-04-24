@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "Archive file exists at requested output name",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Tasks cover frontend, backend, testing, and release areas",
+      "passed": true,
+      "evidence": "pattern 'frontend' in main output: True; pattern 'backend' in main output: True; pattern 'testing' in main output: True; pattern 'release' in main output: True"
+    },
+    {
+      "text": "Tasks include deliverables and acceptance criteria",
+      "passed": false,
+      "evidence": "pattern 'Deliverable' in main output: False; pattern 'Acceptance' in main output: True"
+    },
+    {
+      "text": "Permissions, export behavior, chart behavior, and role visibility are reflected",
+      "passed": true,
+      "evidence": "pattern 'permission' in main output: True; pattern 'export' in main output: True; pattern 'chart' in main output: True; pattern 'role' in main output: True"
+    },
+    {
+      "text": "Assumptions are listed",
+      "passed": true,
+      "evidence": "pattern 'Assumptions' in main output: True"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 6562,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "Timing/token metrics were unavailable from subagent notifications."
+    ],
+    "needs_review": [],
+    "workarounds": [
+      "Grading uses deterministic text-pattern checks."
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+Generated analytics-dashboard-tasks.md from the standalone Analytics Dashboard PRD.
+
+The task archive splits the PRD into frontend, backend, testing, and release workstreams. It covers dashboard filters, charts, loading/empty/error states, filtered aggregate CSV export without PII, role-based access control, verification coverage, and release readiness checks.

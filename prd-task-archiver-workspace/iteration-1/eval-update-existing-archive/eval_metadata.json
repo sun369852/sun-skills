@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "eval_name": "update-existing-archive",
+  "prompt": "D:/sun-skills/prd-task-archiver/evals/files/sample-project/docs/tasks/billing-cycle-tasks.md already exists and includes done and in_progress tasks. Read it along with D:/sun-skills/prd-task-archiver/evals/files/sample-project/docs/prd/billing-cycle-prd.md. Save an updated task archive under your assigned outputs directory as billing-cycle-tasks-updated.md. Preserve historical statuses and do not renumber existing task IDs.",
+  "assertions": [
+    "The existing task archive is read before making updates.",
+    "Existing done, skipped, and in_progress statuses are preserved unless explicitly changed by the user.",
+    "Existing task IDs are not renumbered.",
+    "A Change Log entry describes added, changed, removed, skipped, or newly blocked tasks.",
+    "The response reports what changed and whether any tasks became blocked."
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "skill_name": "prompt-to-prd-review",
+    "skill_path": "D:\\sun-skills\\prompt-to-prd-review",
+    "timestamp": "2026-04-24T11:58:00.4360809Z",
+    "evals_run": [
+      6
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 6,
+      "eval_name": "eval-6-implicit-review-gate",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Recognizes that a requirement-exploration final prompt to PRD file request should use this skill's review-gated flow",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not save immediately after drafting; performs frontend/backend review or clearly records a real fallback",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes announcement fields, display window behavior, target user types, automatic/manual offline behavior, and channel scope",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Preserves the approval-flow question as a non-blocking open question or pending boundary instead of inventing an approval rule",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Appends a review record with frontend/backend approval before saving",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 6,
+      "eval_name": "eval-6-implicit-review-gate",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Recognizes that a requirement-exploration final prompt to PRD file request should use this skill's review-gated flow",
+          "passed": false,
+          "evidence": "Artifact set includes final_prd.md, final_response.md; missing skill review-gate behavior/review record."
+        },
+        {
+          "text": "Does not save immediately after drafting; performs frontend/backend review or clearly records a real fallback",
+          "passed": false,
+          "evidence": "Artifact set includes final_prd.md, final_response.md; missing skill review-gate behavior/review record."
+        },
+        {
+          "text": "Includes announcement fields, display window behavior, target user types, automatic/manual offline behavior, and channel scope",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Preserves the approval-flow question as a non-blocking open question or pending boundary instead of inventing an approval rule",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Appends a review record with frontend/backend approval before saving",
+          "passed": false,
+          "evidence": "Artifact set includes final_prd.md, final_response.md; missing skill review-gate behavior/review record."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1,
+        "stddev": 0,
+        "min": 1,
+        "max": 1
+      },
+      "time_seconds": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4,
+        "stddev": 0,
+        "min": 0.4,
+        "max": 0.4
+      },
+      "time_seconds": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.60",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "Targeted eval 6 is more discriminating: the skill run used the review gate even when the user did not explicitly ask for reviewers; baseline saved a PRD without reviewer notes or review record."
+  ]
+}

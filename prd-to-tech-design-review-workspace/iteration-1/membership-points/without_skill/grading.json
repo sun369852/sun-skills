@@ -1,0 +1,10 @@
+{
+  "summary": { "passed": 4, "failed": 1, "total": 5, "pass_rate": 0.8 },
+  "expectations": [
+    { "text": "Output includes a technical design artifact.", "passed": true, "evidence": "technical-design.md exists in without_skill/outputs." },
+    { "text": "Design covers awarding points exactly once, expiry, admin adjustment audit, member ledger, refund reversal, and immutable ledger entries.", "passed": true, "evidence": "The core points-ledger scenarios are covered." },
+    { "text": "Design includes frontend and backend perspectives or collaboration notes.", "passed": true, "evidence": "The document separates frontend and backend concerns." },
+    { "text": "Design includes API contract, data model, lifecycle/business rules, error handling, and testing strategy.", "passed": false, "evidence": "It includes API/data/testing content, but error handling and lifecycle contract are less explicit than the expected template." },
+    { "text": "Output avoids task decomposition as the primary artifact.", "passed": true, "evidence": "The artifact is written as a technical方案, not a task list." }
+  ]
+}

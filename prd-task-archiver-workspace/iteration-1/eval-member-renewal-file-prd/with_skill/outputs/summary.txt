@@ -1,0 +1,9 @@
+Created member-renewal-tasks.md from the existing Member Renewal PRD using the PRD Task Archiver workflow.
+
+The archive contains 13 tasks: 1 product/alignment task, 5 backend/domain/integration tasks, 4 fullstack/frontend/admin/support tasks, 1 QA task, 1 docs/release task, and 1 blocked product-decision task.
+
+Blocked work: T013 requires a product decision for memberships expired more than 30 days.
+
+Highest-risk dependency: payment success and membership period creation must be sequenced atomically so failed payment attempts never create a new period.
+
+Coverage review: no PRD items are unmapped. Derived technical enablement tasks are labeled for contract alignment, data model/migration work, automated verification, and rollout documentation.

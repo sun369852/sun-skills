@@ -1,0 +1,11 @@
+{
+  "eval_id": 5,
+  "eval_name": "missing-prd-refusal",
+  "prompt": "I do not have a PRD yet, only this sentence: build a member points system. Split it into tasks and archive the tasks. Save any output under your assigned outputs directory.",
+  "assertions": [
+    "No task archive is generated from the one-line requirement.",
+    "The response explains that this skill requires an existing PRD or sufficiently complete PRD content.",
+    "The response asks one focused question for the PRD location/content or suggests returning to requirement exploration.",
+    "The response does not invent roles, workflows, data models, or acceptance criteria."
+  ]
+}

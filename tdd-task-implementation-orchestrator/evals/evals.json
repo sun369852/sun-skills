@@ -1,0 +1,23 @@
+{
+  "skill_name": "tdd-task-implementation-orchestrator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "当前仓库里有 docs/checkout-prd.md、docs/checkout-technical-design.md 和 docs/tasks.md。请根据这些文档开始实现 checkout 优惠码和订单总价任务，使用 TDD，任务完成后更新 tasks.md。没有强依赖的任务可以用子代理分别领取，但要保持上下文干净。",
+      "expected_output": "The assistant should read the PRD, technical design, and task list; select independent checkout-related tasks; create clean worker packets; require tests before implementation; verify results; and update tasks.md only after passing verification.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "按照 specs/invite/prd.md、specs/invite/design.md、specs/invite/tasks.md 进入开发。希望每个功能领域一个新 subagent，先写测试再实现。如果某个失败测试修了很多轮还不过，最多 5 次就换一个新 agent 重新分析。",
+      "expected_output": "The assistant should trigger the orchestration workflow, batch independent invite feature tasks by feature area, enforce TDD, track repeated failure signatures, and hand off after 5 failed attempts with a clean-context failure packet.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "这里有一个很小的 bug：src/formatPrice.ts 对 0 返回空字符串，帮我修一下并跑测试。",
+      "expected_output": "The assistant should not over-orchestrate. It should recognize this as a small one-off fix where the skill is not necessary, or use only a lightweight TDD fix without spawning task-loop workers.",
+      "files": []
+    }
+  ]
+}

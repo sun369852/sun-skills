@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "analytics-dashboard-standalone-prd",
+  "prompt": "Read D:/sun-skills/prd-task-archiver/evals/files/standalone-prds/analytics-dashboard-prd.md. Split it into frontend, backend, testing, and release tasks. Save the resulting Markdown task archive under your assigned outputs directory as analytics-dashboard-tasks.md.",
+  "assertions": [
+    "The archive is saved as analytics-dashboard-tasks.md in the assigned outputs directory.",
+    "Tasks cover frontend, backend, testing, and release areas.",
+    "Each task includes a deliverable and acceptance criteria.",
+    "Permissions, export behavior, chart behavior, and role visibility from the PRD are reflected in the task split.",
+    "Assumptions from the PRD are listed instead of being silently treated as confirmed facts."
+  ]
+}

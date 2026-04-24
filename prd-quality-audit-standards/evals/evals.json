@@ -1,0 +1,44 @@
+{
+  "skill_name": "prd-quality-audit-standards",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们已经有一份会员积分 PRD，内容包括消费发放积分、退款冲正、积分过期、管理员调整和会员积分流水。请使用质量审核子代理，基于 PRD 生成代码开发完成后的测试审核标准，并保存 quality-audit-standards.md。",
+      "expected_output": "The skill should use or simulate a quality audit reviewer, derive traceable post-development audit standards, include ledger/idempotency/refund/admin/expiry checks, and save a Markdown artifact.",
+      "assertions": [
+        "Output includes a saved quality audit standards artifact.",
+        "Audit standards include a traceability matrix mapping PRD requirements to checks.",
+        "Audit standards include pass/fail criteria and required evidence for each major check.",
+        "High-risk gates cover ledger integrity, idempotency, refund reversal, admin audit, and expiry behavior.",
+        "The artifact is a QA/audit standard, not a technical design or task list."
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "PRD 在 specs/lead-import/prd.md。它描述了 CSV 上传、字段映射、重复线索检测、导入预览、后台导入任务和导入历史。请生成后续实现完成后的验收测试标准，遇到 PRD 没说清楚的地方标成 blocked，不要自己补产品规则。",
+      "expected_output": "The skill should read the PRD, create QA standards for upload/mapping/duplicate detection/preview/background job/history, mark unclear rules as blocked, and avoid inventing product semantics.",
+      "assertions": [
+        "Output covers each major import workflow from the PRD.",
+        "Output marks ambiguous duplicate or validation rules as blocked when unspecified.",
+        "Output includes setup data, execution mode, pass/fail criteria, and evidence requirements.",
+        "Output separates release-blocking gates from lower-priority review checks.",
+        "Output avoids inventing product rules that are not in the PRD."
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "这是支付退款审批 PRD，风险比较高。请让质量审核 reviewer 基于 PRD 出一份审核测试标准，重点覆盖权限、审批状态流转、退款幂等、审计日志、通知和第三方退款失败场景。最后给出是否可以用于开发完成后的测试审核。",
+      "expected_output": "The skill should produce risk-weighted audit standards with release-blocking gates for permissions, state transitions, idempotency, audit logs, notifications, and third-party failure handling, plus a readiness summary.",
+      "assertions": [
+        "Output identifies high-risk release-blocking gates.",
+        "Output covers permissions, approval lifecycle, idempotency, audit logging, notifications, and integration failure behavior.",
+        "Output includes required evidence such as logs, API traces, database records, screenshots, or test output.",
+        "Output includes a final readiness status for post-development audit use.",
+        "Output records open questions or assumptions instead of hiding uncertainty."
+      ],
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Created analytics-dashboard-tasks.md from the standalone Analytics Dashboard PRD.
+
+Task distribution: 10 total tasks: frontend 3, backend 4, testing 2, release 1.
+
+Blocked tasks: none. The main sequencing concern is that frontend implementation depends on a stable backend contract for filters, metric shapes, authorization errors, and export columns.
+
+Coverage: all PRD functional requirements and acceptance criteria are mapped. Derived technical enablement tasks were added for API contract alignment, backend/frontend test coverage, and release smoke validation.

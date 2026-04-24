@@ -1,0 +1,13 @@
+{
+  "eval_id": 5,
+  "eval_name": "eval-5-这是老项目增量需求-探索提示词已经完成-但我知道",
+  "prompt": "这是老项目增量需求。探索提示词已经完成，但我知道旧文档和代码可能不一致。请生成 PRD，等前端后端 agent 结合现有项目复核通过后落盘。\\n\\n提示词：在现有发票模块增加“电子发票重发”能力。财务后台可以对已开具成功的电子发票重发邮件；重发不改变发票号码、金额、抬头和开票状态；需要记录重发操作人、时间、收件邮箱。用户端不新增入口。旧文档说发票邮件只能发送一次，但当前线上客服已经有手工重发流程。未定：是否限制每天重发次数。",
+  "assertions": [
+    "Identifies old documentation versus current manual resend behavior as a current-state conflict",
+    "Does not silently choose documentation or current behavior as authoritative when product semantics differ",
+    "Classifies the daily resend limit as blocking or non-blocking with a clear reason",
+    "Includes audit trail, immutable invoice fields, backend state behavior, and no new user-facing entry",
+    "Stops to ask the user if an unresolved conflict or resend-limit decision blocks a trustworthy PRD",
+    "Saves only after reviewer approval and no blocking open questions remain"
+  ]
+}

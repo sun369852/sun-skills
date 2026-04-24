@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "lead-import-subagent-collaboration",
+  "prompt": "我们已经有 PRD 文件 D:\\sun-skills\\prd-to-tech-design-review-workspace\\fixtures\\crm\\specs\\lead-import\\prd.md。请创建前端和后端两个子代理，让他们基于 PRD 协同交流，然后生成并保存 technical-design.md。",
+  "assertions": [
+    "Output includes a saved technical-design.md artifact.",
+    "Design maps major PRD requirements including upload, validation preview, duplicate detection, background import, and import history.",
+    "Design includes explicit frontend and backend collaboration record or reviewer summaries.",
+    "Design includes API contract, data model, status lifecycle, error handling, and testing strategy.",
+    "Output is a technical design, not primarily a task list."
+  ]
+}

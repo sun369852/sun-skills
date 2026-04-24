@@ -1,0 +1,18 @@
+{
+  "name": "sample-membership-app",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@prisma/client": "latest",
+    "next": "latest",
+    "react": "latest"
+  },
+  "devDependencies": {
+    "vitest": "latest",
+    "playwright": "latest"
+  }
+}

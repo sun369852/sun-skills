@@ -1,0 +1,101 @@
+{
+  "skill_name": "prd-task-archiver",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "在 eval fixture 项目里，基于 evals/files/sample-project/docs/prd/member-renewal-prd.md 拆成开发任务，并把结果归档成 evals/files/sample-project/docs/tasks/member-renewal-tasks.md。不要开始写代码。",
+      "expected_output": "Reads the PRD, inspects relevant project conventions, creates a Markdown task archive with task IDs, dependencies, priority, risk, deliverables, acceptance checks, coverage map, unmapped item handling, and reports the saved path.",
+      "files": [
+        "evals/files/sample-project/package.json",
+        "evals/files/sample-project/docs/prd/member-renewal-prd.md"
+      ],
+      "expectations": [
+        "The PRD file is read before task drafting begins.",
+        "The output is saved as a Markdown task archive instead of only being printed in the conversation.",
+        "The archive includes a Task Graph with task IDs, feature blocks, areas, priority, risk, dependencies, and status.",
+        "The archive includes Functional Blocks and Coupling before individual tasks.",
+        "The archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record sections.",
+        "The response explicitly says that no code implementation was started."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "读取 evals/files/standalone-prds/analytics-dashboard-prd.md。请拆成前端、后端、测试、发布几个阶段的任务，保存为 evals/files/standalone-prds/analytics-dashboard-tasks.md。",
+      "expected_output": "Creates the requested tasks file path, preserves PRD scope, includes area-based tasks with dependencies, deliverables, validation, acceptance checks, and identifies assumptions from the pasted content.",
+      "files": [
+        "evals/files/standalone-prds/analytics-dashboard-prd.md"
+      ],
+      "expectations": [
+        "The archive is saved to evals/files/standalone-prds/analytics-dashboard-tasks.md or clearly explains why that exact path cannot be used.",
+        "The archive groups work into cohesive functional blocks before listing individual tasks.",
+        "Tasks cover frontend, backend, testing, and release areas.",
+        "Each task includes a deliverable and acceptance criteria.",
+        "Permissions, export behavior, chart behavior, and role visibility from the PRD are reflected in the task split.",
+        "Assumptions from the PRD are listed instead of being silently treated as confirmed facts.",
+        "The response explicitly says that no code implementation was started."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "基于 evals/files/sample-project/docs/prd/billing-cycle-prd.md 继续往下走，把实现任务拆出来落盘到 evals/files/sample-project/docs/tasks/billing-cycle-generated-tasks.md。这个是老项目迭代，注意不要漏掉兼容、迁移和回归测试。",
+      "expected_output": "Uses the existing PRD as source, treats the work as an existing-project iteration, inspects current project context if available, and writes an archived task breakdown including compatibility, migration, regression, ready versus blocked tasks, and change-log expectations for future updates.",
+      "files": [
+        "evals/files/sample-project/package.json",
+        "evals/files/sample-project/docs/prd/billing-cycle-prd.md"
+      ],
+      "expectations": [
+        "The work is classified as an existing-project iteration.",
+        "The archive distinguishes modest independent functional blocks and cross-block dependencies.",
+        "Relevant project context is inspected or a focused question is asked when the project path is missing.",
+        "The archive includes compatibility, migration, and regression testing tasks.",
+        "Ready work and blocked work are separated when unresolved PRD questions affect execution.",
+        "The final response reports the saved archive path and any open questions or blocked tasks.",
+        "The response explicitly says that no code implementation was started."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "evals/files/sample-project/docs/tasks/billing-cycle-tasks.md 已经存在，里面有 done 和 in_progress 的任务。请基于 evals/files/sample-project/docs/prd/billing-cycle-prd.md 更新任务归档，保留历史状态，不要重编号。",
+      "expected_output": "Reads both the existing task archive and PRD, updates the task archive while preserving existing IDs and statuses, adds a Change Log entry, and avoids resetting completed or in-progress work.",
+      "files": [
+        "evals/files/sample-project/package.json",
+        "evals/files/sample-project/docs/prd/billing-cycle-prd.md",
+        "evals/files/sample-project/docs/tasks/billing-cycle-tasks.md"
+      ],
+      "expectations": [
+        "The existing task archive is read before making updates.",
+        "Existing or updated tasks are assigned to functional blocks without breaking existing task IDs.",
+        "Existing done, skipped, and in_progress statuses are preserved unless explicitly changed by the user.",
+        "Existing task IDs are not renumbered.",
+        "A Change Log entry describes added, changed, removed, skipped, or newly blocked tasks.",
+        "The response reports what changed and whether any tasks became blocked.",
+        "The update summary includes counts for preserved, added, changed, skipped, and newly blocked tasks.",
+        "The response explicitly says that no code implementation was started."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我还没有 PRD，只有一句话：做一个会员积分系统。你先帮我拆任务归档吧。",
+      "expected_output": "Does not invent a task archive from an incomplete requirement. Asks for the PRD or recommends returning to requirement exploration or PRD review before task archiving.",
+      "files": [],
+      "expectations": [
+        "No task archive is generated from the one-line requirement.",
+        "The response explains that this skill requires an existing PRD or sufficiently complete PRD content.",
+        "The response asks one focused question for the PRD location/content or suggests returning to requirement exploration.",
+        "The response does not invent roles, workflows, data models, or acceptance criteria."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "请基于 evals/files/sample-project/docs/prd/not-found-prd.md 拆任务并归档。",
+      "expected_output": "Does not generate a task archive from a missing PRD path. Reports that the PRD path cannot be read and asks for the correct PRD path or pasted PRD content.",
+      "files": [],
+      "expectations": [
+        "No task archive is generated from the missing PRD path.",
+        "The response mentions that the provided PRD path is missing or unreadable.",
+        "The response asks one focused question for the correct PRD path or pasted PRD content.",
+        "The response does not infer requirements from the missing filename."
+      ]
+    }
+  ]
+}

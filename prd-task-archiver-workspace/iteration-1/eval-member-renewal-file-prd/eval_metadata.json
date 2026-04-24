@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "member-renewal-file-prd",
+  "prompt": "In the eval fixture project, read D:/sun-skills/prd-task-archiver/evals/files/sample-project/docs/prd/member-renewal-prd.md and create a development task archive. Save the resulting Markdown task archive under your assigned outputs directory as member-renewal-tasks.md. Do not start code implementation.",
+  "assertions": [
+    "The PRD file is read before task drafting begins.",
+    "The output is saved as a Markdown task archive instead of only being printed in the conversation.",
+    "The archive includes a Task Graph with task IDs, areas, priority, risk, dependencies, and status.",
+    "The archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record sections.",
+    "The response explicitly says that no code implementation was started."
+  ]
+}

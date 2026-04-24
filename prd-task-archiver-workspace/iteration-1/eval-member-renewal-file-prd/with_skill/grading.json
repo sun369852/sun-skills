@@ -1,0 +1,55 @@
+{
+  "expectations": [
+    {
+      "text": "Task archive file exists",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Task Graph includes IDs, areas, priority, risk, dependencies, and status",
+      "passed": true,
+      "evidence": "pattern 'Task Graph' in main output: True; pattern 'Priority' in main output: True; pattern 'Risk' in main output: True; pattern 'Depends On' in main output: True; pattern 'Status' in main output: True"
+    },
+    {
+      "text": "Archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record",
+      "passed": true,
+      "evidence": "pattern 'Ready Tasks' in main output: True; pattern 'Coverage Map' in main output: True; pattern 'Open Questions and Assumptions' in main output: True; pattern 'Archive Record' in main output: True"
+    },
+    {
+      "text": "Includes a blocked task for the PRD open question",
+      "passed": true,
+      "evidence": "pattern 'Blocked Tasks' in main output: True; pattern 'expired more than 30 days' in main output: True"
+    },
+    {
+      "text": "No code implementation was started",
+      "passed": false,
+      "evidence": "pattern 'No code implementation was started' in summary: False"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 20522,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "Timing/token metrics were unavailable from subagent notifications."
+    ],
+    "needs_review": [],
+    "workarounds": [
+      "Grading uses deterministic text-pattern checks."
+    ]
+  }
+}

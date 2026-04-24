@@ -1,0 +1,520 @@
+{
+  "metadata": {
+    "skill_name": "prd-task-archiver",
+    "skill_path": "D:/sun-skills/prd-task-archiver",
+    "executor_model": "subagents",
+    "analyzer_model": "pattern-grader",
+    "timestamp": "2026-04-24T20:07:03",
+    "evals_run": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "member-renewal-file-prd",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Task archive file exists",
+          "passed": true,
+          "evidence": ""
+        },
+        {
+          "text": "Task Graph includes IDs, areas, priority, risk, dependencies, and status",
+          "passed": true,
+          "evidence": "pattern 'Task Graph' in main output: True; pattern 'Priority' in main output: True; pattern 'Risk' in main output: True; pattern 'Depends On' in main output: True; pattern 'Status' in main output: True"
+        },
+        {
+          "text": "Archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record",
+          "passed": true,
+          "evidence": "pattern 'Ready Tasks' in main output: True; pattern 'Coverage Map' in main output: True; pattern 'Open Questions and Assumptions' in main output: True; pattern 'Archive Record' in main output: True"
+        },
+        {
+          "text": "Includes a blocked task for the PRD open question",
+          "passed": true,
+          "evidence": "pattern 'Blocked Tasks' in main output: True; pattern 'expired more than 30 days' in main output: True"
+        },
+        {
+          "text": "No code implementation was started",
+          "passed": false,
+          "evidence": "pattern 'No code implementation was started' in summary: False"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "member-renewal-file-prd",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Task archive file exists",
+          "passed": true,
+          "evidence": ""
+        },
+        {
+          "text": "Task Graph includes IDs, areas, priority, risk, dependencies, and status",
+          "passed": false,
+          "evidence": "pattern 'Task Graph' in main output: False; pattern 'Priority' in main output: False; pattern 'Risk' in main output: False; pattern 'Depends On' in main output: False; pattern 'Status' in main output: True"
+        },
+        {
+          "text": "Archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record",
+          "passed": false,
+          "evidence": "pattern 'Ready Tasks' in main output: False; pattern 'Coverage Map' in main output: False; pattern 'Open Questions and Assumptions' in main output: False; pattern 'Archive Record' in main output: False"
+        },
+        {
+          "text": "Includes a blocked task for the PRD open question",
+          "passed": true,
+          "evidence": "pattern 'Blocked' in main output: True; pattern 'expired more than 30 days' in main output: True"
+        },
+        {
+          "text": "No code implementation was started",
+          "passed": false,
+          "evidence": "pattern 'did not start implementation' in summary: False"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "analytics-dashboard-standalone-prd",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Archive file exists at requested output name",
+          "passed": true,
+          "evidence": ""
+        },
+        {
+          "text": "Tasks cover frontend, backend, testing, and release areas",
+          "passed": true,
+          "evidence": "pattern 'frontend' in main output: True; pattern 'backend' in main output: True; pattern 'testing' in main output: True; pattern 'release' in main output: True"
+        },
+        {
+          "text": "Tasks include deliverables and acceptance criteria",
+          "passed": true,
+          "evidence": "pattern 'Deliverable' in main output: True; pattern 'Acceptance' in main output: True"
+        },
+        {
+          "text": "Permissions, export behavior, chart behavior, and role visibility are reflected",
+          "passed": true,
+          "evidence": "pattern 'permission' in main output: True; pattern 'export' in main output: True; pattern 'chart' in main output: True; pattern 'role' in main output: True"
+        },
+        {
+          "text": "Assumptions are listed",
+          "passed": true,
+          "evidence": "pattern 'Assumptions' in main output: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "analytics-dashboard-standalone-prd",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Archive file exists at requested output name",
+          "passed": true,
+          "evidence": ""
+        },
+        {
+          "text": "Tasks cover frontend, backend, testing, and release areas",
+          "passed": true,
+          "evidence": "pattern 'frontend' in main output: True; pattern 'backend' in main output: True; pattern 'testing' in main output: True; pattern 'release' in main output: True"
+        },
+        {
+          "text": "Tasks include deliverables and acceptance criteria",
+          "passed": false,
+          "evidence": "pattern 'Deliverable' in main output: False; pattern 'Acceptance' in main output: True"
+        },
+        {
+          "text": "Permissions, export behavior, chart behavior, and role visibility are reflected",
+          "passed": true,
+          "evidence": "pattern 'permission' in main output: True; pattern 'export' in main output: True; pattern 'chart' in main output: True; pattern 'role' in main output: True"
+        },
+        {
+          "text": "Assumptions are listed",
+          "passed": true,
+          "evidence": "pattern 'Assumptions' in main output: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "billing-cycle-existing-project",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Classified as existing-project iteration",
+          "passed": true,
+          "evidence": "pattern 'Existing project iteration' in main output: True"
+        },
+        {
+          "text": "Project context is reviewed",
+          "passed": true,
+          "evidence": "pattern 'Project context reviewed' in main output: True"
+        },
+        {
+          "text": "Includes compatibility, migration, and regression testing tasks",
+          "passed": true,
+          "evidence": "pattern 'compatibility' in main output: True; pattern 'migration' in main output: True; pattern 'regression' in main output: True"
+        },
+        {
+          "text": "Ready and blocked work are represented",
+          "passed": true,
+          "evidence": "pattern 'Ready Tasks' in main output: True; pattern 'Blocked Tasks' in main output: True"
+        },
+        {
+          "text": "Reports open questions or blocked tasks",
+          "passed": true,
+          "evidence": "pattern 'Open Questions' in main output: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "billing-cycle-existing-project",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.2,
+        "passed": 1,
+        "failed": 4,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Classified as existing-project iteration",
+          "passed": false,
+          "evidence": "pattern 'Existing project iteration' in main output: False"
+        },
+        {
+          "text": "Project context is reviewed",
+          "passed": false,
+          "evidence": "pattern 'Project context reviewed' in main output: False"
+        },
+        {
+          "text": "Includes compatibility, migration, and regression testing tasks",
+          "passed": true,
+          "evidence": "pattern 'compatibility' in main output: True; pattern 'migration' in main output: True; pattern 'regression' in main output: True"
+        },
+        {
+          "text": "Ready and blocked work are represented",
+          "passed": false,
+          "evidence": "pattern 'Ready Tasks' in main output: False; pattern 'Blocked Tasks' in main output: False"
+        },
+        {
+          "text": "Reports open questions or blocked tasks",
+          "passed": false,
+          "evidence": "pattern 'Open Questions' in main output: False"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "update-existing-archive",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Existing archive is referenced",
+          "passed": true,
+          "evidence": "pattern 'Existing archive' in main output: True"
+        },
+        {
+          "text": "T001, T002, and T003 statuses are preserved",
+          "passed": true,
+          "evidence": "pattern 'T001' in main output: True; pattern 'done' in main output: True; pattern 'T002' in main output: True; pattern 'in_progress' in main output: True; pattern 'T003' in main output: True; pattern 'pending' in main output: True"
+        },
+        {
+          "text": "Existing task IDs are not renumbered",
+          "passed": true,
+          "evidence": "pattern 'T001' in main output: True; pattern 'T002' in main output: True; pattern 'T003' in main output: True"
+        },
+        {
+          "text": "Change Log describes updates",
+          "passed": true,
+          "evidence": "pattern 'Change Log' in main output: True; pattern 'added' in main output: True"
+        },
+        {
+          "text": "Summary reports changed or blocked task status",
+          "passed": false,
+          "evidence": "pattern 'preserves' in summary: False; pattern 'adds' in summary: False"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "update-existing-archive",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Existing archive is referenced",
+          "passed": false,
+          "evidence": "pattern 'Existing archive' in main output: False"
+        },
+        {
+          "text": "T001, T002, and T003 statuses are preserved",
+          "passed": true,
+          "evidence": "pattern 'T001' in main output: True; pattern 'done' in main output: True; pattern 'T002' in main output: True; pattern 'in_progress' in main output: True; pattern 'T003' in main output: True; pattern 'pending' in main output: True"
+        },
+        {
+          "text": "Existing task IDs are not renumbered",
+          "passed": true,
+          "evidence": "pattern 'T001' in main output: True; pattern 'T002' in main output: True; pattern 'T003' in main output: True"
+        },
+        {
+          "text": "Change Log describes updates",
+          "passed": false,
+          "evidence": "pattern 'Change Log' in main output: True; pattern 'added' in main output: False"
+        },
+        {
+          "text": "Summary reports changed or blocked task status",
+          "passed": true,
+          "evidence": "pattern 'preserved' in summary: True; pattern 'added' in summary: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "missing-prd-refusal",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "No task archive is generated from one-line requirement",
+          "passed": true,
+          "evidence": "pattern 'No task archive was created' in main output: True"
+        },
+        {
+          "text": "Explains that PRD is required",
+          "passed": true,
+          "evidence": "pattern 'PRD' in main output: True"
+        },
+        {
+          "text": "Asks for PRD or suggests requirement exploration / PRD review",
+          "passed": true,
+          "evidence": "pattern 'provide the PRD' in main output: True; pattern 'requirement exploration' in main output: True"
+        },
+        {
+          "text": "Does not invent roles, workflows, data models, or acceptance criteria",
+          "passed": true,
+          "evidence": "negative pattern '## Task Graph' absent: True; negative pattern 'T001' absent: True; negative pattern 'data model' absent: True; negative pattern 'acceptance criteria:' absent: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "missing-prd-refusal",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "No task archive is generated from one-line requirement",
+          "passed": true,
+          "evidence": "pattern 'No task archive' in main output: True"
+        },
+        {
+          "text": "Explains that PRD is required",
+          "passed": true,
+          "evidence": "pattern 'PRD' in main output: True"
+        },
+        {
+          "text": "Asks for PRD or suggests requirement exploration / PRD review",
+          "passed": true,
+          "evidence": "pattern 'PRD' in main output: True; pattern 'requirements' in main output: True"
+        },
+        {
+          "text": "Does not invent roles, workflows, data models, or acceptance criteria",
+          "passed": true,
+          "evidence": "negative pattern '## Task Graph' absent: True; negative pattern 'T001' absent: True; negative pattern 'data model' absent: True; negative pattern 'acceptance criteria:' absent: True"
+        }
+      ],
+      "notes": [
+        "Timing/token metrics unavailable; see grading evidence for text checks."
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.92,
+        "stddev": 0,
+        "min": 0.8,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.6,
+        "stddev": 0,
+        "min": 0.2,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      },
+      "tokens": {
+        "mean": 0,
+        "stddev": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.32",
+      "time_seconds": "0",
+      "tokens": "0"
+    }
+  },
+  "notes": [
+    "Pattern grading is intentionally lightweight; use the viewer for qualitative review.",
+    "Timing and token metrics were unavailable from subagent notifications in this environment."
+  ]
+}

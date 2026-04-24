@@ -1,0 +1,96 @@
+{
+  "skill_name": "prd-to-tech-design-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们已经有 PRD 文件 D:\\\\sun-skills\\\\prd-to-tech-design-review-workspace\\\\fixtures\\\\crm\\\\specs\\\\lead-import\\\\prd.md。请创建前端和后端两个子代理，让他们基于 PRD 协同交流，然后生成并保存 technical-design.md。",
+      "expected_output": "The skill should read the PRD, coordinate frontend and backend review, exchange findings, generate a technical-design.md with UI/API/data/error/testing/collaboration sections, and report the saved path plus open questions.",
+      "assertions": [
+        "Output includes a saved technical-design.md artifact.",
+        "Design maps major PRD requirements including upload, validation preview, duplicate detection, background import, and import history.",
+        "Design includes explicit frontend and backend collaboration record or reviewer summaries.",
+        "Design includes API contract, data model, status lifecycle, error handling, and testing strategy.",
+        "Output is a technical design, not primarily a task list."
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "基于 D:\\\\sun-skills\\\\prd-to-tech-design-review-workspace\\\\fixtures\\\\membership\\\\prd.md 这份会员积分 PRD，前端后端一起评审一下，输出技术方案文档，不要拆任务。",
+      "expected_output": "The skill should treat pasted PRD content as source, perform inline or subagent frontend/backend collaboration, avoid task breakdown, and produce a technical design covering points ledger, idempotency, admin adjustment, UI states, API contracts, and assumptions.",
+      "assertions": [
+        "Output includes a technical design artifact.",
+        "Design covers awarding points exactly once, expiry, admin adjustment audit, member ledger, refund reversal, and immutable ledger entries.",
+        "Design includes frontend and backend perspectives or collaboration notes.",
+        "Design includes API contract, data model, lifecycle/business rules, error handling, and testing strategy.",
+        "Output avoids task decomposition as the primary artifact."
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "这是旧项目新增需求，项目在 D:\\\\sun-skills\\\\prd-to-tech-design-review-workspace\\\\fixtures\\\\refund-app，PRD 在 docs/prd/refund-approval.md。请让 FE/BE reviewers 讨论一下现有实现兼容性，最后把技术设计保存到 docs/design/refund-approval-tech-design.md。",
+      "expected_output": "The skill should inspect relevant project context, run frontend/backend review focused on compatibility, save to the requested path without silently overwriting unrelated files, and summarize decisions, risks, and readiness for task decomposition.",
+      "assertions": [
+        "Output saves the requested docs/design/refund-approval-tech-design.md or an equivalent copied artifact.",
+        "Design references existing project compatibility, including current refund status/type limitations.",
+        "Design maps high-value approval threshold, manager approve/reject flow, audit, notifications, and refund processor integration.",
+        "Design includes frontend and backend reviewer perspectives or collaboration notes.",
+        "Design includes API/data/status/error/testing sections and preserves open assumptions."
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "基于这个 PRD 生成技术设计，但里面信息可能不完整：用户可以创建审批流，审批流支持多人审批和条件分支，审批通过后触发业务动作。请前后端协同评审，遇到无法决定的产品语义不要猜，保存技术文档。",
+      "expected_output": "The skill should identify missing product semantics, separate blocking questions from design assumptions, avoid inventing approval semantics, and still produce a partial technical design when possible.",
+      "assertions": [
+        "Output separates blocking questions, design assumptions, and implementation details.",
+        "Output does not invent unresolved approval semantics such as exact branch evaluation rules.",
+        "Output includes frontend/backend perspectives or collaboration notes.",
+        "Output includes a partial API/data/state design with clearly marked gaps.",
+        "Output states whether the design is blocked or ready for task decomposition."
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "PRD：报表页面需要展示实时销售额，前端希望 1 秒刷新，后端认为只能 1 分钟聚合一次。请让前端和后端 reviewer 交换意见，如果冲突无法完全调解，就把推荐方案、保留分歧和风险写进技术设计。",
+      "expected_output": "The skill should classify the disagreement, mediate a recommended contract, preserve unresolved tradeoffs, and document performance/UX risks instead of forcing fake consensus.",
+      "assertions": [
+        "Output classifies the frontend/backend conflict.",
+        "Output proposes a mediated recommendation with rationale.",
+        "Output preserves unresolved disagreement or assumptions when full consensus is not possible.",
+        "Output covers API/data freshness, UI states, performance risks, and testing strategy.",
+        "Output avoids pretending the PRD already decided the refresh interval."
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "已有 PRD 要做批量导出，项目路径存在但很大。请基于 PRD 生成技术设计，只检查必要项目上下文，不要全仓库扫描；最后在文档里列出你检查过哪些文件以及为什么。",
+      "expected_output": "The skill should use the project context inspection budget, inspect a bounded set of files, record inspected files and compatibility findings, and avoid broad codebase exploration.",
+      "assertions": [
+        "Output records inspected files or states why no files were inspected.",
+        "Output follows a bounded project-context inspection strategy.",
+        "Output focuses on conventions and compatibility rather than full codebase audit.",
+        "Output includes frontend/backend perspectives or collaboration notes.",
+        "Output includes API/data/error/testing coverage for the batch export design."
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "这份支付退款 PRD 比较高风险。请先让前端和后端 reviewer 协同讨论并生成技术设计草稿，然后再开启一个清空上下文的二次复核代理，只给它 PRD、项目摘要和草稿，让它找遗漏和契约冲突，最后整合二次复核结果再保存最终技术文档。",
+      "expected_output": "The skill should run the normal frontend/backend collaboration, then a clean-context second-pass review that does not see the first-round discussion transcript, integrate required changes, and record the second-pass summary in the final technical design.",
+      "assertions": [
+        "Output includes a second-pass review summary or equivalent record.",
+        "Second-pass reviewer input is limited to PRD, project-context summary, and draft, not first-round discussion transcript.",
+        "Output integrates required second-pass changes or records them as open risks/questions.",
+        "Output checks for payment/refund risks such as permissions, audit, idempotency, error handling, and contract mismatches.",
+        "Output still includes frontend/backend collaboration record and quality gate coverage."
+      ],
+      "files": []
+    }
+  ]
+}

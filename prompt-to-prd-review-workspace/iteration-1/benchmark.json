@@ -1,0 +1,601 @@
+{
+  "metadata": {
+    "skill_name": "prompt-to-prd-review",
+    "skill_path": "D:\\sun-skills\\prompt-to-prd-review",
+    "executor_model": "subagents plus manual grading",
+    "analyzer_model": "inline heuristic/manual review",
+    "timestamp": "2026-04-24T11:53:41.9588098Z",
+    "evals_run": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "eval-0-我已经用-requirement-explora",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Treats the provided prompt as the authoritative source instead of reopening broad requirement exploration",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Creates a structured PRD with goals, users, scope, workflows, functional requirements, business rules, acceptance criteria, and open questions",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Uses frontend and backend reviewer subagents or clearly states a fallback if subagents are unavailable",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not save the final PRD until both reviewer perspectives approve",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Appends a review record to the saved PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Used skill flow; reviewer pass was simulated in worker environment because nested subagents were unavailable."
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "eval-0-我已经用-requirement-explora",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Treats the provided prompt as the authoritative source instead of reopening broad requirement exploration",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Creates a structured PRD with goals, users, scope, workflows, functional requirements, business rules, acceptance criteria, and open questions",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Uses frontend and backend reviewer subagents or clearly states a fallback if subagents are unavailable",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not save the final PRD until both reviewer perspectives approve",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Appends a review record to the saved PRD",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Prompt explicitly requested reviewers, so baseline also performed a review-like pass."
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-基于这段探索后的提示词生成-PRD-文件-等你觉",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Preserves unresolved coupon rules as assumptions or open questions rather than inventing defaults",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes frontend review concerns such as configuration UI states, validation, and visibility of restrictions",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes backend review concerns such as coupon state transitions, inventory, refund rollback, and audit trail",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Iterates after review feedback instead of treating the first draft as final",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves a Markdown PRD only after both reviewer perspectives approve",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-基于这段探索后的提示词生成-PRD-文件-等你觉",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Preserves unresolved coupon rules as assumptions or open questions rather than inventing defaults",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes frontend review concerns such as configuration UI states, validation, and visibility of restrictions",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes backend review concerns such as coupon state transitions, inventory, refund rollback, and audit trail",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Iterates after review feedback instead of treating the first draft as final",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves a Markdown PRD only after both reviewer perspectives approve",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, final_prd.md, final_response.md, frontend_review.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Baseline was strong because the prompt explicitly described the review loop."
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-我有一段-requirement-explora",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies the unresolved rename/regeneration rule as blocking because it changes certificate identity and historical record semantics",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Asks one focused clarification question instead of drafting a misleading PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not spawn reviewers or save a PRD before the blocking gap is resolved",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-我有一段-requirement-explora",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies the unresolved rename/regeneration rule as blocking because it changes certificate identity and historical record semantics",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Asks one focused clarification question instead of drafting a misleading PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not spawn reviewers or save a PRD before the blocking gap is resolved",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "eval-3-这是老项目的增量需求-当前仓库就是项目代码-re",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Classifies the requirement as an existing-project iteration rather than a greenfield feature",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Gathers or passes relevant existing project context before frontend/backend review",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes PRD content for existing compatibility such as affected flows, permissions reuse, historical data behavior, list filtering, detail visibility, and export fields",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Preserves the unresolved edit-after-approval rule as an open question instead of inventing an answer",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Instructs frontend and backend reviewers to consider current project code or docs when giving feedback",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves a Markdown PRD only after both reviewer perspectives approve and records the project context reviewed",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Recorded missing real project code as a compatibility risk."
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "eval-3-这是老项目的增量需求-当前仓库就是项目代码-re",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Classifies the requirement as an existing-project iteration rather than a greenfield feature",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Gathers or passes relevant existing project context before frontend/backend review",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes PRD content for existing compatibility such as affected flows, permissions reuse, historical data behavior, list filtering, detail visibility, and export fields",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Preserves the unresolved edit-after-approval rule as an open question instead of inventing an answer",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Instructs frontend and backend reviewers to consider current project code or docs when giving feedback",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves a Markdown PRD only after both reviewer perspectives approve and records the project context reviewed",
+          "passed": false,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspection found this expectation only partially satisfied."
+        }
+      ],
+      "notes": "Good PRD content, but weaker durable review/project-context record than skill run."
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "eval-4-我有三份材料-1-requirement-exp",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Applies a clear source priority where latest user supplement overrides the requirement prompt and old PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Uses 14 days as the invitation validity period and excludes phone invitation",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Records old PRD conflicts rather than silently mixing 3-day or phone-invite behavior into the PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes invitation expiration, revoke, resend, acceptance, roles, and acceptance criteria",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Runs frontend/backend review before saving and records source priority in the review record",
+          "passed": true,
+          "evidence": "Artifact set includes final_prd.md, final_response.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Strong source-priority record and old-PRD conflict handling."
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "eval-4-我有三份材料-1-requirement-exp",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Applies a clear source priority where latest user supplement overrides the requirement prompt and old PRD",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Uses 14 days as the invitation validity period and excludes phone invitation",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Records old PRD conflicts rather than silently mixing 3-day or phone-invite behavior into the PRD",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes invitation expiration, revoke, resend, acceptance, roles, and acceptance criteria",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Runs frontend/backend review before saving and records source priority in the review record",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Baseline also handled source priority because prompt was explicit."
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "eval-5-这是老项目增量需求-探索提示词已经完成-但我知道",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies old documentation versus current manual resend behavior as a current-state conflict",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not silently choose documentation or current behavior as authoritative when product semantics differ",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Classifies the daily resend limit as blocking or non-blocking with a clear reason",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes audit trail, immutable invoice fields, backend state behavior, and no new user-facing entry",
+          "passed": false,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspection found this expectation only partially satisfied."
+        },
+        {
+          "text": "Stops to ask the user if an unresolved conflict or resend-limit decision blocks a trustworthy PRD",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves only after reviewer approval and no blocking open questions remain",
+          "passed": true,
+          "evidence": "Artifact set includes final_response.md, project_context.md, reviewer_notes.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Correctly stopped before saving final_prd.md because daily resend limit was blocking."
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "eval-5-这是老项目增量需求-探索提示词已经完成-但我知道",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333333333333334,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifies old documentation versus current manual resend behavior as a current-state conflict",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Does not silently choose documentation or current behavior as authoritative when product semantics differ",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Classifies the daily resend limit as blocking or non-blocking with a clear reason",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Includes audit trail, immutable invoice fields, backend state behavior, and no new user-facing entry",
+          "passed": false,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspection found this expectation only partially satisfied."
+        },
+        {
+          "text": "Stops to ask the user if an unresolved conflict or resend-limit decision blocks a trustworthy PRD",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspected output supports this expectation."
+        },
+        {
+          "text": "Saves only after reviewer approval and no blocking open questions remain",
+          "passed": true,
+          "evidence": "Artifact set includes backend_review.md, blocking_questions.md, final_response.md, frontend_review.md, project_context.md; inspected output supports this expectation."
+        }
+      ],
+      "notes": "Baseline also stopped, so this eval is not very discriminating."
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "stddev": 0.06211299937499414,
+        "min": 0.8333333333333334,
+        "mean": 0.9722222222222222,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "stddev": 0.0,
+        "min": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "stddev": 0.0,
+        "min": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "stddev": 0.0785674201318386,
+        "min": 0.8333333333333334,
+        "mean": 0.9444444444444445,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "stddev": 0.0,
+        "min": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "stddev": 0.0,
+        "min": 0.0,
+        "mean": 0.0,
+        "max": 0.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.03",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "The first eval set is useful as a smoke test but weak as a differentiator: the prompts explicitly instruct the baseline to use frontend/backend review, so baseline performance is high.",
+    "Skill runs produced more durable records for source priority, project context, open-question classification, and review record structure.",
+    "Eval 5 surfaced a useful behavior: both skill and baseline stopped before saving because daily resend limits were blocking, so this eval should be made more discriminating in iteration 2.",
+    "In worker subagents, nested subagent tools were unavailable, so with-skill runs used simulated reviewer passes. The skill should make orchestration responsibility clearer for environments where the parent agent can spawn reviewers."
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "我刚用 requirement-exploration 跑完会员订阅需求，最终提示词在 docs/member-subscription-prompt.md。请基于它生成 PRD 文件，等前端和后端都 review 通过后再落盘。",
+    "should_trigger": true
+  },
+  {
+    "query": "这里有一段探索后的提示词：做后台优惠券活动配置，运营可创建满减券和折扣券，支持库存、有效期、每人领取次数。请生成产品需求文档，保留未定项，不要直接写技术方案。",
+    "should_trigger": true
+  },
+  {
+    "query": "旧 PRD 里商品标签已经支持创建、启停和商品绑定。现在要加排序权重：详情页按权重从高到低展示，同权重按创建时间。请生成增量 PRD，并让前后端评审通过后保存。",
+    "should_trigger": true
+  },
+  {
+    "query": "当前仓库就是老项目。需求探索已经结束：在订单售后模块给部分退款加原因标签，C 端不可见，导出要带字段。请结合现有项目写 PRD，前端后端 agent 认可后再保存。",
+    "should_trigger": true
+  },
+  {
+    "query": "不是 requirement-exploration 输出，就是我直接描述：后台公告支持标题、正文、展示时间范围、目标用户类型，结束后自动下线。请生成 PRD 文件并走评审门禁。",
+    "should_trigger": true
+  },
+  {
+    "query": "我有三份材料：旧 PRD、Jira 变更单、我刚补充的限制条件。请按最新说明优先，整理成一份可保存的 PRD，并记录 source priority 和 review record。",
+    "should_trigger": true
+  },
+  {
+    "query": "这是一个纯后端数据迁移需求：用户等级从 basic/pro/vip 迁到 1/2/3，历史订单和报表不重算，支持灰度和回滚。请生成 PRD，不要直接写 migration 脚本。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把 docs/invoice-resend-prompt.md 生成 PRD。里面有旧文档和线上客服手工流程冲突，先判断哪些问题阻塞落盘，再让前后端复核。",
+    "should_trigger": true
+  },
+  {
+    "query": "根据下面已经澄清过的需求写产品需求文档：财务后台可以重发电子发票邮件，记录操作人、时间和收件邮箱。每天次数限制还没定，如果阻塞就先问我。",
+    "should_trigger": true
+  },
+  {
+    "query": "请把这个已有 PRD 更新成新版本：新增 Web 站内信公告的目标用户筛选，保存时带版本号、评审历史和开放问题。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们需要更好的订单管理，你先问我几个问题，把需求探索清楚，最后再产出一个下游提示词。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我基于这个 PRD 设计技术方案，重点写 API、数据库表、接口幂等、任务拆分和前后端开发计划。",
+    "should_trigger": false
+  },
+  {
+    "query": "我只要一个很快的 PRD 草稿，不需要评审、不需要落文件，直接在聊天里给我大纲就行。",
+    "should_trigger": false
+  },
+  {
+    "query": "请根据这个需求写 OpenAPI schema 和 Prisma migration，PRD 我已经有了，不要再写产品文档。",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我 review 这段 React 代码，看看商品标签排序有没有 bug，按 code review 形式给 findings。",
+    "should_trigger": false
+  },
+  {
+    "query": "我想做优惠券模块，但目前只有一个想法：运营能发券。你先帮我梳理需求，别急着生成文档。",
+    "should_trigger": false
+  },
+  {
+    "query": "把这份 PRD 翻译成英文，保持 markdown 结构，不要改内容，也不用评审。",
+    "should_trigger": false
+  },
+  {
+    "query": "根据 PRD 生成任务列表 tasks.md，按前端、后端、测试拆分并标依赖顺序。",
+    "should_trigger": false
+  },
+  {
+    "query": "给这个需求补一份验收测试用例清单，不要生成完整 PRD。",
+    "should_trigger": false
+  },
+  {
+    "query": "我已经有技术设计了，帮我检查数据库索引和缓存策略是否合理，PRD 不需要动。",
+    "should_trigger": false
+  }
+]

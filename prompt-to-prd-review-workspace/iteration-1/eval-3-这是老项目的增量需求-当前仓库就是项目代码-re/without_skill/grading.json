@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "Classifies the requirement as an existing-project iteration rather than a greenfield feature",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Gathers or passes relevant existing project context before frontend/backend review",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Includes PRD content for existing compatibility such as affected flows, permissions reuse, historical data behavior, list filtering, detail visibility, and export fields",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Preserves the unresolved edit-after-approval rule as an open question instead of inventing an answer",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Instructs frontend and backend reviewers to consider current project code or docs when giving feedback",
+      "passed": true,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspected output supports this expectation."
+    },
+    {
+      "text": "Saves a Markdown PRD only after both reviewer perspectives approve and records the project context reviewed",
+      "passed": false,
+      "evidence": "Artifact set includes backend_review_notes.md, final_prd.md, final_response.md, frontend_review_notes.md, project_context.md; inspection found this expectation only partially satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "total": 6
+  },
+  "notes": "Good PRD content, but weaker durable review/project-context record than skill run."
+}

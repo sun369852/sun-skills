@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-1-基于这段探索后的提示词生成-PRD-文件-等你觉",
+  "prompt": "基于这段探索后的提示词生成 PRD 文件。等你觉得 PRD 比较完整的时候，让前端和后端两个 agent 分别挑问题，修改到他们都说 ok 再落盘。\\n\\n提示词：我们要做 B 端优惠券活动配置模块，给运营使用。首版支持创建满减券和折扣券；可设置有效期、库存、每人领取次数、商品范围、新老用户限制；用户从活动页和站内消息领取。过期自动失效；整单退款后优惠券资格回退；作废只允许运营后台手动作废。未定项：叠加规则、白名单发放、核销统计口径，首版可先作为待确认边界记录。",
+  "assertions": [
+    "Preserves unresolved coupon rules as assumptions or open questions rather than inventing defaults",
+    "Includes frontend review concerns such as configuration UI states, validation, and visibility of restrictions",
+    "Includes backend review concerns such as coupon state transitions, inventory, refund rollback, and audit trail",
+    "Iterates after review feedback instead of treating the first draft as final",
+    "Saves a Markdown PRD only after both reviewer perspectives approve"
+  ]
+}

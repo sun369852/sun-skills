@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "membership-points-inline-prd-to-design",
+  "prompt": "基于 D:\\sun-skills\\prd-to-tech-design-review-workspace\\fixtures\\membership\\prd.md 这份会员积分 PRD，前端后端一起评审一下，输出技术方案文档，不要拆任务。",
+  "assertions": [
+    "Output includes a technical design artifact.",
+    "Design covers awarding points exactly once, expiry, admin adjustment audit, member ledger, refund reversal, and immutable ledger entries.",
+    "Design includes frontend and backend perspectives or collaboration notes.",
+    "Design includes API contract, data model, lifecycle/business rules, error handling, and testing strategy.",
+    "Output avoids task decomposition as the primary artifact."
+  ]
+}

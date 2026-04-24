@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "billing-cycle-existing-project",
+  "prompt": "Read D:/sun-skills/prd-task-archiver/evals/files/sample-project/docs/prd/billing-cycle-prd.md and treat it as an existing-project iteration for D:/sun-skills/prd-task-archiver/evals/files/sample-project. Save the resulting Markdown task archive under your assigned outputs directory as billing-cycle-generated-tasks.md. Do not miss compatibility, migration, or regression testing tasks.",
+  "assertions": [
+    "The work is classified as an existing-project iteration.",
+    "Relevant project context is inspected or a focused question is asked when the project path is missing.",
+    "The archive includes compatibility, migration, and regression testing tasks.",
+    "Ready work and blocked work are separated when unresolved PRD questions affect execution.",
+    "The final response reports the saved archive path and any open questions or blocked tasks."
+  ]
+}

@@ -1,0 +1,5 @@
+Generated billing-cycle-generated-tasks.md from the existing-project billing cycle PRD using the prd-task-archiver workflow.
+
+The archive contains 12 tasks: 1 product/context task, 5 backend/fullstack implementation tasks, 2 frontend/fullstack UI/support tasks, 2 QA tasks, 1 devops release task, and 1 docs task. It explicitly covers migration defaults, first-day compatibility, historical invoice preservation, webhook idempotency, audit events, admin validation, support-tool history, rollout/rollback checks, and regression testing.
+
+No PRD items were left unmapped. No tasks are blocked, though exact implementation file paths remain an assumption because the sample project only provides package metadata and documentation.

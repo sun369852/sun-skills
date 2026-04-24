@@ -110,6 +110,39 @@
         "Identifies the unresolved snapshot freeze-versus-rewrite rule as one clearly blocking gap and explains why it blocks reliable generation",
         "Asks exactly one blocking clarification question instead of bundling more follow-up questions or moving straight into generation"
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "我不是从零做新功能，我们现有商城已经有普通商品下单流程：下单后占库存，支付后出库，退款会回滚库存。现在业务想加一个预售商品模式，先收定金，尾款另付，发货也会更晚。先别直接写 PRD，先帮我把需求整理成后续可用的高质量提示词。",
+      "expected_output": "The assistant should recognize this as an iteration on an existing system, avoid generating immediately, and ask one focused clarification question about how the new presale flow should interact with current order, stock, payment, or refund behavior.",
+      "files": [],
+      "assertions": [
+        "Recognizes that the request is an iteration on an existing commerce flow rather than a greenfield requirement",
+        "Does not immediately output a final downstream prompt in the first response",
+        "Asks one focused clarification question about compatibility or conflict with current order, inventory, payment, delivery, or refund logic"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "下面是一段基于老项目继续补洞的需求澄清对话，请直接续写最后一句。\n\n用户：我们现有后台已经有一套角色权限系统，角色可以直接绑到用户。现在 HR 提了个新需求，希望支持按部门自动继承角色。\n助手：先不急着生成，我先确认这是不是在现有权限模型上增量改造。当前权限模型里，用户是只能拿直接分配的角色，还是还有岗位、组织等别的来源？\n用户：目前只有直接分配，没有别的来源。\n助手：那这个新需求主要想解决什么问题？\n用户：人员调岗频繁，手工改角色太麻烦。\n助手：除了部门继承，你们对原来的直接分配角色有什么预期？\n用户：直接分配还要保留，而且优先级怎么叠加还没完全定。\n助手：还有哪些地方你已经知道会受影响？\n用户：用户详情页、权限校验、操作日志、批量导入员工这些地方应该都会碰到，但边界还没梳理全。\n助手：明白。\n用户：你继续。",
+      "expected_output": "The assistant should continue the existing-project exploration instead of restarting, and ask one focused next question that surfaces the highest-value unresolved compatibility or conflict point in the current permission model.",
+      "files": [],
+      "assertions": [
+        "Continues from the existing permission-system context instead of restarting requirement discovery from scratch",
+        "Keeps the exploration centered on how department inheritance interacts with the current role model and affected modules",
+        "Asks one focused clarification question about a high-value unresolved compatibility, precedence, audit, or conflict rule rather than generating immediately"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "下面是一段老项目增量需求、而且已经接近收口的需求澄清对话，请直接续写最后一句，不要重开流程。\n\n用户：我们现有 CRM 里已经有客户标签系统，销售、运营都会用。现在市场团队想加一个“标签失效规则”配置能力，让一些标签过期后自动失效。\n助手：我先确认和现有逻辑的关系。现在标签是谁打的？失效后会不会影响自动化流程或名单圈选？\n用户：标签有手动打的，也有规则打的；很多自动化流程、消息触达和人群包都依赖标签。\n助手：哪些规则已经定了？\n用户：第一版只做按时间自动失效；失效要留痕；失效后不删除历史打标记录。\n助手：还有哪些地方没完全定？\n用户：和人工移除标签的优先级、对历史人群包统计口径有没有影响、失效后自动化流程是否立即停掉，这些还没完全想清楚。\n助手：明白。\n用户：现在应该差不多了，你看看还缺不缺，如果够了就往下走。",
+      "expected_output": "The assistant should treat this as a late-stage iteration on an existing system, review confirmed points plus likely affected dependencies, separate unresolved items from clearly blocking ones, and ask whether to generate now unless it identifies exactly one blocking compatibility gap.",
+      "files": [],
+      "assertions": [
+        "Treats the conversation as late-stage and continues from the existing CRM tag-system context",
+        "Surfaces affected dependencies or conflict points such as automation, audience selection, historical records, or precedence with current logic",
+        "Performs a closeout review and asks for generation authorization now unless it identifies exactly one clearly blocking compatibility gap"
+      ]
     }
   ]
 }
