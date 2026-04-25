@@ -1,6 +1,6 @@
 ---
 name: requirement-exploration
-description: Use for requirement clarification before spec/PRD/prompt generation: brief or vague product requirements, incomplete PRD/spec drafts, in-progress requirement discussions, existing-product requirement iteration, and late-stage closeout review before generation. Do not use for technical design, codebase exploration, pure rewriting, or explicit one-shot generation requests.
+description: "Use for requirement clarification before spec/PRD/prompt generation: brief or vague product requirements, incomplete PRD/spec drafts, in-progress requirement discussions, existing-product requirement iteration, and late-stage closeout review before generation. Do not use for technical design, codebase exploration, pure rewriting, or explicit one-shot generation requests."
 ---
 
 # Requirement Exploration
