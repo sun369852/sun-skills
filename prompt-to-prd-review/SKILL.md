@@ -7,9 +7,9 @@ description: Use this skill when the user wants to turn a clarified product requ
 
 ## Purpose
 
-Convert a requirement-exploration downstream prompt into a PRD, refine it through frontend and backend review, and save the PRD only after both reviewer perspectives approve the current draft.
+Convert clarified product requirement materials into a PRD, refine it through frontend and backend review, and save the PRD only after both reviewer perspectives approve the current draft.
 
-This skill starts after requirement exploration is mostly complete. Do not restart broad discovery. Preserve the explored requirement, make unresolved items visible, handle new requirements and existing-project iterations differently, and treat reviewer approval as a gate before writing the final file.
+This skill starts after the product intent is mostly clarified, whether it came from requirement-exploration, a direct feature description, an existing PRD update, or multiple source materials. Do not restart broad discovery. Preserve the clarified requirement, make unresolved items visible, handle new requirements and existing-project iterations differently, and treat reviewer approval as a gate before writing the final file.
 
 ## Routing
 

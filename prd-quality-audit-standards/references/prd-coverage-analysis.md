@@ -11,8 +11,23 @@ Record:
 - supporting documents used, if any
 - project files inspected, if any
 - source priority when there are multiple documents
+- whether project inspection was bounded or unavailable
 
 The PRD should remain the source of truth. If a supporting document contradicts the PRD, preserve the conflict as an open issue unless the user has already resolved priority.
+
+## Bounded Project Context
+
+When a project path is provided, inspect only files that can change the audit standards:
+
+- package/test configuration and documented test commands
+- route/API entry points that correspond to the PRD
+- schema/model/data access files
+- auth, permission, role, and policy code
+- logging, audit, metrics, tracing, and observability conventions
+- existing test directories and naming patterns
+- release, migration, feature-flag, or seed data conventions
+
+Record the inspected files and why each one matters. Do not scan the whole repository just to collect context.
 
 ## Requirement Inventory
 
@@ -45,6 +60,7 @@ Every final audit check should trace to one of:
 - a necessary negative/edge case implied by a PRD rule
 - a compatibility or release concern the PRD explicitly mentions
 - a supporting design/task detail that does not expand product scope
+- a bounded project-context finding that affects how the future audit agent can execute or evidence the check
 
 If a check is good engineering hygiene but not PRD-derived, label it as "derived quality standard" and explain why it is needed.
 

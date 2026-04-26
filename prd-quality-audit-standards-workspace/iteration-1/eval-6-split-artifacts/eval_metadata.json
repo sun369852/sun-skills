@@ -1,0 +1,13 @@
+{
+  "assertions": [
+    "Output chooses split artifacts for the complex PRD or explains the split strategy.",
+    "Main quality-audit-standards.md links the auxiliary files.",
+    "audit-checks.json or equivalent machine-readable artifact includes stable IDs and required audit check fields.",
+    "clean-context-review-record.md records reviewer focuses, isolation status, accepted/rejected/unresolved findings.",
+    "audit-report-template.md includes defect report, evidence, statuses, final conclusion, and hard fail reporting fields.",
+    "Output keeps the PRD as source of truth and does not turn the artifact into implementation tasks."
+  ],
+  "eval_id": 6,
+  "eval_name": "split-artifacts",
+  "prompt": "这个 PRD 很大，包含 Web、后台任务、外部支付回调、数据迁移和审计报表。请生成审核标准，但不要把所有内容塞进一个超长文档；按需拆成 quality-audit-standards.md、audit-checks.json、clean-context-review-record.md 和 audit-report-template.md，并在主文档链接这些文件。"
+}

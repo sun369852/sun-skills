@@ -1,0 +1,82 @@
+[
+  {
+    "query": "PRD 在 D:\\\\projects\\\\billing\\\\docs\\\\prd\\\\refund-approval.md。请基于它生成开发完成后给审核代理使用的质量审核标准，要包含三轮干净上下文复核、hard fail、defect report 格式和机器可读检查项。",
+    "should_trigger": true
+  },
+  {
+    "query": "我们已经写完会员积分 PRD，里面有消费发积分、退款冲正、积分过期、管理员调整和流水。帮我生成后续代码开发完成后的测试审核契约，主要给 audit agent 用，不是普通 QA checklist。",
+    "should_trigger": true
+  },
+  {
+    "query": "基于 specs/lead-import/prd.md 生成验收测试标准，项目在 apps/crm。要先看有界项目上下文，找测试命令、API、schema、权限和现有测试目录，PRD 没说清楚的重复检测规则标 blocked。",
+    "should_trigger": true
+  },
+  {
+    "query": "已有 quality-audit-standards.md，PRD 更新了：导出新增 XLSX，还要记录操作者和筛选条件。请保持旧审核项 ID 稳定，新增项追加 ID，判断是否需要重新三轮 clean-context review。",
+    "should_trigger": true
+  },
+  {
+    "query": "这份支付回调 PRD 很高风险。请产出 implementation audit contract，覆盖签名校验、重复回调、账务幂等、审计日志、Not Run/Blocked 规则、最终 Approved/Rejected/Blocked 结论规则。",
+    "should_trigger": true
+  },
+  {
+    "query": "我有一个粗 PRD：审批流支持多人审批、条件分支、审批通过后触发动作，但没有定义分支顺序、失败重试和权限边界。请生成审核标准；如果草案准入不过，就保存 blocked 标准文档，不要自己补产品规则。",
+    "should_trigger": true
+  },
+  {
+    "query": "这个大 PRD 覆盖 Web、后台任务、外部支付回调、数据迁移、审计报表。请不要输出一个超长文档，拆成 quality-audit-standards.md、audit-checks.json、clean-context-review-record.md 和 audit-report-template.md。",
+    "should_trigger": true
+  },
+  {
+    "query": "PRD 已完成，请让质量审核子代理生成后续实现审核标准，重点是 BV/IA/TE/RG 分层、稳定 ID、证据必须关联检查项 ID、失败时缺陷报告格式。",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate an audit-agent-readable acceptance test plan from docs/prd/data-migration.md. It should include hard fail conditions, required evidence, static fallback when tests cannot run, and PRD change sync rules.",
+    "should_trigger": true
+  },
+  {
+    "query": "prd 在 ./specs/order-cancel/prd.md，帮我生成后续测试审核标准，要求三轮复核互相看不到对方输出，最后主代理只合并摘要，不要把完整 reviewer 原文塞进文档。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这个需求写成 PRD：用户可以批量导入线索，支持 CSV 上传、字段映射、预览和导入历史。",
+    "should_trigger": false
+  },
+  {
+    "query": "PRD 已经有了，请让前端和后端 reviewer 协同生成技术设计文档，包含 API、数据库 schema、状态机和 UI 组件方案。",
+    "should_trigger": false
+  },
+  {
+    "query": "基于 docs/prd/refund.md 拆任务，输出 tasks.md，分前端、后端、测试、发布步骤，带依赖顺序。",
+    "should_trigger": false
+  },
+  {
+    "query": "代码已经写完了，直接帮我跑 npm test、npm run e2e，并检查失败原因。",
+    "should_trigger": false
+  },
+  {
+    "query": "请 review 这个 PR 的代码，看有没有 bug、缺少测试、权限绕过或者回归风险。",
+    "should_trigger": false
+  },
+  {
+    "query": "我们还没想清楚需求，帮我访谈一下用户角色、业务流程、边界情况，再生成需求探索问题。",
+    "should_trigger": false
+  },
+  {
+    "query": "把这份测试报告整理成发布总结，列出通过率、失败用例、阻塞项和剩余风险。",
+    "should_trigger": false
+  },
+  {
+    "query": "PRD 里写了退款审批，请帮我设计数据库表、接口路径、前端页面结构和后端服务模块。",
+    "should_trigger": false
+  },
+  {
+    "query": "已有 QA checklist，帮我翻译成英文并润色语气，不要改变结构。",
+    "should_trigger": false
+  },
+  {
+    "query": "我想优化这个 skill 的触发描述，生成 should-trigger / should-not-trigger 查询并跑 description optimization。",
+    "should_trigger": false
+  }
+]

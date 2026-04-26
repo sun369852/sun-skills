@@ -1,0 +1,38 @@
+[
+  {
+    "query": "开发已经完成了，按当前 git diff、tasks.md 和 technical-design.md 做验收审核，告诉我能不能合并。",
+    "should_trigger": true
+  },
+  {
+    "query": "上一个 agent 实现完登录权限改造了，请接手做 clean-context review，重点看 PRD 验收项和安全风险。",
+    "should_trigger": true
+  },
+  {
+    "query": "请按 quality-audit-standards.md 审核这次实现，输出 BV/IA/TE/RG 检查状态和最终 Approved/Rejected 结论。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我 review-and-fix 当前未提交改动，先审核确认 bug，再只修审核发现的问题并跑相关测试。",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我看一下这个函数为什么返回 undefined，顺便解释一下这段代码的执行流程。",
+    "should_trigger": false
+  },
+  {
+    "query": "根据这个 PRD 生成开发完成后的 quality-audit-standards.md，要包含 BV/IA/TE/RG 检查项。",
+    "should_trigger": false
+  },
+  {
+    "query": "根据 specs/checkout/tasks.md 继续实现下一个任务，按 TDD 开发并更新任务列表。",
+    "should_trigger": false
+  },
+  {
+    "query": "请做一个普通 code review，主要看命名、可读性和有没有可以简化的地方，不需要按 PRD 验收。",
+    "should_trigger": false
+  },
+  {
+    "query": "把这个 PRD 转成技术设计文档，让前端和后端 reviewer 协同讨论 API、数据模型和 UI 状态。",
+    "should_trigger": false
+  }
+]

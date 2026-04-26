@@ -1,0 +1,14 @@
+{
+  "assertions": [
+    "Output covers each major import workflow from the PRD.",
+    "Output records bounded project context inspection or states why project context was unavailable.",
+    "Output marks ambiguous duplicate or validation rules as blocked when unspecified.",
+    "Output includes environment prerequisites, test data, execution mode, pass/fail criteria, and evidence requirements.",
+    "Output requires relevant test execution where feasible and static verification or blocked status when tests cannot run.",
+    "Output separates release-blocking gates from lower-priority review checks.",
+    "Output avoids inventing product rules that are not in the PRD."
+  ],
+  "eval_id": 2,
+  "eval_name": "lead-import",
+  "prompt": "PRD 在 specs/lead-import/prd.md，项目路径也提供了。它描述了 CSV 上传、字段映射、重复线索检测、导入预览、后台导入任务和导入历史。请生成后续实现完成后的审核代理用验收测试标准，做有界项目探查，遇到 PRD 没说清楚的地方标成 blocked，不要自己补产品规则。"
+}

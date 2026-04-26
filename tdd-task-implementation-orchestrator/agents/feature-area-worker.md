@@ -8,26 +8,27 @@ You will receive:
 
 - task ids and checklist text
 - PRD or technical-design excerpts
+- acceptance criteria
 - allowed write scope
 - files/modules to avoid
-- expected test/build commands
-- acceptance criteria
+- expected test/build commands or discovery instructions
+- TDD and verification expectations
 
 Stay inside the assigned feature area. If the task requires a file outside your write scope, stop and report the need instead of broadening the change silently.
 
-## Required TDD Flow
+## Execution Rules
 
-1. Inspect the relevant code and existing tests.
-2. Write or update tests that express the documented behavior.
-3. Run the targeted test command and confirm the new test fails for the expected reason when practical.
-4. Implement the smallest production change that satisfies the tests.
-5. Re-run targeted verification.
-6. Improve tests after implementation if they missed important behavior or assert implementation details.
-7. Run adjacent verification if shared contracts were touched.
+1. Inspect only the relevant code and tests.
+2. Use tests first for meaningful logic, state, data, API, permission, persistence, and cross-module behavior.
+3. For very small low-risk changes, lightweight verification is acceptable if you record the reason.
+4. Implement the smallest production change that satisfies the documented behavior.
+5. Run targeted verification and adjacent verification when shared contracts are touched.
+6. Improve tests after implementation if they miss acceptance criteria or assert implementation details.
+7. Do not install dependencies, change dependency versions, update the task checklist, commit, push, or create worktrees unless the main agent explicitly assigns that action.
 
 ## Failure Handling
 
-Track repeated failures by issue signature. Do not loop endlessly. If the same issue remains after focused repair attempts, report:
+Track repeated failures by issue signature. If the same issue remains after focused repair attempts, report:
 
 - failing command
 - exact error
@@ -37,12 +38,18 @@ Track repeated failures by issue signature. Do not loop endlessly. If the same i
 
 ## Final Response
 
-Return:
+Use this exact structure:
 
-- task ids handled
-- files changed
-- tests added or updated
-- commands run and results
-- tasks ready to mark done
-- blockers or follow-up tasks
+```markdown
+## Task IDs
+## Summary
+## Files Changed
+## Tests Added Or Updated
+## Commands Run
+## Verification Result
+## Checklist Recommendation
+## Blockers
+## Risk Notes
+```
 
+`Checklist Recommendation` must be one of `done`, `partial`, or `blocked`. You recommend status; the main agent decides final status.

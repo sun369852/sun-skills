@@ -5,19 +5,64 @@
       "id": 1,
       "prompt": "当前仓库里有 docs/checkout-prd.md、docs/checkout-technical-design.md 和 docs/tasks.md。请根据这些文档开始实现 checkout 优惠码和订单总价任务，使用 TDD，任务完成后更新 tasks.md。没有强依赖的任务可以用子代理分别领取，但要保持上下文干净。",
       "expected_output": "The assistant should read the PRD, technical design, and task list; select independent checkout-related tasks; create clean worker packets; require tests before implementation; verify results; and update tasks.md only after passing verification.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "The response or plan treats the PRD, technical design, and tasks.md as existing execution sources rather than creating new planning artifacts.",
+        "The assistant selects only independent task batches with clear dependencies, write scopes, and verification expectations.",
+        "The assistant uses clean-context feature-area workers only for tasks that are independent and complex enough to justify worker delegation.",
+        "The assistant requires task-list updates only after main-agent integration review and acceptable verification.",
+        "The assistant creates or references a timestamped implementation run log beside the task checklist."
+      ]
     },
     {
       "id": 2,
       "prompt": "按照 specs/invite/prd.md、specs/invite/design.md、specs/invite/tasks.md 进入开发。希望每个功能领域一个新 subagent，先写测试再实现。如果某个失败测试修了很多轮还不过，最多 5 次就换一个新 agent 重新分析。",
       "expected_output": "The assistant should trigger the orchestration workflow, batch independent invite feature tasks by feature area, enforce TDD, track repeated failure signatures, and hand off after 5 failed attempts with a clean-context failure packet.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "The assistant groups work by feature-area task batch instead of mechanically assigning one worker per checklist item.",
+        "The assistant applies tests-first behavior for meaningful logic and records any justified TDD exception.",
+        "The assistant defines repeated failures by issue signature, such as failing test plus core error.",
+        "The assistant stops same-context repair after 5 unresolved attempts for the same issue signature.",
+        "The assistant uses a fresh-context analyzer first for root-cause analysis before authorizing repair."
+      ]
     },
     {
       "id": 3,
       "prompt": "这里有一个很小的 bug：src/formatPrice.ts 对 0 返回空字符串，帮我修一下并跑测试。",
       "expected_output": "The assistant should not over-orchestrate. It should recognize this as a small one-off fix where the skill is not necessary, or use only a lightweight TDD fix without spawning task-loop workers.",
-      "files": []
+      "files": [],
+      "expectations": [
+        "The assistant does not start the full PRD/task-list orchestration loop for this small one-off bug.",
+        "The assistant handles the change inline or with lightweight verification rather than spawning feature-area workers.",
+        "The assistant runs or proposes a targeted test when available.",
+        "The assistant does not create or update a task checklist unless the user supplied one."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "根据 specs/billing/prd.md、specs/billing/design.md、specs/billing/tasks.md 开始开发，完全托管。最多 4 个 worker，可以创建分支、使用 worktree，并按任务批次提交 commit，但不要 push。",
+      "expected_output": "The assistant should use the skill, load git/worktree/full-auto/parallelism references, create or propose a parallel execution plan because worker count is greater than 2, record full-auto mode and auto approvals in a timestamped run log, allow local branch/worktree/commit operations within strict scope, and never push.",
+      "files": [],
+      "expectations": [
+        "The assistant recognizes full-auto mode and records confirmation rules and auto-approved decisions in the run log.",
+        "The assistant presents a parallel execution plan before launching more than 2 workers.",
+        "The assistant allows local branch, optional worktree, and task-batch commit handling within strict scope.",
+        "The assistant explicitly avoids pushing because the user said not to push.",
+        "The assistant limits parallel execution to safely independent tasks and keeps shared contracts serial."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "按 docs/tasks.md 执行开发，其中 T021 是改一个按钮文案，T022 是实现权限校验。请尽量自动执行并记录日志。",
+      "expected_output": "The assistant should treat the copy change as eligible for direct low-risk lightweight verification or documented test skip, treat permission logic as requiring TDD and stronger verification, and record both decisions in the run log.",
+      "files": [],
+      "expectations": [
+        "The assistant treats the button-copy task as low-risk and allows lightweight verification or documented test skip.",
+        "The assistant treats permission validation as meaningful logic requiring tests-first or strong verification.",
+        "The assistant records TDD decisions, test skips, and verification results in the timestamped run log.",
+        "The assistant keeps task-list updates under main-agent control after review."
+      ]
     }
   ]
 }

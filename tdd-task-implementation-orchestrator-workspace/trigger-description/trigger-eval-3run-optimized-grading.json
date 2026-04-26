@@ -1,0 +1,123 @@
+{
+  "skill_name": "tdd-task-implementation-orchestrator",
+  "model": "sonnet",
+  "input": "D:\\sun-skills\\tdd-task-implementation-orchestrator-workspace\\trigger-description\\trigger-eval-3run-optimized.json",
+  "graded_at": "2026-04-26T16:34:07",
+  "summary": {
+    "passed": 18,
+    "total": 20,
+    "accuracy": 0.9,
+    "precision": 1.0,
+    "recall": 0.8,
+    "specificity": 1.0,
+    "true_positive": 8,
+    "false_negative": 2,
+    "true_negative": 10,
+    "false_positive": 0,
+    "runs_per_query": 3,
+    "trigger_threshold": 0.5,
+    "timeout_seconds": 35
+  },
+  "expectations": [
+    {
+      "text": "Eval 1: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=项目里已经有 specs/checkout/prd.md、specs/checkout/design.md 和 specs/checkout/tasks.md。请按这些文档开始实现优惠码校验和订单总价计算，使用 TDD，完成后更新 tasks.md，并把执行日志落盘。"
+    },
+    {
+      "text": "Eval 2: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=按照 docs/invite-prd.md、docs/invite-technical-design.md、docs/tasks.md 进入开发执行。希望按功能领域拆 worker，先写测试，再实现，任务完成后自动 commit，但不要 push。"
+    },
+    {
+      "text": "Eval 3: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=我已经完成 PRD、技术方案和任务列表了。现在从 tasks.md 领取可以并行的任务开始编码，最多 4 个 subagent，先给我并行计划确认。"
+    },
+    {
+      "text": "Eval 4: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=根据 .speckit/specs/reporting/prd.md、design.md、tasks.md 开始实现导出报表。完全托管，过程里记录 run log，遇到同一个测试失败超过 5 次就换新上下文分析。"
+    },
+    {
+      "text": "Eval 5: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=0.67; query=repo 里有 openspec/changes/add-billing/spec.md 和 tasks.md，技术设计也在 docs/billing-design.md。请从任务清单开始 TDD 开发，按任务批次提交 commit。"
+    },
+    {
+      "text": "Eval 6: should trigger",
+      "passed": false,
+      "evidence": "did not trigger; trigger_rate=0.00; query=请执行 specs/auth/tasks.md 里的开发任务，PRD 和架构文档同目录。权限相关任务必须补测试，小的文案任务可以轻量验证，全部记录到 implementation run log。"
+    },
+    {
+      "text": "Eval 7: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=Start implementation from docs/payment-prd.md, docs/payment-architecture.md, and docs/payment-tasks.md. Use clean-context agents by feature area, keep task checklist status updated, and do not push."
+    },
+    {
+      "text": "Eval 8: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=tasks.md 里 T012-T018 是本轮范围。请基于现有 PRD 和 technical-design.md 开发，worker 写入范围要隔离，测试不通过按失败签名最多修 5 次。"
+    },
+    {
+      "text": "Eval 9: should trigger",
+      "passed": true,
+      "evidence": "triggered; trigger_rate=1.00; query=我们已经有完整产品需求、技术文档和验收任务了，不要重新规划。直接开始实现，能自动处理的都自动处理，最后给我任务状态、日志路径和 commits。"
+    },
+    {
+      "text": "Eval 10: should trigger",
+      "passed": false,
+      "evidence": "did not trigger; trigger_rate=0.00; query=Use the implementation plan in feature/foo/tasks.md plus the existing PRD/design docs to code the feature. Create a branch, use worktrees if useful, and commit each verified batch locally."
+    },
+    {
+      "text": "Eval 11: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=我只有一个想法：做一个用户积分系统。你先帮我访谈需求，最后生成 PRD。"
+    },
+    {
+      "text": "Eval 12: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=基于这个 PRD 生成技术设计文档，最好让前端和后端 reviewer 一起讨论 API、数据模型和 UI 状态。"
+    },
+    {
+      "text": "Eval 13: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=请把这个需求拆成 tasks.md，包含依赖顺序、验收标准和测试建议，但现在不要写代码。"
+    },
+    {
+      "text": "Eval 14: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=帮我 review 这个 PR，重点看权限绕过、并发问题和测试遗漏。"
+    },
+    {
+      "text": "Eval 15: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=src/formatPrice.ts 里 0 显示为空字符串，帮我修一下并跑相关测试。"
+    },
+    {
+      "text": "Eval 16: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=我想优化 skill description 的触发准确率，请生成 should-trigger/should-not-trigger eval queries。"
+    },
+    {
+      "text": "Eval 17: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=docs/tasks.md 现在写得太粗了，比如只有“实现用户管理模块”，请你帮我重新拆成更细任务。"
+    },
+    {
+      "text": "Eval 18: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=请解释一下 TDD、BDD 和普通单元测试的区别，给我一个学习路线。"
+    },
+    {
+      "text": "Eval 19: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=帮我把现有 docs/prd.md 翻译成英文，保持 Markdown 表格格式。"
+    },
+    {
+      "text": "Eval 20: should not trigger",
+      "passed": true,
+      "evidence": "did not trigger; trigger_rate=0.00; query=项目测试一直失败，先不要改代码，帮我分析 CI 日志里失败最多的模块和可能原因。"
+    }
+  ]
+}

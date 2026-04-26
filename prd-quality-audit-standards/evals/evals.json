@@ -3,25 +3,31 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "我们已经有一份会员积分 PRD，内容包括消费发放积分、退款冲正、积分过期、管理员调整和会员积分流水。请使用质量审核子代理，基于 PRD 生成代码开发完成后的测试审核标准，并保存 quality-audit-standards.md。",
-      "expected_output": "The skill should use or simulate a quality audit reviewer, derive traceable post-development audit standards, include ledger/idempotency/refund/admin/expiry checks, and save a Markdown artifact.",
+      "prompt": "我们已经有一份会员积分 PRD，内容包括消费发放积分、退款冲正、积分过期、管理员调整和会员积分流水。请使用质量审核子代理，基于 PRD 生成代码开发完成后的测试审核标准，做三轮干净上下文复核，并保存 quality-audit-standards.md。",
+      "expected_output": "The skill should use or simulate quality audit reviewers, pass a draft admission gate, run three clean-context review rounds with distinct focuses, derive traceable post-development audit standards for an implementation/test audit agent, include ledger/idempotency/refund/admin/expiry checks, and save a Markdown artifact with a machine-readable appendix.",
       "assertions": [
         "Output includes a saved quality audit standards artifact.",
         "Audit standards include a traceability matrix mapping PRD requirements to checks.",
+        "Audit standards separate Behavior Verification, Implementation Audit, Test Execution, and Risk Gate checks.",
+        "Audit standards record three clean-context review rounds or disclose an inline fallback limitation.",
+        "Audit standards record distinct reviewer focuses for coverage, risk, and executability.",
         "Audit standards include pass/fail criteria and required evidence for each major check.",
+        "Audit standards include machine-readable audit check data with stable IDs such as BV-001 or IA-001.",
         "High-risk gates cover ledger integrity, idempotency, refund reversal, admin audit, and expiry behavior.",
-        "The artifact is a QA/audit standard, not a technical design or task list."
+        "The artifact is an audit contract, not a technical design or task list."
       ],
       "files": []
     },
     {
       "id": 2,
-      "prompt": "PRD 在 specs/lead-import/prd.md。它描述了 CSV 上传、字段映射、重复线索检测、导入预览、后台导入任务和导入历史。请生成后续实现完成后的验收测试标准，遇到 PRD 没说清楚的地方标成 blocked，不要自己补产品规则。",
-      "expected_output": "The skill should read the PRD, create QA standards for upload/mapping/duplicate detection/preview/background job/history, mark unclear rules as blocked, and avoid inventing product semantics.",
+      "prompt": "PRD 在 specs/lead-import/prd.md，项目路径也提供了。它描述了 CSV 上传、字段映射、重复线索检测、导入预览、后台导入任务和导入历史。请生成后续实现完成后的审核代理用验收测试标准，做有界项目探查，遇到 PRD 没说清楚的地方标成 blocked，不要自己补产品规则。",
+      "expected_output": "The skill should read the PRD, perform bounded project inspection for test commands/routes/schema/auth/logging/test conventions when a project path exists, create audit-agent standards for upload/mapping/duplicate detection/preview/background job/history, mark unclear rules as blocked, and avoid inventing product semantics.",
       "assertions": [
         "Output covers each major import workflow from the PRD.",
+        "Output records bounded project context inspection or states why project context was unavailable.",
         "Output marks ambiguous duplicate or validation rules as blocked when unspecified.",
-        "Output includes setup data, execution mode, pass/fail criteria, and evidence requirements.",
+        "Output includes environment prerequisites, test data, execution mode, pass/fail criteria, and evidence requirements.",
+        "Output requires relevant test execution where feasible and static verification or blocked status when tests cannot run.",
         "Output separates release-blocking gates from lower-priority review checks.",
         "Output avoids inventing product rules that are not in the PRD."
       ],
@@ -29,14 +35,60 @@
     },
     {
       "id": 3,
-      "prompt": "这是支付退款审批 PRD，风险比较高。请让质量审核 reviewer 基于 PRD 出一份审核测试标准，重点覆盖权限、审批状态流转、退款幂等、审计日志、通知和第三方退款失败场景。最后给出是否可以用于开发完成后的测试审核。",
-      "expected_output": "The skill should produce risk-weighted audit standards with release-blocking gates for permissions, state transitions, idempotency, audit logs, notifications, and third-party failure handling, plus a readiness summary.",
+      "prompt": "这是支付退款审批 PRD，风险比较高。请让质量审核 reviewer 基于 PRD 出一份审核测试标准，三轮复核之间保持干净上下文互不影响，重点覆盖权限、审批状态流转、退款幂等、审计日志、通知和第三方退款失败场景。最后给出是否可以用于开发完成后的测试审核。",
+      "expected_output": "The skill should produce risk-weighted audit standards with three independent clean-context review rounds, release-blocking gates for permissions, state transitions, idempotency, audit logs, notifications, and third-party failure handling, plus defect reporting, hard fail rules, and a final conclusion policy.",
       "assertions": [
         "Output identifies high-risk release-blocking gates.",
+        "Output states that three review rounds used isolated context or explains the fallback.",
         "Output covers permissions, approval lifecycle, idempotency, audit logging, notifications, and integration failure behavior.",
         "Output includes required evidence such as logs, API traces, database records, screenshots, or test output.",
+        "Output defines Pass, Fail, Blocked, Not Run, and Not Applicable handling and does not treat Blocked or Not Run as passing.",
+        "Output includes defect report format, hard fail conditions, and retest/regression rules.",
         "Output includes a final readiness status for post-development audit use.",
         "Output records open questions or assumptions instead of hiding uncertainty."
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "已有 quality-audit-standards.md，现在 PRD 更新了：原来的批量导出只支持 CSV，现在新增 XLSX，且导出任务需要记录操作者和筛选条件。请基于新 PRD 更新审核标准，保持原有审核项 ID 稳定，新增项追加 ID，废弃项不要复用 ID，并说明是否需要重新三轮干净上下文复核。",
+      "expected_output": "The skill should apply PRD change synchronization rules, preserve unaffected audit check IDs, append new IDs for XLSX/operator/filter requirements, mark removed checks deprecated when relevant, re-evaluate risk levels, and decide whether clean-context review must rerun.",
+      "assertions": [
+        "Output preserves existing audit check IDs where requirements are unchanged.",
+        "Output appends new IDs for new PRD requirements instead of renumbering all checks.",
+        "Output marks removed or superseded checks as deprecated rather than reusing IDs.",
+        "Output reruns or requires PRD coverage analysis for the changed requirements.",
+        "Output explains whether three clean-context review rounds are required based on the change risk.",
+        "Output updates machine-readable audit checks or states the linked auxiliary file was updated."
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "这份 PRD 很粗：用户可以配置审批流，审批流支持多人审批、条件分支和审批通过后触发业务动作，但没有定义分支规则、审批顺序、失败重试、权限边界。请生成审核标准；如果初稿达不到草案准入门，就先重写，最多两次。仍然无法形成可靠标准时，保存 blocked 状态并列出阻塞问题。",
+      "expected_output": "The skill should apply the draft admission gate, avoid sending an inadequate draft to clean-context review, mark unresolved approval semantics as blocked, and save a blocked or ready-with-assumptions standards document depending on whether minimum audit criteria can be met.",
+      "assertions": [
+        "Output applies or references a draft admission gate before clean-context review.",
+        "Output does not invent approval order, branch evaluation, retry, or permission semantics.",
+        "Output marks ambiguous requirements as blocked/open questions with testing impact.",
+        "Output either produces an admitted ready draft or saves an admitted-blocked/blocked standards document with reasons.",
+        "Output uses canonical readiness status Ready, Ready with assumptions, or Blocked; it does not use ambiguous statuses such as Ready with blocking questions.",
+        "Output avoids presenting unresolved Blocker/High checks as passing or ready.",
+        "Output remains an audit standards artifact, not a PRD rewrite or technical design."
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "这个 PRD 很大，包含 Web、后台任务、外部支付回调、数据迁移和审计报表。请生成审核标准，但不要把所有内容塞进一个超长文档；按需拆成 quality-audit-standards.md、audit-checks.json、clean-context-review-record.md 和 audit-report-template.md，并在主文档链接这些文件。",
+      "expected_output": "The skill should use the split artifact strategy for a complex PRD, produce or describe the main Markdown standards plus machine-readable checks, clean-context review record, and audit report template, while keeping links between artifacts.",
+      "assertions": [
+        "Output chooses split artifacts for the complex PRD or explains the split strategy.",
+        "Main quality-audit-standards.md links the auxiliary files.",
+        "audit-checks.json or equivalent machine-readable artifact includes stable IDs and required audit check fields.",
+        "clean-context-review-record.md records reviewer focuses, isolation status, accepted/rejected/unresolved findings.",
+        "audit-report-template.md includes defect report, evidence, statuses, final conclusion, and hard fail reporting fields.",
+        "Output keeps the PRD as source of truth and does not turn the artifact into implementation tasks."
       ],
       "files": []
     }

@@ -1,0 +1,35 @@
+{
+  "skill_name": "implementation-review-handoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "开发已经完成了。请基于当前 git diff、tasks.md 和 technical-design.md 做一次验收审核，只输出问题、验证结果和是否可以合并，不要直接修代码。",
+      "expected_output": "Uses the skill, identifies source of truth and diff scope, reviews implementation against tasks/design, runs or recommends targeted verification, reports severity-ranked findings and a pass/fix-needed/block decision.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "上一个 agent 按 PRD 实现了登录权限改造，并留下了 implementation-run-2026-04-26.md。你接手做 clean-context review，重点看有没有漏验收条件和安全风险。",
+      "expected_output": "Uses the skill, loads handoff/run-log context, applies stricter auth/security gates, optionally uses an independent reviewer if subagents are explicitly requested/available, and produces findings plus verification gaps.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "帮我 review-and-fix 这次任务实现，范围就是当前未提交改动。先审核，确认 bug 后只修审核发现的问题，然后跑相关测试。",
+      "expected_output": "Uses review-and-fix mode, reports confirmed findings before editing, keeps fixes scoped to reviewed defects, reruns relevant checks, and gives a final decision with evidence.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "开发完成了，请按 quality-audit-standards.md 审核当前改动。报告里要标出 BV/IA/TE/RG 检查项状态、硬失败门禁、证据和最终是否 Approved。",
+      "expected_output": "Uses the skill, treats quality audit standards as the primary review contract, maps audit check IDs to findings and evidence, applies Blocker/High hard fail rules, and reports both standards conclusion and skill decision.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "实现已经完成，请审核当前 git diff。没有 quality-audit-standards，按 tasks.md 和 technical-design.md 验收即可。",
+      "expected_output": "Uses the skill, does not block on missing audit standards, scopes the review to the current diff and source docs, and reports findings, verification evidence, coverage notes, and a decision.",
+      "files": []
+    }
+  ]
+}

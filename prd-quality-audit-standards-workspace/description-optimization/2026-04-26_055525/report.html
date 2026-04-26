@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>prd-quality-audit-standards — Skill Description Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', Georgia, serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf9f5;
+            color: #141413;
+        }
+        h1 { font-family: 'Poppins', sans-serif; color: #141413; }
+        .explainer {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+            color: #b0aea5;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+        }
+        .summary p { margin: 5px 0; }
+        .best { color: #788c5d; font-weight: bold; }
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #e8e6dc;
+            border-radius: 6px;
+            font-size: 12px;
+            min-width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #e8e6dc;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        th {
+            font-family: 'Poppins', sans-serif;
+            background: #141413;
+            color: #faf9f5;
+            font-weight: 500;
+        }
+        th.test-col {
+            background: #6a9bcc;
+        }
+        th.query-col { min-width: 200px; }
+        td.description {
+            font-family: monospace;
+            font-size: 11px;
+            word-wrap: break-word;
+            max-width: 400px;
+        }
+        td.result {
+            text-align: center;
+            font-size: 16px;
+            min-width: 40px;
+        }
+        td.test-result {
+            background: #f0f6fc;
+        }
+        .pass { color: #788c5d; }
+        .fail { color: #c44; }
+        .rate {
+            font-size: 9px;
+            color: #b0aea5;
+            display: block;
+        }
+        tr:hover { background: #faf9f5; }
+        .score {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .score-good { background: #eef2e8; color: #788c5d; }
+        .score-ok { background: #fef3c7; color: #d97706; }
+        .score-bad { background: #fceaea; color: #c44; }
+        .train-label { color: #b0aea5; font-size: 10px; }
+        .test-label { color: #6a9bcc; font-size: 10px; font-weight: bold; }
+        .best-row { background: #f5f8f2; }
+        th.positive-col { border-bottom: 3px solid #788c5d; }
+        th.negative-col { border-bottom: 3px solid #c44; }
+        th.test-col.positive-col { border-bottom: 3px solid #788c5d; }
+        th.test-col.negative-col { border-bottom: 3px solid #c44; }
+        .legend { font-family: 'Poppins', sans-serif; display: flex; gap: 20px; margin-bottom: 10px; font-size: 13px; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-swatch { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+        .swatch-positive { background: #141413; border-bottom: 3px solid #788c5d; }
+        .swatch-negative { background: #141413; border-bottom: 3px solid #c44; }
+        .swatch-test { background: #6a9bcc; }
+        .swatch-train { background: #141413; }
+    </style>
+</head>
+<body>
+    <h1>prd-quality-audit-standards — Skill Description Optimization</h1>
+    <div class="explainer">
+        <strong>Optimizing your skill's description.</strong> This page updates automatically as Claude tests different versions of your skill's description. Each row is an iteration — a new description attempt. The columns show test queries: green checkmarks mean the skill triggered correctly (or correctly didn't trigger), red crosses mean it got it wrong. The "Train" score shows performance on queries used to improve the description; the "Test" score shows performance on held-out queries the optimizer hasn't seen. When it's done, Claude will apply the best-performing description to your skill.
+    </div>
+
+    <div class="summary">
+        <p><strong>Original:</strong> Use this skill whenever a PRD already exists and the user wants to derive post-development quality audit standards for an implementation audit agent, test audit agent, or QA reviewer: PRD-to-audit traceability, acceptance/audit checks, test execution requirements, hard fail conditions, defect report format, machine-readable audit checks, PRD change synchronization, or three-round clean-context review. Strongly prefer it for prompts like 根据 PRD 生成测试标准, 质量审核子代理, 三轮复核, 干净上下文复核, 代码开发完成后审核, PRD 验收标准, audit test standards, implementation audit contract, or acceptance test plan from PRD. Do not use it for creating/writing a PRD, requirement discovery, technical design, task decomposition, code review, translation, summarizing an existing test report, or directly running tests against completed code.</p>
+        <p class="best"><strong>Best:</strong> Use this skill whenever a PRD already exists and the user wants to derive post-development quality audit standards for an implementation audit agent, test audit agent, or QA reviewer: PRD-to-audit traceability, acceptance/audit checks, test execution requirements, hard fail conditions, defect report format, machine-readable audit checks, PRD change synchronization, or three-round clean-context review. Strongly prefer it for prompts like 根据 PRD 生成测试标准, 质量审核子代理, 三轮复核, 干净上下文复核, 代码开发完成后审核, PRD 验收标准, audit test standards, implementation audit contract, or acceptance test plan from PRD. Do not use it for creating/writing a PRD, requirement discovery, technical design, task decomposition, code review, translation, summarizing an existing test report, or directly running tests against completed code.</p>
+        <p><strong>Best Score:</strong> 4/8 (test)</p>
+        <p><strong>Iterations:</strong> 5 | <strong>Train:</strong> 12 | <strong>Test:</strong> 8</p>
+    </div>
+
+    <div class="legend">
+        <span style="font-weight:600">Query columns:</span>
+        <span class="legend-item"><span class="legend-swatch swatch-positive"></span> Should trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-negative"></span> Should NOT trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-train"></span> Train</span>
+        <span class="legend-item"><span class="legend-swatch swatch-test"></span> Test</span>
+    </div>
+
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Iter</th>
+                <th>Train</th>
+                <th>Test</th>
+                <th class="query-col">Description</th>
+                <th class="positive-col">我有一个粗 PRD：审批流支持多人审批、条件分支、审批通过后触发动作，但没有定义分支顺序、失败重试和权限边界。请生成审核标准；如果草案准入不过，就保存 blocked 标准文档，不要自己补产品规则。</th>
+                <th class="positive-col">这个大 PRD 覆盖 Web、后台任务、外部支付回调、数据迁移、审计报表。请不要输出一个超长文档，拆成 quality-audit-standards.md、audit-checks.json、clean-context-review-record.md 和 audit-report-template.md。</th>
+                <th class="positive-col">prd 在 ./specs/order-cancel/prd.md，帮我生成后续测试审核标准，要求三轮复核互相看不到对方输出，最后主代理只合并摘要，不要把完整 reviewer 原文塞进文档。</th>
+                <th class="positive-col">这份支付回调 PRD 很高风险。请产出 implementation audit contract，覆盖签名校验、重复回调、账务幂等、审计日志、Not Run/Blocked 规则、最终 Approved/Rejected/Blocked 结论规则。</th>
+                <th class="positive-col">PRD 在 D:\\projects\\billing\\docs\\prd\\refund-approval.md。请基于它生成开发完成后给审核代理使用的质量审核标准，要包含三轮干净上下文复核、hard fail、defect report 格式和机器可读检查项。</th>
+                <th class="positive-col">我们已经写完会员积分 PRD，里面有消费发积分、退款冲正、积分过期、管理员调整和流水。帮我生成后续代码开发完成后的测试审核契约，主要给 audit agent 用，不是普通 QA checklist。</th>
+                <th class="negative-col">PRD 已经有了，请让前端和后端 reviewer 协同生成技术设计文档，包含 API、数据库 schema、状态机和 UI 组件方案。</th>
+                <th class="negative-col">已有 QA checklist，帮我翻译成英文并润色语气，不要改变结构。</th>
+                <th class="negative-col">PRD 里写了退款审批，请帮我设计数据库表、接口路径、前端页面结构和后端服务模块。</th>
+                <th class="negative-col">帮我把这个需求写成 PRD：用户可以批量导入线索，支持 CSV 上传、字段映射、预览和导入历史。</th>
+                <th class="negative-col">把这份测试报告整理成发布总结，列出通过率、失败用例、阻塞项和剩余风险。</th>
+                <th class="negative-col">我想优化这个 skill 的触发描述，生成 should-trigger / should-not-trigger 查询并跑 description optimization。</th>
+                <th class="test-col positive-col">PRD 已完成，请让质量审核子代理生成后续实现审核标准，重点是 BV/IA/TE/RG 分层、稳定 ID、证据必须关联检查项 ID、失败时缺陷报告格式。</th>
+                <th class="test-col positive-col">已有 quality-audit-standards.md，PRD 更新了：导出新增 XLSX，还要记录操作者和筛选条件。请保持旧审核项 ID 稳定，新增项追加 ID，判断是否需要重新三轮 clean-context review。</th>
+                <th class="test-col positive-col">基于 specs/lead-import/prd.md 生成验收测试标准，项目在 apps/crm。要先看有界项目上下文，找测试命令、API、schema、权限和现有测试目录，PRD 没说清楚的重复检测规则标 blocked。</th>
+                <th class="test-col positive-col">Generate an audit-agent-readable acceptance test plan from docs/prd/data-migration.md. It should include hard fail conditions, required evidence, static fallback when tests cannot run, and PRD change sync rules.</th>
+                <th class="test-col negative-col">代码已经写完了，直接帮我跑 npm test、npm run e2e，并检查失败原因。</th>
+                <th class="test-col negative-col">我们还没想清楚需求，帮我访谈一下用户角色、业务流程、边界情况，再生成需求探索问题。</th>
+                <th class="test-col negative-col">基于 docs/prd/refund.md 拆任务，输出 tasks.md，分前端、后端、测试、发布步骤，带依赖顺序。</th>
+                <th class="test-col negative-col">请 review 这个 PR 的代码，看有没有 bug、缺少测试、权限绕过或者回归风险。</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="best-row">
+                <td>1</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use this skill whenever a PRD already exists and the user wants to derive post-development quality audit standards for an implementation audit agent, test audit agent, or QA reviewer: PRD-to-audit traceability, acceptance/audit checks, test execution requirements, hard fail conditions, defect report format, machine-readable audit checks, PRD change synchronization, or three-round clean-context review. Strongly prefer it for prompts like 根据 PRD 生成测试标准, 质量审核子代理, 三轮复核, 干净上下文复核, 代码开发完成后审核, PRD 验收标准, audit test standards, implementation audit contract, or acceptance test plan from PRD. Do not use it for creating/writing a PRD, requirement discovery, technical design, task decomposition, code review, translation, summarizing an existing test report, or directly running tests against completed code.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>2</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use this skill for turning an existing, draft, or rough PRD into a post-development audit contract for future implementation review or test review. Trigger when the user wants PRD-based quality/audit standards, acceptance and verification checks, hard-fail or Blocked/Not Run rules, defect report format, machine-readable audit checks, review records, or a standards package split into files for audit agents/reviewers. Use it especially when the request is “for after code is built,” “for an audit agent,” or asks for independent clean-context / multi-round review standards. It also fits when the PRD is incomplete but the user wants gaps surfaced and blocked rather than product rules invented. Do not use it for writing or refining the PRD itself, requirement discovery, technical design, task breakdown, code review, translating checklists, summarizing test results, or directly executing tests.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>3</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use this skill for converting an existing, draft, or rough PRD into a post-build audit contract for reviewers or audit agents. Trigger when the user wants 基于 PRD 的审核标准 / 审核契约 / 测试审核标准 / 质量审核标准: acceptance and verification gates, hard-fail or Blocked/Not Run rules, defect report format, machine-readable audit checks, clean-context multi-round review, or a reviewer-facing standards package split into files. Also use it when the PRD is incomplete but the user wants gaps surfaced and blocked rather than missing product rules invented. Do not use it for writing or refining the PRD, requirement discovery, technical design, task breakdown, implementation, code review, checklist translation, test-report summarization, or directly running tests.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>4</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use this skill for turning an existing PRD—complete, rough, or draft—into the standards future reviewers or audit agents will use after implementation. Trigger when the user wants a PRD-based 审核契约 / 审核标准 / 验收标准 / 测试审核标准 / implementation audit contract: verification gates, pass-fail or Blocked/Not Run rules, defect report format, machine-readable audit checks, reviewer-facing audit artifacts, or a split standards package saved to files. Also use it when the user wants independent or multi-round clean-context review of those standards, or when the PRD has gaps and they want missing rules surfaced and the result marked blocked rather than invented. Do not use it for writing or refining the PRD, requirement exploration, technical design, task breakdown, implementation, code review, checklist translation, test execution, or summarizing test/report results.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>5</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use this skill for taking an existing PRD—complete, rough, or incomplete—and turning it into the post-implementation audit standard reviewers will use later, especially when the user asks for 基于 PRD 的审核标准 / 审核契约 / 测试审核标准 / 质量审核标准 for code that will be built afterward. Choose it when the goal is a future-facing audit package for an audit agent or reviewer: pass/fail or Approved/Rejected/Blocked/Not Run rules, hard-fail gates, PRD-to-check traceability, defect report templates, machine-readable checks, split output files, or independent clean-context multi-round review. It also fits when the PRD has gaps and the user wants those gaps surfaced, blocked, and saved as blocked standards instead of inventing missing product behavior. Do not use it for writing or improving the PRD, requirement discovery, technical design, task breakdown, implementation, ordinary QA checklists, code review, report summarization, or running tests.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</body>
+</html>

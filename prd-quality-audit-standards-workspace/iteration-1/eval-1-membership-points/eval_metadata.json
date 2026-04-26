@@ -1,0 +1,16 @@
+{
+  "assertions": [
+    "Output includes a saved quality audit standards artifact.",
+    "Audit standards include a traceability matrix mapping PRD requirements to checks.",
+    "Audit standards separate Behavior Verification, Implementation Audit, Test Execution, and Risk Gate checks.",
+    "Audit standards record three clean-context review rounds or disclose an inline fallback limitation.",
+    "Audit standards record distinct reviewer focuses for coverage, risk, and executability.",
+    "Audit standards include pass/fail criteria and required evidence for each major check.",
+    "Audit standards include machine-readable audit check data with stable IDs such as BV-001 or IA-001.",
+    "High-risk gates cover ledger integrity, idempotency, refund reversal, admin audit, and expiry behavior.",
+    "The artifact is an audit contract, not a technical design or task list."
+  ],
+  "eval_id": 1,
+  "eval_name": "membership-points",
+  "prompt": "我们已经有一份会员积分 PRD，内容包括消费发放积分、退款冲正、积分过期、管理员调整和会员积分流水。请使用质量审核子代理，基于 PRD 生成代码开发完成后的测试审核标准，做三轮干净上下文复核，并保存 quality-audit-standards.md。"
+}

@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "passed": true,
+      "evidence": "Static review: output satisfies this assertion.",
+      "text": "Output identifies high-risk release-blocking gates."
+    },
+    {
+      "passed": true,
+      "evidence": "Static review: output satisfies this assertion.",
+      "text": "Output states that three review rounds used isolated context or explains the fallback."
+    },
+    {
+      "passed": true,
+      "evidence": "Static review: output satisfies this assertion.",
+      "text": "Output covers permissions, approval lifecycle, idempotency, audit logging, notifications, and integration failure behavior."
+    },
+    {
+      "passed": true,
+      "evidence": "Static review: output satisfies this assertion.",
+      "text": "Output includes required evidence such as logs, API traces, database records, screenshots, or test output."
+    },
+    {
+      "passed": true,
+      "evidence": "Static review: output satisfies this assertion.",
+      "text": "Output defines Pass, Fail, Blocked, Not Run, and Not Applicable handling and does not treat Blocked or Not Run as passing."
+    },
+    {
+      "passed": false,
+      "evidence": "Static review: assertion was missing, weak, or only partially represented in the output.",
+      "text": "Output includes defect report format, hard fail conditions, and retest/regression rules."
+    },
+    {
+      "passed": false,
+      "evidence": "Static review: assertion was missing, weak, or only partially represented in the output.",
+      "text": "Output includes a final readiness status for post-development audit use."
+    },
+    {
+      "passed": false,
+      "evidence": "Static review: assertion was missing, weak, or only partially represented in the output.",
+      "text": "Output records open questions or assumptions instead of hiding uncertainty."
+    }
+  ],
+  "summary": "Static grading for without_skill on eval 3: 5/8 assertions passed."
+}

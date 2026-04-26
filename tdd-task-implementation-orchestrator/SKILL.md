@@ -1,243 +1,93 @@
 ---
 name: tdd-task-implementation-orchestrator
-description: Use this skill when the user wants to start coding from a PRD, task checklist, technical design, architecture document, spec, or implementation plan. This skill orchestrates TDD-driven development with clean-context subagents, feature-area task ownership, task-list updates after completed work, independent task batching, verification gates, and a maximum of 5 repair attempts before handing the stuck issue to a fresh subagent. Trigger for prompts such as "根据 PRD 和任务清单开始开发", "按技术文档 TDD 实现", "use agents to implement tasks", "clean context subagents", "领取下一个任务", "实现 tasks.md", "spec-driven TDD coding", or "从 PRD/技术方案/任务列表进入开发". Do not use for writing the PRD, producing only a technical design, pure code review, or one-off small edits that do not need task orchestration.
+description: Use this skill when the user wants to start development execution from an existing PRD, task checklist, technical design, architecture document, spec, or implementation plan. This skill is specifically for coding execution, not for creating PRDs, designs, or task breakdowns. It orchestrates TDD-oriented implementation with clean-context feature-area workers, bounded task batches, task-list updates, run logs, optional git branch/worktree/local commits, safe parallelism, and a 5-attempt failure fuse before clean-context re-analysis. Trigger for prompts such as "根据 PRD 和任务清单开始开发", "执行 specs/.../tasks.md 里的开发任务", "按技术文档 TDD 实现", "实现 tasks.md", "implementation plan plus PRD/design docs to code the feature", "use agents to implement tasks", "clean context subagents", "领取下一个任务", "spec-driven TDD coding", "从 PRD/技术方案/任务列表进入开发", or requests to execute a development plan.
 ---
 
 # TDD Task Implementation Orchestrator
 
 ## Purpose
 
-Turn product and engineering planning artifacts into working code through a controlled implementation loop:
+Execute an already-planned software development scope from PRD, technical documentation, and task checklist artifacts. This skill does not write the PRD, produce the technical design, or decompose vague work into a full task plan. It turns ready execution artifacts into working code through bounded task batches, TDD-oriented verification, clean-context workers, run logging, and controlled integration.
 
-1. Read the PRD, task checklist, technical documentation, and current codebase.
-2. Identify tasks that can be implemented independently by feature area.
-3. Assign one bounded task bundle at a time to a clean-context worker.
-4. Drive each task with tests first, implementation second, verification third.
-5. Update the task checklist after each completed bundle.
-6. Rotate to a new clean-context worker for the next independent bundle.
-7. Stop repeated repair loops after 5 attempts and hand the issue to a fresh analyzer/worker.
+The main agent is the orchestrator. It owns source discovery, task eligibility, batching, worker packets, integration review, verification strategy, task-list updates, run-log updates, and final reporting. Workers own only their assigned feature area and allowed write scope.
 
-The main agent remains the orchestrator. It owns task selection, context packaging, integration decisions, verification, and the final report. Workers own only their assigned feature area and write scope.
+## Hard Boundary
+
+Use this skill only for development execution. If the task checklist, PRD, or technical design is missing or too vague to support safe execution, stop the affected task and record it as blocked. Provide the smallest clarification needed, but do not replace upstream planning by inventing a new PRD, technical design, or full task breakdown.
+
+## Reference Loading
+
+Load only the references needed for the current situation:
+
+| Situation | Read |
+| --- | --- |
+| Every invocation | `references/scope-and-inputs.md`, `references/execution-loop.md`, `references/run-log-and-task-list.md`, `references/completion-and-final-report.md` |
+| TDD, test selection, skipped tests, unrelated failures | `references/tdd-and-verification.md` |
+| Subagents, clean context, parallelism, worker packets | `references/subagents-and-parallelism.md` |
+| Repeated failures or the 5-attempt fuse | `references/failure-fuse.md` |
+| Git branch, worktree, staging, commit, or push questions | `references/git-and-worktree.md` |
+| Full-auto mode, auto approvals, high-risk decisions | `references/full-auto-and-risk.md` |
+| High-risk changes or second-pass review | `references/clean-context-review.md` |
+
+Bundled prompts:
+
+- `agents/feature-area-worker.md` for normal feature-area implementation workers.
+- `agents/fresh-failure-analyzer.md` after the same issue reaches the 5-attempt limit.
 
 ## Use This Skill When
 
 Use this skill when the user provides or references:
 
-- a PRD plus a task checklist
+- a PRD plus task checklist
 - a technical design plus implementation tasks
-- a `tasks.md`, `todo.md`, issue list, OpenSpec/Speckit task output, or similar implementation plan
-- a request to implement multiple tasks with TDD
-- a request to use independent subagents, clean context, fresh workers, or task claiming
-- a request to keep updating the task list as work completes
+- a `tasks.md`, `todo.md`, issue list, OpenSpec/Speckit task output, or similar execution plan
+- a request to implement multiple tasks with TDD or test-driven verification
+- a request to use independent subagents, clean context, fresh workers, task claiming, or worker batches
+- a request to keep updating the task list during implementation
 
 Do not use this skill when:
 
-- the user still needs requirement exploration, PRD writing, or technical design generation
-- the user asks for a single small bug fix that is faster and safer inline
+- the user still needs requirement exploration, PRD writing, technical design, or task decomposition
 - the user asks only for a code review
-- the task list is too vague to identify verifiable behavior; ask one focused question or create a small clarification list first
+- the request is a small one-off edit where orchestration would add unnecessary overhead
 
-## Inputs
+For small low-risk edits, handle them directly with lightweight verification instead of forcing a worker loop.
 
-Expected inputs can include:
+## Core Workflow
 
-- PRD path or pasted PRD content
-- task checklist path, often `tasks.md`
-- technical design, architecture, API, database, UI, or testing docs
-- repository path
-- preferred test command, build command, or package manager
-- explicit constraints such as "do not touch backend" or "only finish tasks P0-P3"
+1. Locate and read the task checklist first, then the PRD and technical docs that justify it.
+2. Read required references from the table above.
+3. Create a compact implementation brief: scope, source docs, task state, dependencies, acceptance criteria, test/build commands, risky shared contracts, assumptions, and blockers.
+4. Create a timestamped run log beside the task checklist, such as `implementation-run-2026-04-26-1530.md`.
+5. Classify execution mode: standard or full-auto; record max parallel workers and confirmation rules in the run log.
+6. Select the next eligible task batch. Only executable tasks with clear verification, resolved dependencies, bounded write scope, and no required new product/architecture decision can be claimed.
+7. Decide whether to handle the batch inline or assign it to a clean-context feature-area worker.
+8. Apply TDD-oriented execution: tests first by default for meaningful logic; lightweight verification or documented test skip for very small, low-risk changes.
+9. Integrate worker output through main-agent review. Workers recommend status; the main agent decides final status.
+10. Update the task checklist and run log after each integrated batch.
+11. Commit by verified task batch when git commits are authorized and appropriate. Never push unless the user explicitly asks.
+12. Continue until all requested executable tasks are done, remaining tasks are blocked, verification cannot continue, a hard-risk operation requires confirmation, or the user stops the run.
 
-If paths are missing, inspect the repository for likely planning files before asking. Search for names such as `prd`, `requirements`, `technical-design`, `design`, `architecture`, `tasks`, `spec`, `plan`, `.speckit`, `.openspec`, and `docs`.
+## Default Execution Rules
 
-## Operating Principles
-
-- Treat the PRD and technical documentation as the source of truth. If code conflicts with docs, record the conflict and choose the least surprising implementation that preserves existing behavior.
-- Keep worker context intentionally small: the task bundle, relevant doc excerpts, discovered project conventions, allowed write scope, verification command, and current task-list state.
-- Use feature-area workers, not generic "frontend/backend" splits unless the task naturally requires that. Good feature areas include auth flow, import pipeline, billing state, report export, notification delivery, form validation, or persistence layer.
-- Prefer parallel workers only for independent tasks with disjoint write sets. If tasks share files, schemas, migrations, or public contracts, sequence them.
-- Update the task checklist only after a task bundle has passing verification or a clear blocked status.
-- Do not allow one failure to consume the whole session. Track repeated attempts by issue signature and trigger a fresh-context handoff after 5 failed repair loops.
-- Preserve unrelated user changes. Never revert files outside the assigned scope unless the user explicitly asks.
-
-## Required Workflow
-
-### 1. Locate And Read Sources
-
-Read the task checklist first, then the PRD and technical docs that justify those tasks. If the codebase has existing docs for testing, architecture, or contribution patterns, read only the relevant parts.
-
-Create a compact implementation brief:
-
-- product goal and non-goals
-- task checklist path and current completion state
-- acceptance criteria
-- technical constraints and compatibility notes
-- expected test/build commands
-- risky shared files or contracts
-- open questions and assumptions
-
-If the brief exposes a blocking ambiguity, ask one focused question. For non-blocking ambiguity, make a conservative assumption and record it.
-
-### 2. Normalize The Task Checklist
-
-Parse the checklist into task records:
-
-- id or stable label
-- title
-- feature area
-- dependencies
-- expected files or modules
-- acceptance criteria
-- test expectations
-- status: `pending`, `in_progress`, `done`, or `blocked`
-
-Do not rewrite the whole task file for style. Make the smallest edits needed to mark status, add notes, or add missing verification references.
-
-### 3. Select The Next Work Batch
-
-Choose the next batch using this priority:
-
-1. Unblocked prerequisite tasks.
-2. High-value independent tasks with clear acceptance criteria.
-3. Tasks that enable later testing or integration.
-4. Smaller tasks when project risk is high or context is uncertain.
-
-A task is independent enough for a separate worker only when:
-
-- it does not require unmerged output from another active worker
-- its write scope is disjoint or low-conflict
-- its tests can be run in isolation or clearly targeted
-- its acceptance criteria can be verified without hidden product decisions
-
-### 4. Prepare A Worker Packet
-
-For each worker, provide a concise packet:
-
-- assigned task ids and exact checklist text
-- feature-area responsibility
-- allowed write scope and files/modules to avoid
-- PRD and technical-doc excerpts relevant to the task
-- current project conventions discovered by the orchestrator
-- required TDD sequence
-- test/build command to run
-- expected final response: changed files, tests added/updated, commands run, task status recommendation, blockers
-
-Tell workers they are not alone in the codebase. They must not revert changes made by others and should adapt to existing edits.
-
-Use `agents/feature-area-worker.md` as the default worker prompt. Use `agents/fresh-failure-analyzer.md` when the same issue has already failed 5 repair attempts.
-
-### 5. Test First
-
-Before implementation, write or assign tests that express the documented behavior:
-
-- unit tests for business rules, parsing, validation, reducers, utilities, or service functions
-- integration tests for API contracts, persistence behavior, workflows, permissions, or cross-module behavior
-- UI/component tests for interactive states and user-visible behavior
-- end-to-end tests only when acceptance criteria require real workflow coverage or no lower-level seam can verify the behavior
-
-Run the targeted test command and confirm the new test fails for the expected reason when practical. If the existing test framework cannot run yet, record the blocker and still write tests in the local project style.
-
-### 6. Implement And Verify
-
-Implement the smallest production change that satisfies the tests and documented acceptance criteria. Then run:
-
-- the targeted tests for the task
-- any adjacent tests affected by shared contracts
-- lint/typecheck/build when the touched area normally requires it or when the change is broad
-
-After implementation, improve the tests if they only assert implementation details, miss an important acceptance criterion, or fail to cover a regression risk discovered during coding.
-
-### 7. Handle Failures Without Loops
-
-Track failures by issue signature, such as:
-
-- failing test name plus error message
-- build/typecheck error and file
-- runtime exception and stack root
-- acceptance criterion not met
-
-For each issue signature:
-
-1. Attempt a focused fix.
-2. Re-run the smallest meaningful verification.
-3. Increment the issue attempt count only when the same signature remains unresolved.
-4. Stop after 5 failed attempts.
-
-After 5 failed attempts, stop local repair and create a fresh-context handoff:
-
-- original task packet
-- current diff summary
-- exact failing commands and errors
-- fixes already tried
-- suspected root causes, clearly labeled as hypotheses
-- files that must not be reverted
-
-Send that packet to a new clean-context analyzer/worker using `agents/fresh-failure-analyzer.md`, or perform the same clean-room analysis inline if subagents are unavailable.
-
-### 8. Integrate Worker Results
-
-When a worker finishes:
-
-- review its changed files and ensure they match the assigned scope
-- run or inspect the verification it reported
-- resolve integration conflicts with other completed work
-- avoid accepting broad rewrites that were not necessary for the task
-- update the task checklist with completed, blocked, or follow-up status
-
-Only mark a task `done` when verification passes or the user explicitly accepts a partial result. If a task is blocked, write a short blocker note with the missing decision or failing command.
-
-### 9. Continue The Loop
-
-After updating the checklist, start the next independent task bundle with a new clean-context worker. Do not keep extending the same worker across unrelated feature areas. The reset matters because it reduces stale assumptions and keeps each task's reasoning local.
-
-Continue until:
-
-- all requested tasks are done
-- remaining tasks are blocked on user/product decisions
-- verification cannot proceed because of missing dependencies or environment constraints
-- the user asks to stop
-
-## Task Checklist Update Format
-
-Respect the existing checklist style. If it uses Markdown checkboxes, prefer:
-
-```markdown
-- [x] T012 Add validation tests for invite expiration
-  - Verification: `npm test -- invite-expiration`
-```
-
-For blocked tasks:
-
-```markdown
-- [ ] T013 Enforce organization-level quota
-  - Blocked: PRD does not define whether owners can override quota.
-```
-
-If the checklist has a status table, update only the status, verification, and notes columns.
-
-## Subagent Guidance
-
-Use subagents only when the active environment and system instructions permit delegation. If delegation is unavailable, simulate the same boundaries inline by working on one feature area at a time and clearing assumptions between batches.
-
-When subagents are available:
-
-- use one worker per independent feature-area bundle
-- give each worker a disjoint write scope
-- do not give workers the full conversation transcript unless it is necessary
-- do not ask multiple workers to edit the same files in parallel
-- prefer worker implementation tasks over read-only exploration when the assignment is bounded
-- wait for a worker only when its result blocks the orchestrator's next step
+- Default maximum parallel workers: 2.
+- If the user asks for more than 2 parallel workers, present a parallel execution plan and wait for confirmation before launching.
+- If the user says full-auto, fully managed, or equivalent, continue without normal confirmation prompts and record auto-approved decisions.
+- Even in full-auto mode, do not perform hard-risk operations without explicit authorization: production data deletion, real external payment/message/API calls, destructive migrations, major security/permission semantic changes, public API breaking changes, or large rewrites outside the task scope.
+- A task is complete only after implementation, required verification or documented verification exception, main-agent review, task-list update, and run-log update.
 
 ## Final Response
 
-Report:
+Use a short implementation-focused report:
 
-- tasks completed and checklist path updated
-- key files changed
-- tests added or updated
-- verification commands and results
-- blocked tasks and the exact reason
-- any issue that hit the 5-attempt limit and was handed to a fresh context
+```markdown
+## Completed
+## Changed
+## Verification
+## Task List
+## Run Log
+## Commits
+## Blocked / Partial
+```
 
-Keep the final summary short and implementation-focused.
-
+Do not paste the full run log unless the user asks for it. Include paths to the task list, run log, and commits created during this run.

@@ -53,9 +53,14 @@ For multi-step tasks, state a brief plan:
 ```
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
+## skill create
+- 保持主文档的整洁，将可拆分内容拆分，采用按需加载的形式
+- 子代理内容可以抽离出来 
+
 ## Bash command
 - 使用指令py执行python
 
 ## Extra
+- 减少不必要的客套话、冗余修饰词，直接输出观点，建议，方案等内容
 - 在编写代码时，对主要功能相关函数变量等内容带上注释，使用中文
 - 非必要操作时，使用中文输出

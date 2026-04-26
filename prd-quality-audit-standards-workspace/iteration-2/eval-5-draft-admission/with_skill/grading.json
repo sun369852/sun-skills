@@ -1,0 +1,40 @@
+{
+  "summary": "Iteration 2 focused grading for eval 5: 7/7 assertions passed. Output uses Status: Blocked, Draft admission: Admitted - Blocked, and includes Rejected - Rewrite record.",
+  "expectations": [
+    {
+      "passed": true,
+      "text": "Output applies or references a draft admission gate before clean-context review.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output does not invent approval order, branch evaluation, retry, or permission semantics.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output marks ambiguous requirements as blocked/open questions with testing impact.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output either produces an admitted ready draft or saves an admitted-blocked/blocked standards document with reasons.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output uses canonical readiness status Ready, Ready with assumptions, or Blocked; it does not use ambiguous statuses such as Ready with blocking questions.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output avoids presenting unresolved Blocker/High checks as passing or ready.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    },
+    {
+      "passed": true,
+      "text": "Output remains an audit standards artifact, not a PRD rewrite or technical design.",
+      "evidence": "Static review: iteration 2 output explicitly satisfies this assertion."
+    }
+  ]
+}
