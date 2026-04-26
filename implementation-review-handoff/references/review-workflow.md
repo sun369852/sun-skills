@@ -13,6 +13,8 @@ Map delivered changes to the source of truth:
 
 Flag any requirement or audit check with no implementation evidence, no test evidence, missing required evidence, or contradictory behavior.
 
+If only part of the requirement set is in scope, distinguish `not implemented`, `not reviewed`, and `out of scope`. Do not fail the current review for a requirement that the task list or user explicitly left for a later implementation batch.
+
 ## Pass 2: Diff and Architecture Review
 
 Inspect changed files with the repository's existing style and boundaries in mind:
@@ -49,23 +51,15 @@ Default to read-only task status handling:
 
 Use suggested statuses such as `accepted`, `fix-needed`, or `blocked` in the report, but do not mutate task files without authorization.
 
-## Severity
+## Mixed Or Partial Handoffs
 
-Use this scale:
+Completed development handoffs are often partial. For mixed states:
 
-- `P0`: data loss, security break, crash on core path, production-blocking release risk
-- `P1`: missed acceptance criterion, broken important workflow, failing required test, incompatible API/data contract
-- `P2`: edge-case bug, incomplete verification for meaningful risk, maintainability issue likely to cause defects
-- `P3`: minor cleanup, clarity issue, weak test naming, low-risk follow-up
-
-When a quality audit standards artifact uses `Blocker`, `High`, `Medium`, or `Low`, map them to review severity as:
-
-- `Blocker` -> `P0` unless the impact is clearly bounded to `P1`
-- `High` -> `P1`
-- `Medium` -> `P2`
-- `Low` -> `P3`
-
-Prefer fewer, stronger findings. A review with no findings is acceptable if the evidence supports it.
+- review completed tasks against their acceptance criteria
+- list unfinished tasks separately instead of turning them into implementation defects
+- flag a task as a defect only when it is marked complete but lacks implementation or verification evidence
+- use `Fix needed` when completed in-scope work has defects
+- use `Blocked` when the review cannot determine which work is in scope
 
 ## Clean-Context Review
 

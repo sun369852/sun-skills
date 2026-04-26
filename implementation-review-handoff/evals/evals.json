@@ -30,6 +30,42 @@
       "prompt": "实现已经完成，请审核当前 git diff。没有 quality-audit-standards，按 tasks.md 和 technical-design.md 验收即可。",
       "expected_output": "Uses the skill, does not block on missing audit standards, scopes the review to the current diff and source docs, and reports findings, verification evidence, coverage notes, and a decision.",
       "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "请审核这次实现，但当前工作区里还有我自己改的无关文件。范围以 implementation-run.md 记录的 touched files 和当前任务为准，不要把无关 dirty files 算进结论。",
+      "expected_output": "Uses the skill, separates reviewed scope from unrelated dirty worktree changes, reports excluded files or noisy verification risk, and bases the decision only on in-scope implementation evidence.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "按 quality-audit-standards.md 验收这次支付改动。测试环境没有真实支付沙箱凭证，所以直接执行会失败；请使用可行的替代证据并说明哪些 TE 检查仍然 Not Run 或 Blocked。",
+      "expected_output": "Uses the skill, applies high-risk payment gates, uses substitute evidence only where valid, keeps unavailable required execution as Not Run or Blocked, and includes an audit check summary with final standards conclusion.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "审核完成后如果发现实现问题，不要停在报告。请生成开发修复包，交给开发 skill 修复，再复审；最多 5 轮。如果发现 PRD 或验收标准本身有冲突，再问我决策。",
+      "expected_output": "Uses the default review-fix loop, classifies implementation defects versus upstream issues, prepares a Developer Fix Packet, routes or outputs it for the development skill, records loop history, and stops only on pass, user decision, blocker, or 5-round limit.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "客户给了 acceptance-checklist.md，没有编号；同时项目里也有 quality-audit-standards.md。请以客户清单为准审核本次实现，并在报告里给客户检查项生成 EXT 临时 ID。",
+      "expected_output": "Uses third-party standards as the selected acceptance contract, generates report-local EXT IDs for unnumbered checks, preserves quality-audit-standards as secondary context, reports check statuses including Out of Scope where needed, and gives an overall decision.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "复审上一轮 implementation-review-report.md。开发 skill 已返回 Developer Fix Return，请只重点验证已修复 findings、相关回归和是否有意外扩大范围。",
+      "expected_output": "Uses re-review mode, starts from the previous report and Developer Fix Return, verifies fixed findings and required evidence first, reruns relevant checks, checks unexpected scope changes, and updates the loop decision.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "请按 quality-audit-standards.md 正式验收当前实现。标准里有 machine-readable audit checks、hard fail conditions、required evidence 和 three-round clean-context review record；请先按标准得出 Approved/Rejected/Blocked，再映射到内部决策。",
+      "expected_output": "Uses standards mode, parses audit checks including machine-readable data, verifies in-scope checks one by one, applies hard fail gates before internal decision labels, cites required evidence and review-record risks, checks PRD/standards sync, and reports both standards conclusion and internal decision.",
+      "files": []
     }
   ]
 }

@@ -12,6 +12,14 @@
     "should_trigger": true
   },
   {
+    "query": "这次开发完成了，但工作区还有我自己的临时修改；请只审核 implementation-run.md 里记录的文件，排除无关 dirty files。",
+    "should_trigger": true
+  },
+  {
+    "query": "审核如果发现实现问题，请默认交给开发 skill 修，最多走 5 轮开发-审核 loop，只有 PRD/设计/标准冲突再问我。",
+    "should_trigger": true
+  },
+  {
     "query": "帮我 review-and-fix 当前未提交改动，先审核确认 bug，再只修审核发现的问题并跑相关测试。",
     "should_trigger": true
   },

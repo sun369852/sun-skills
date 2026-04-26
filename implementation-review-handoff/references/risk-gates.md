@@ -1,5 +1,7 @@
 # Risk Gates
 
+Use this reference as a fallback and supplement. In standards mode, audit standards hard fail conditions take priority. Apply these risk gates when no standards artifact exists or when the standards do not cover a risk introduced by the implementation.
+
 Apply stricter gates when the change touches:
 
 - authentication, authorization, roles, sessions, or secrets
@@ -20,6 +22,19 @@ High-risk work should usually have:
 - explicit mention of any untested path
 
 If these are absent, the final decision should usually be `Fix needed` or `Blocked`, not `Pass`.
+
+## Risk Acceptance
+
+Do not accept release risk on the user's behalf. `Pass with notes` or `Approved with Risks` is appropriate only when:
+
+- there is no failed release-blocking gate
+- the remaining risk is explicitly bounded
+- the report names the missing evidence or deferred issue
+- the user, project policy, or audit standards allow deferral
+
+If a `High` or `Blocker` risk requires business or product acceptance, report it as `Fix needed` or `Blocked` until the user accepts the risk.
+
+Implementation defects can be routed to the development skill automatically, but risk acceptance cannot. If the only way to pass is to accept a high-risk residual issue, stop and ask the user.
 
 ## Stop Conditions
 
