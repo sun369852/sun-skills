@@ -57,6 +57,9 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 - 保持主文档的整洁，将可拆分内容拆分，采用按需加载的形式
 - 子代理内容可以抽离出来 
 
+## Git
+- git commit message使用中文
+
 ## Bash command
 - 使用指令py执行python
 
