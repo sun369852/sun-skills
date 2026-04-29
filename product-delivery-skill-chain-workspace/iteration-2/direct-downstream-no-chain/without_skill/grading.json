@@ -1,0 +1,43 @@
+{
+  "expectations": [
+    {
+      "text": "Does not invoke product-delivery-skill-chain because the user explicitly requested the downstream skill directly.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Routes directly to prd-task-archiver if the required PRD exists or asks for the PRD if missing.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Does not create or update delivery-chain-status.md.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Does not force technical design, audit standards, implementation, or review into this single-skill request.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [
+      "Grading was done inline from saved outputs and subagent completion summaries."
+    ]
+  }
+}

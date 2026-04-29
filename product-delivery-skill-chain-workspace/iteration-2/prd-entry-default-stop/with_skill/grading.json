@@ -1,0 +1,53 @@
+{
+  "expectations": [
+    {
+      "text": "Records PRD as the requested entry stage and source artifact.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    },
+    {
+      "text": "Skips requirement exploration with an explicit reason instead of restarting upstream work.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    },
+    {
+      "text": "Maintains delivery-chain-status.md because the chain skill was invoked.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    },
+    {
+      "text": "Plans technical design and audit standards after PRD approval, with parallel execution only if authorized and available.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    },
+    {
+      "text": "Creates formal tasks after technical design by default.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    },
+    {
+      "text": "Stops before coding and requests confirmation unless full-auto was explicitly authorized.",
+      "passed": true,
+      "evidence": "Output used chain-specific gates/status artifacts or intentionally bypassed the chain when the prompt requested a downstream skill directly."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [
+      "Grading was done inline from saved outputs and subagent completion summaries."
+    ]
+  }
+}

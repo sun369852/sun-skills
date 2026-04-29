@@ -1,0 +1,53 @@
+{
+  "expectations": [
+    {
+      "text": "Records PRD as the requested entry stage and source artifact.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Skips requirement exploration with an explicit reason instead of restarting upstream work.",
+      "passed": false,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Maintains delivery-chain-status.md because the chain skill was invoked.",
+      "passed": false,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Plans technical design and audit standards after PRD approval, with parallel execution only if authorized and available.",
+      "passed": false,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Creates formal tasks after technical design by default.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    },
+    {
+      "text": "Stops before coding and requests confirmation unless full-auto was explicitly authorized.",
+      "passed": true,
+      "evidence": "Baseline handled core task content, but generally lacked chain status, explicit gate/state tracking, or reconciliation records."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 3,
+    "total": 6,
+    "pass_rate": 0.5
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [
+      "Grading was done inline from saved outputs and subagent completion summaries."
+    ]
+  }
+}

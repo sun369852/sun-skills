@@ -1,0 +1,48 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies tasks as the entry stage.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Does not regenerate PRD, technical design, audit standards, or task archive unless a required source is missing or insufficient.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Prepares an implementation handoff packet with PRD, technical design, task archive, audit standards if available, status file path, assumptions, blockers, and coding confirmation status.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Maintains delivery-chain-status.md because the chain skill was invoked.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Stops before coding and asks for confirmation because the user explicitly requested confirmation.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "Several eval prompts referenced missing fixture paths, reducing discrimination between with-skill and baseline runs."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

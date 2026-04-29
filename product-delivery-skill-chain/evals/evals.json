@@ -1,0 +1,95 @@
+{
+  "skill_name": "product-delivery-skill-chain",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "使用 product-delivery-skill-chain，从一句需求开始跑链路：我们要做一个课程会员订阅功能，用户订阅后可以观看付费课程。请先判断当前阶段，必要时澄清，然后推进到 PRD。不要直接进入开发。",
+      "expected_output": "The assistant should enter the chain from requirement exploration, create or plan delivery-chain-status.md, avoid jumping directly to PRD or implementation from a vague requirement, and stop at the PRD gate or ask the highest-value blocking question.",
+      "files": [],
+      "expectations": [
+        "Identifies the entry stage as requirements rather than PRD, technical design, tasks, or implementation.",
+        "Routes first to requirement-exploration because the requirement is incomplete.",
+        "Creates or plans to maintain delivery-chain-status.md because the chain skill was invoked.",
+        "Does not generate technical design, tasks, audit standards, or implementation before the PRD is ready.",
+        "Asks one focused blocking question if the requirement is too vague to proceed."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "使用 product-delivery-skill-chain，从已有 PRD product-delivery-skill-chain/evals/files/chain-demo/docs/member-renewal-prd.md 开始，继续生成技术设计、审核标准和任务归档。没有指定终点。",
+      "expected_output": "The assistant should treat the PRD as the entry artifact, skip requirement exploration, maintain delivery-chain-status.md beside the PRD, run or plan technical design and audit standards after the PRD gate, create formal tasks after technical design, and stop before coding for confirmation.",
+      "files": [
+        "evals/files/chain-demo/docs/member-renewal-prd.md"
+      ],
+      "expectations": [
+        "Records PRD as the requested entry stage and source artifact.",
+        "Skips requirement exploration with an explicit reason instead of restarting upstream work.",
+        "Maintains delivery-chain-status.md because the chain skill was invoked.",
+        "Plans technical design and audit standards after PRD approval, with parallel execution only if authorized and available.",
+        "Creates formal tasks after technical design by default.",
+        "Stops before coding and requests confirmation unless full-auto was explicitly authorized."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "使用 product-delivery-skill-chain，从 PRD product-delivery-skill-chain/evals/files/chain-demo/specs/invoice/prd.md 开始，用快速模式：技术设计、审核标准、任务草案尽量并行，最后整理成正式 tasks.md。",
+      "expected_output": "The assistant should enter fast planning mode, treat parallelism as conditional on tool/user authorization, mark the task output as draft until technical design completes, reconcile tasks and audit standards against technical design, then save or plan a formal reconciled task archive.",
+      "files": [
+        "evals/files/chain-demo/specs/invoice/prd.md"
+      ],
+      "expectations": [
+        "Recognizes fast planning mode from the prompt.",
+        "Checks whether actual parallel execution is authorized and available before using subagents or workers.",
+        "Marks task output as draft and pending technical design confirmation during parallel planning.",
+        "Reconciles draft tasks against technical design decisions before treating tasks as formal.",
+        "Reconciles audit standards against technical risks discovered in the design.",
+        "Records execution mode and reconciliation decisions in delivery-chain-status.md."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "使用 product-delivery-skill-chain，继续上次那个需求。我记不清文件路径了，你帮我找一下当前目录里最新的 PRD、technical-design、tasks 和审核标准，然后继续往下。",
+      "expected_output": "The assistant should use resume mode, conservatively discover candidate artifacts, use one obvious candidate with stated inference or ask the user to choose among multiple candidates, update delivery-chain-status.md, and continue only after the source artifact is trustworthy.",
+      "files": [],
+      "expectations": [
+        "Classifies the request as resume mode.",
+        "Conservatively discovers candidate artifacts instead of silently choosing unrelated files.",
+        "Uses a single obvious candidate only with an explicit inference.",
+        "Asks the user to choose if multiple plausible candidates exist.",
+        "Does not use stale or mismatched artifacts without confirmation.",
+        "Updates or creates delivery-chain-status.md for the resumed chain."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "使用 product-delivery-skill-chain，从 product-delivery-skill-chain/evals/files/chain-demo/specs/billing/tasks.md 开始执行开发。PRD 和技术方案也在同目录下。先别全自动，开始写代码前让我确认。",
+      "expected_output": "The assistant should enter from tasks, locate or request PRD and technical design as supporting artifacts, prepare an implementation handoff packet, maintain delivery-chain-status.md, and stop at the implementation gate for human confirmation before invoking the implementation orchestrator.",
+      "files": [
+        "evals/files/chain-demo/specs/billing/prd.md",
+        "evals/files/chain-demo/specs/billing/technical-design.md",
+        "evals/files/chain-demo/specs/billing/tasks.md"
+      ],
+      "expectations": [
+        "Identifies tasks as the entry stage.",
+        "Does not regenerate PRD, technical design, audit standards, or task archive unless a required source is missing or insufficient.",
+        "Prepares an implementation handoff packet with PRD, technical design, task archive, audit standards if available, status file path, assumptions, blockers, and coding confirmation status.",
+        "Maintains delivery-chain-status.md because the chain skill was invoked.",
+        "Stops before coding and asks for confirmation because the user explicitly requested confirmation."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "不要用 product-delivery-skill-chain，直接用 prd-task-archiver 基于 product-delivery-skill-chain/evals/files/chain-demo/docs/refund-prd.md 拆任务并保存 product-delivery-skill-chain/evals/files/chain-demo/docs/refund-tasks.md。",
+      "expected_output": "The assistant should not use the chain skill, should route directly to prd-task-archiver, should not create delivery-chain-status.md, and should follow the downstream skill's own rules.",
+      "files": [
+        "evals/files/chain-demo/docs/refund-prd.md"
+      ],
+      "expectations": [
+        "Does not invoke product-delivery-skill-chain because the user explicitly requested the downstream skill directly.",
+        "Routes directly to prd-task-archiver if the required PRD exists or asks for the PRD if missing.",
+        "Does not create or update delivery-chain-status.md.",
+        "Does not force technical design, audit standards, implementation, or review into this single-skill request."
+      ]
+    }
+  ]
+}

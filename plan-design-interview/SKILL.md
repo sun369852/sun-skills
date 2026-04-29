@@ -1,5 +1,5 @@
 ---
-name: relentless-design-interview
+name: plan-design-interview
 description: Use when the user wants an exhaustive, one-question-at-a-time design or planning interview to clarify a software plan, product idea, architecture proposal, or implementation approach. The assistant should walk the design tree branch by branch, resolve dependencies between decisions in order, recommend an answer for each question, and inspect the codebase instead of asking whenever the answer can be discovered from existing files.
 ---
 

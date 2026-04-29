@@ -1,0 +1,12 @@
+{
+  "eval_id": 5,
+  "eval_name": "tasks-entry-implementation-gate",
+  "prompt": "使用 product-delivery-skill-chain，从 specs/billing/tasks.md 开始执行开发。PRD 和技术方案也在 specs/billing/ 目录下。先别全自动，开始写代码前让我确认。",
+  "assertions": [
+    "Identifies tasks as the entry stage.",
+    "Does not regenerate PRD, technical design, audit standards, or task archive unless a required source is missing or insufficient.",
+    "Prepares an implementation handoff packet with PRD, technical design, task archive, audit standards if available, status file path, assumptions, blockers, and coding confirmation status.",
+    "Maintains delivery-chain-status.md because the chain skill was invoked.",
+    "Stops before coding and asks for confirmation because the user explicitly requested confirmation."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "expectations": [
+    {
+      "text": "Classifies the request as resume mode.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Conservatively discovers candidate artifacts instead of silently choosing unrelated files.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Uses a single obvious candidate only with an explicit inference.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Asks the user to choose if multiple plausible candidates exist.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Does not use stale or mismatched artifacts without confirmation.",
+      "passed": true,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Updates or creates delivery-chain-status.md for the resumed chain.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 2,
+    "total": 6,
+    "pass_rate": 0.6667
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "Several eval prompts referenced missing fixture paths, reducing discrimination between with-skill and baseline runs."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": 6,
+  "eval_name": "direct-downstream-no-chain",
+  "prompt": "不要用 product-delivery-skill-chain，直接用 prd-task-archiver 基于 docs/refund-prd.md 拆任务并保存 tasks.md。",
+  "assertions": [
+    "Does not invoke product-delivery-skill-chain because the user explicitly requested the downstream skill directly.",
+    "Routes directly to prd-task-archiver if the required PRD exists or asks for the PRD if missing.",
+    "Does not create or update delivery-chain-status.md.",
+    "Does not force technical design, audit standards, implementation, or review into this single-skill request."
+  ]
+}

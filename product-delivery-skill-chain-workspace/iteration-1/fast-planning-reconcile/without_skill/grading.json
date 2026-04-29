@@ -1,0 +1,53 @@
+{
+  "expectations": [
+    {
+      "text": "Recognizes fast planning mode from the prompt.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Checks whether actual parallel execution is authorized and available before using subagents or workers.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Marks task output as draft and pending technical design confirmation during parallel planning.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Reconciles draft tasks against technical design decisions before treating tasks as formal.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Reconciles audit standards against technical risks discovered in the design.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    },
+    {
+      "text": "Records execution mode and reconciliation decisions in delivery-chain-status.md.",
+      "passed": false,
+      "evidence": "Baseline output was produced without the chain skill; it often handled missing files safely but lacked chain status and explicit gate discipline."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 6,
+    "total": 6,
+    "pass_rate": 0.0
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "Timing metrics were not included in subagent completion notifications."
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "Several eval prompts referenced missing fixture paths, reducing discrimination between with-skill and baseline runs."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  }
+}
