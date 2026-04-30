@@ -8,10 +8,8 @@ Choose the path conservatively:
 
 1. Use the user's explicit status file path.
 2. If resuming from an existing `delivery-chain-status.md` that matches the feature, keep using that path.
-3. If a PRD path exists, save beside the PRD.
-4. If starting from technical design, task archive, audit standards, run log, or review report without a PRD path, save in the common parent directory when clear.
-5. If there is no clear artifact directory, save in the current workspace.
-6. For a new requirement from scratch, create the status file in the current workspace if the PRD output directory is not known yet. Keep using that path unless the user asks to move it.
+3. Otherwise save `delivery-chain-status.md` inside the chain artifact directory selected by `references/artifact-directory.md`.
+4. If the chain artifact directory cannot be selected safely, ask one focused question before creating the status file.
 
 Never silently overwrite an unrelated status file. If an existing `delivery-chain-status.md` appears to describe another feature, create `delivery-chain-status-<feature-slug>.md` or ask the user.
 
@@ -25,107 +23,14 @@ Update the status file after:
 - every artifact gate decision
 - every saved downstream artifact
 - every blocker or user decision
+- chain start contract confirmation or override
 - implementation handoff
 - each review-fix loop
 - final pass, blocked, or stopped decision
 
-## Template
+## Template Loading
 
-```markdown
-# Delivery Chain Status
-
-## Current State
-- Chain mode:
-- Entry stage:
-- Current stage:
-- Target / stop point:
-- Next skill:
-- Human confirmation required:
-- Review-fix loop: 0/5
-- Overall status:
-
-## Entry Preconditions
-- Requested entry stage:
-- Requested target / stop point:
-- Source artifact:
-- Source artifact status:
-- Skipped upstream stages:
-- Reason skipped:
-- Entry assumptions:
-- Entry blockers:
-
-## Artifacts
-- PRD:
-- Technical design:
-- Task archive:
-- Audit standards:
-- Implementation run log:
-- Review report:
-
-## Stage Gates
-
-### Requirement Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### PRD Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### Technical Design Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### Audit Standards Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### Task Archive Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### Implementation Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-### Review Gate
-- Status:
-- Input:
-- Output:
-- Decision:
-- Human confirmation:
-- Notes:
-
-## Decisions
-
-## Blockers
-
-## Change Log
-```
+Read `references/status-template.md` only when creating a new `delivery-chain-status.md` or replacing a missing/corrupt status body. For normal status updates, resume, or interpretation, use this file only and update the existing sections in place.
 
 ## Status Values
 
@@ -142,6 +47,7 @@ Use simple stable values:
 - `pass`
 - `pass_with_notes`
 - `fix_needed`
+- `confirmed`
 
 ## Preconditions
 

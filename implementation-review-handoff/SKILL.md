@@ -9,7 +9,13 @@ description: Use this skill when development work is complete or mostly complete
 
 Take over after implementation and decide whether the delivered work is acceptable. This skill reviews the actual change set against the source requirements, third-party acceptance standards, quality audit standards, task list, technical design, implementation run log, tests, and repository conventions. It produces actionable findings, traceable verification evidence, and a clear pass/fix-needed/block decision.
 
-The skill is intentionally downstream of development. Do not restart planning or silently patch code inline. If implementation defects are found, create a developer fix packet and continue the default development-review loop through the development skill when the environment supports it. Escalate to the user for upstream artifact problems, product decisions, risk acceptance, scope expansion, dangerous operations, or loop exhaustion.
+The skill is intentionally downstream of development. Do not restart planning or silently patch code inline. If implementation defects are found, create a developer fix packet and continue the default development-review loop through the development skill when the environment supports it. Escalate to the user for upstream artifact problems, product decisions, risk acceptance, scope expansion, dangerous operations, or loop exhaustion. When a chain envelope sets `High-risk operations: no-confirmation`, do not ask only for risk acceptance; mark the review `Fix needed` or `Blocked` and record the unaccepted risk instead.
+
+## Chain Invocation Override
+
+When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default reviewer, review-fix loop, output path, confirmation, or source-priority rules.
+
+The envelope may constrain review report path, reviewer/subagent authorization, review-fix loop policy, high-risk operations policy, audit standards priority, source artifact priority, reviewed scope, and stop point. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent a trustworthy review or safe repair handoff, stop and ask instead of silently weakening the chain contract.
 
 ## Assumptions to State
 

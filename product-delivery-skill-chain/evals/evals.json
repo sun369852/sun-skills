@@ -12,6 +12,13 @@
         "Creates or plans to maintain delivery-chain-status.md because the chain skill was invoked.",
         "Does not generate technical design, tasks, audit standards, or implementation before the PRD is ready.",
         "Asks one focused blocking question if the requirement is too vague to proceed."
+      ],
+      "assertions": [
+        "Identifies the entry stage as requirements rather than PRD, technical design, tasks, or implementation.",
+        "Routes first to requirement-exploration because the requirement is incomplete.",
+        "Creates or plans to maintain delivery-chain-status.md because the chain skill was invoked.",
+        "Does not generate technical design, tasks, audit standards, or implementation before the PRD is ready.",
+        "Asks one focused blocking question if the requirement is too vague to proceed."
       ]
     },
     {
@@ -22,6 +29,14 @@
         "evals/files/chain-demo/docs/member-renewal-prd.md"
       ],
       "expectations": [
+        "Records PRD as the requested entry stage and source artifact.",
+        "Skips requirement exploration with an explicit reason instead of restarting upstream work.",
+        "Maintains delivery-chain-status.md because the chain skill was invoked.",
+        "Plans technical design and audit standards after PRD approval, with parallel execution only if authorized and available.",
+        "Creates formal tasks after technical design by default.",
+        "Stops before coding and requests confirmation unless full-auto was explicitly authorized."
+      ],
+      "assertions": [
         "Records PRD as the requested entry stage and source artifact.",
         "Skips requirement exploration with an explicit reason instead of restarting upstream work.",
         "Maintains delivery-chain-status.md because the chain skill was invoked.",
@@ -44,6 +59,14 @@
         "Reconciles draft tasks against technical design decisions before treating tasks as formal.",
         "Reconciles audit standards against technical risks discovered in the design.",
         "Records execution mode and reconciliation decisions in delivery-chain-status.md."
+      ],
+      "assertions": [
+        "Recognizes fast planning mode from the prompt.",
+        "Checks whether actual parallel execution is authorized and available before using subagents or workers.",
+        "Marks task output as draft and pending technical design confirmation during parallel planning.",
+        "Reconciles draft tasks against technical design decisions before treating tasks as formal.",
+        "Reconciles audit standards against technical risks discovered in the design.",
+        "Records execution mode and reconciliation decisions in delivery-chain-status.md."
       ]
     },
     {
@@ -52,6 +75,14 @@
       "expected_output": "The assistant should use resume mode, conservatively discover candidate artifacts, use one obvious candidate with stated inference or ask the user to choose among multiple candidates, update delivery-chain-status.md, and continue only after the source artifact is trustworthy.",
       "files": [],
       "expectations": [
+        "Classifies the request as resume mode.",
+        "Conservatively discovers candidate artifacts instead of silently choosing unrelated files.",
+        "Uses a single obvious candidate only with an explicit inference.",
+        "Asks the user to choose if multiple plausible candidates exist.",
+        "Does not use stale or mismatched artifacts without confirmation.",
+        "Updates or creates delivery-chain-status.md for the resumed chain."
+      ],
+      "assertions": [
         "Classifies the request as resume mode.",
         "Conservatively discovers candidate artifacts instead of silently choosing unrelated files.",
         "Uses a single obvious candidate only with an explicit inference.",
@@ -75,6 +106,13 @@
         "Prepares an implementation handoff packet with PRD, technical design, task archive, audit standards if available, status file path, assumptions, blockers, and coding confirmation status.",
         "Maintains delivery-chain-status.md because the chain skill was invoked.",
         "Stops before coding and asks for confirmation because the user explicitly requested confirmation."
+      ],
+      "assertions": [
+        "Identifies tasks as the entry stage.",
+        "Does not regenerate PRD, technical design, audit standards, or task archive unless a required source is missing or insufficient.",
+        "Prepares an implementation handoff packet with PRD, technical design, task archive, audit standards if available, status file path, assumptions, blockers, and coding confirmation status.",
+        "Maintains delivery-chain-status.md because the chain skill was invoked.",
+        "Stops before coding and asks for confirmation because the user explicitly requested confirmation."
       ]
     },
     {
@@ -89,6 +127,247 @@
         "Routes directly to prd-task-archiver if the required PRD exists or asks for the PRD if missing.",
         "Does not create or update delivery-chain-status.md.",
         "Does not force technical design, audit standards, implementation, or review into this single-skill request."
+      ],
+      "assertions": [
+        "Does not invoke product-delivery-skill-chain because the user explicitly requested the downstream skill directly.",
+        "Routes directly to prd-task-archiver if the required PRD exists or asks for the PRD if missing.",
+        "Does not create or update delivery-chain-status.md.",
+        "Does not force technical design, audit standards, implementation, or review into this single-skill request."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "使用 product-delivery-skill-chain。前面已经做过很长的需求访谈，PRD 已经保存到 product-delivery-skill-chain/evals/files/chain-demo/docs/member-renewal-prd.md。请从 PRD 继续到技术设计、审核标准和任务归档，不要复述前面的访谈过程，只保留关键决策、阻塞项和下一步。",
+      "expected_output": "The assistant should switch to light context after PRD handoff, treat the PRD path as source of truth, update delivery-chain-status.md with a compact context summary, avoid carrying full interview history, and continue downstream planning from the PRD.",
+      "files": [
+        "evals/files/chain-demo/docs/member-renewal-prd.md"
+      ],
+      "expectations": [
+        "Treats the saved PRD path as the source of truth instead of relying on full prior interview history.",
+        "Does not restate the full interview transcript or reconstruct the full requirement discussion.",
+        "Maintains delivery-chain-status.md with current stage, artifact paths, key decisions, blockers, and next action.",
+        "Routes from PRD into downstream planning rather than restarting requirement exploration.",
+        "Carries forward only concise key decisions and unresolved blockers."
+      ],
+      "assertions": [
+        "Treats the saved PRD path as the source of truth instead of relying on full prior interview history.",
+        "Does not restate the full interview transcript or reconstruct the full requirement discussion.",
+        "Maintains delivery-chain-status.md with current stage, artifact paths, key decisions, blockers, and next action.",
+        "Routes from PRD into downstream planning rather than restarting requirement exploration.",
+        "Carries forward only concise key decisions and unresolved blockers."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "假设 delivery/_chain-defaults.md 已存在。使用 product-delivery-skill-chain，从 PRD product-delivery-skill-chain/evals/files/chain-demo/docs/member-renewal-prd.md 开始，输出目录统一放到 product-delivery-skill-chain-workspace/eval-artifacts/member-renewal/，继续生成技术设计、审核标准和任务归档。",
+      "expected_output": "The assistant should show a Chinese 本次链路合同预览, establish the requested chain artifact directory only after confirmation, copy the provided PRD into source/, create source-context.md, pass explicit output paths for technical design, audit standards, and tasks into that directory, and avoid scattering new artifacts beside unrelated defaults.",
+      "files": [
+        "evals/files/chain-demo/docs/member-renewal-prd.md"
+      ],
+      "expectations": [
+        "Reads existing delivery/_chain-defaults.md before previewing the request contract.",
+        "Shows 本次链路合同预览 with Chinese field labels such as 执行模式, 入口阶段, 产物目录, 源文件归档, 提交策略, and 上下文策略.",
+        "Preserves machine-readable enum values such as semi-auto, planning-review-only, or disabled-by-default when showing policies.",
+        "Does not use the English title Chain Start Contract Preview for the user-visible preview.",
+        "Waits for user confirmation before creating new request artifacts.",
+        "Establishes product-delivery-skill-chain-workspace/eval-artifacts/member-renewal/ as the chain artifact directory.",
+        "Records the chain artifact directory in delivery-chain-status.md.",
+        "Plans to copy the provided PRD into source/ and record original and copied paths in source/source-manifest.md.",
+        "Plans to create source-context.md that summarizes context, artifact relationships, entry stage, missing inputs, and assumptions.",
+        "Plans or saves technical-design.md, quality-audit-standards.md, and tasks.md inside the chain artifact directory.",
+        "Does not scatter new chain artifacts across unrelated source or downstream default directories."
+      ],
+      "assertions": [
+        "Reads existing delivery/_chain-defaults.md before previewing the request contract.",
+        "Shows 本次链路合同预览 with Chinese field labels such as 执行模式, 入口阶段, 产物目录, 源文件归档, 提交策略, and 上下文策略.",
+        "Preserves machine-readable enum values such as semi-auto, planning-review-only, or disabled-by-default when showing policies.",
+        "Does not use the English title Chain Start Contract Preview for the user-visible preview.",
+        "Waits for user confirmation before creating new request artifacts.",
+        "Establishes product-delivery-skill-chain-workspace/eval-artifacts/member-renewal/ as the chain artifact directory.",
+        "Records the chain artifact directory in delivery-chain-status.md.",
+        "Plans to copy the provided PRD into source/ and record original and copied paths in source/source-manifest.md.",
+        "Plans to create source-context.md that summarizes context, artifact relationships, entry stage, missing inputs, and assumptions.",
+        "Plans or saves technical-design.md, quality-audit-standards.md, and tasks.md inside the chain artifact directory.",
+        "Does not scatter new chain artifacts across unrelated source or downstream default directories."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "假设 delivery/_chain-defaults.md 已存在。使用 product-delivery-skill-chain，从一句需求开始跑链路：做一个电子发票重发功能。没有指定输出目录，请按默认规则创建本次需求的产物文件夹。",
+      "expected_output": "The assistant should preview a default project-root delivery/<timestamp9>-invoice-resend/ chain artifact directory in a Chinese 本次链路合同预览, show machine-readable policy values, and wait for confirmation before creating the request folder or status file.",
+      "files": [],
+      "expectations": [
+        "Reads existing delivery/_chain-defaults.md before previewing the request contract.",
+        "Uses project-root delivery/ as the default parent folder for chain artifacts.",
+        "Previews a request folder named with <timestamp9>-<feature-slug>.",
+        "Uses a stable feature slug such as invoice-resend or electronic-invoice-resend.",
+        "Shows 本次链路合同预览 before creating files.",
+        "Uses Chinese preview labels including 执行模式, 入口阶段, 目标/停止点, 产物目录, 源文件归档, 子代理策略, 并行规划, 开发前确认, 提交策略, 审核修复循环, 高风险操作, and 上下文策略.",
+        "Preserves machine-readable enum values such as semi-auto, planning-review-only, and disabled-by-default.",
+        "Does not create the request folder, delivery-chain-status.md, or downstream artifacts until the user confirms the contract.",
+        "States that future PRD, technical design, audit standards, tasks, run logs, and review reports should be saved in that request folder after confirmation."
+      ],
+      "assertions": [
+        "Reads existing delivery/_chain-defaults.md before previewing the request contract.",
+        "Uses project-root delivery/ as the default parent folder for chain artifacts.",
+        "Previews a request folder named with <timestamp9>-<feature-slug>.",
+        "Uses a stable feature slug such as invoice-resend or electronic-invoice-resend.",
+        "Shows 本次链路合同预览 before creating files.",
+        "Uses Chinese preview labels including 执行模式, 入口阶段, 目标/停止点, 产物目录, 源文件归档, 子代理策略, 并行规划, 开发前确认, 提交策略, 审核修复循环, 高风险操作, and 上下文策略.",
+        "Preserves machine-readable enum values such as semi-auto, planning-review-only, and disabled-by-default.",
+        "Does not create the request folder, delivery-chain-status.md, or downstream artifacts until the user confirms the contract.",
+        "States that future PRD, technical design, audit standards, tasks, run logs, and review reports should be saved in that request folder after confirmation."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "第一次在这个项目里使用 product-delivery-skill-chain，delivery/_chain-defaults.md 还不存在。请先建立默认合同。",
+      "expected_output": "The assistant should treat the missing delivery/_chain-defaults.md as a hard first-time defaults gate: it must not show the per-request contract preview or create chain artifacts, and must ask a concise Chinese one-question-at-a-time startup contract interview with numbered 2-3 options and a recommended option so the user can reply by number. The high-risk operations question should include no-confirmation as a non-recommended explicit choice.",
+      "files": [],
+      "expectations": [
+        "Detects that delivery/_chain-defaults.md is missing and project default contract setup is required before running the chain.",
+        "Does not create delivery/_chain-defaults.md without user confirmation.",
+        "Does not show 本次链路合同预览 or the English Chain Start Contract Preview while defaults are missing.",
+        "Does not create the request folder, delivery-chain-status.md, source archive, source-context.md, or downstream invocation envelope before defaults are confirmed and saved.",
+        "Does not synthesize project defaults from recommended values.",
+        "States or implies that recommended values are recommendations only, not confirmed defaults.",
+        "Asks the first startup contract question in Chinese, one question at a time, with 2-3 numbered options and one recommended option.",
+        "Tells the user they may reply with only the option number.",
+        "Uses Chinese option descriptions while preserving machine-readable enum values such as semi-auto, planning-review-only, disabled-by-default, explicit-only, ask-with-risk-summary, and no-confirmation.",
+        "Covers execution mode, subagent authorization, parallel planning, implementation confirmation, commit policy, push/PR policy, review-fix loop, and high-risk operations across the interview.",
+        "Treats artifact archiving and context compaction as fixed defaults rather than asking about them."
+      ],
+      "assertions": [
+        "Detects that delivery/_chain-defaults.md is missing and project default contract setup is required before running the chain.",
+        "Does not create delivery/_chain-defaults.md without user confirmation.",
+        "Does not show 本次链路合同预览 or the English Chain Start Contract Preview while defaults are missing.",
+        "Does not create the request folder, delivery-chain-status.md, source archive, source-context.md, or downstream invocation envelope before defaults are confirmed and saved.",
+        "Does not synthesize project defaults from recommended values.",
+        "States or implies that recommended values are recommendations only, not confirmed defaults.",
+        "Asks the first startup contract question in Chinese, one question at a time, with 2-3 numbered options and one recommended option.",
+        "Tells the user they may reply with only the option number.",
+        "Uses Chinese option descriptions while preserving machine-readable enum values such as semi-auto, planning-review-only, disabled-by-default, explicit-only, ask-with-risk-summary, and no-confirmation.",
+        "Covers execution mode, subagent authorization, parallel planning, implementation confirmation, commit policy, push/PR policy, review-fix loop, and high-risk operations across the interview.",
+        "Treats artifact archiving and context compaction as fixed defaults rather than asking about them."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "假设 delivery/_chain-defaults.md 已存在。使用 product-delivery-skill-chain，从 product-delivery-skill-chain/evals/files/chain-demo/specs/billing/tasks.md 开始执行开发。验证通过后创建本地 git commit，commit message 用中文，但不要 push，也不要创建 PR。",
+      "expected_output": "The assistant should enter from tasks, preview or reuse the chain start contract, treat local commit as authorized for the implementation orchestrator, avoid push and PR, and record git handoff decisions in delivery-chain-status.md.",
+      "files": [
+        "evals/files/chain-demo/specs/billing/prd.md",
+        "evals/files/chain-demo/specs/billing/technical-design.md",
+        "evals/files/chain-demo/specs/billing/tasks.md"
+      ],
+      "expectations": [
+        "Identifies tasks as the entry stage and uses existing PRD/design artifacts as support.",
+        "Shows the Chinese chain start contract preview or reuses an existing per-request contract before creating new chain artifacts.",
+        "Recognizes that a local git commit is authorized only after verification passes.",
+        "States that push and pull request creation are not authorized because the user explicitly declined them.",
+        "Records commit policy, commit authorization, push authorization, PR authorization, created commits, and git blockers in delivery-chain-status.md.",
+        "Delegates task-batch commit handling during implementation to tdd-task-implementation-orchestrator instead of duplicating its detailed git rules.",
+        "Uses a Chinese commit message when creating a commit."
+      ],
+      "assertions": [
+        "Identifies tasks as the entry stage and uses existing PRD/design artifacts as support.",
+        "Shows the Chinese chain start contract preview or reuses an existing per-request contract before creating new chain artifacts.",
+        "Recognizes that a local git commit is authorized only after verification passes.",
+        "States that push and pull request creation are not authorized because the user explicitly declined them.",
+        "Records commit policy, commit authorization, push authorization, PR authorization, created commits, and git blockers in delivery-chain-status.md.",
+        "Delegates task-batch commit handling during implementation to tdd-task-implementation-orchestrator instead of duplicating its detailed git rules.",
+        "Uses a Chinese commit message when creating a commit."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "假设 delivery/_chain-defaults.md 已存在，且本次合同选择 High-risk operations: no-confirmation。使用 product-delivery-skill-chain，从已有 PRD 继续到技术设计和任务归档。合同里禁用子代理，输出都放进本次 delivery 目录。",
+      "expected_output": "The assistant should preview or reuse the confirmed chain contract, then pass a downstream invocation envelope to downstream skills with subagent policy disabled, high-risk operations policy preserved, and explicit output paths in the chain artifact directory.",
+      "files": [],
+      "expectations": [
+        "Uses the confirmed chain start contract, or shows a Chinese 本次链路合同预览 and waits for confirmation, before invoking downstream skills.",
+        "Builds a downstream invocation envelope containing contract path, status path, artifact directory, subagent policy, parallel policy, implementation confirmation, high-risk operations policy, git policy, output paths, source artifacts, and stop point.",
+        "Carries High-risk operations: no-confirmation into the downstream invocation envelope rather than leaving it only in the chain start contract.",
+        "States that downstream skills must not enable subagents when the envelope disables them.",
+        "States that downstream skills must not ask about high-risk operations when the envelope says no-confirmation, and should record decisions or choose a conservative/blocked path when safe execution is not possible.",
+        "Passes explicit output paths for technical-design.md and tasks.md inside the chain artifact directory.",
+        "Does not rely on downstream default output locations when the chain has explicit paths."
+      ],
+      "assertions": [
+        "Uses the confirmed chain start contract, or shows a Chinese 本次链路合同预览 and waits for confirmation, before invoking downstream skills.",
+        "Builds a downstream invocation envelope containing contract path, status path, artifact directory, subagent policy, parallel policy, implementation confirmation, high-risk operations policy, git policy, output paths, source artifacts, and stop point.",
+        "Carries High-risk operations: no-confirmation into the downstream invocation envelope rather than leaving it only in the chain start contract.",
+        "States that downstream skills must not enable subagents when the envelope disables them.",
+        "States that downstream skills must not ask about high-risk operations when the envelope says no-confirmation, and should record decisions or choose a conservative/blocked path when safe execution is not possible.",
+        "Passes explicit output paths for technical-design.md and tasks.md inside the chain artifact directory.",
+        "Does not rely on downstream default output locations when the chain has explicit paths."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "使用 product-delivery-skill-chain，从技术设计 product-delivery-skill-chain/evals/files/chain-demo/specs/billing/technical-design.md 开始生成 tasks.md。PRD 在同目录。",
+      "expected_output": "The assistant should route to prd-task-archiver only after locating the linked PRD, treat the PRD as source of truth, and pass the technical design as implementation constraints.",
+      "files": [
+        "evals/files/chain-demo/specs/billing/prd.md",
+        "evals/files/chain-demo/specs/billing/technical-design.md"
+      ],
+      "expectations": [
+        "Identifies that technical design alone is not the source of truth for tasks.",
+        "Locates or requests the linked PRD before routing to prd-task-archiver.",
+        "Routes to prd-task-archiver with PRD plus technical design when the PRD is available.",
+        "States that PRD product behavior wins over technical design conflicts.",
+        "Uses the technical design only for implementation structure, API/data contracts, migration, UI structure, and verification constraints."
+      ],
+      "assertions": [
+        "Identifies that technical design alone is not the source of truth for tasks.",
+        "Locates or requests the linked PRD before routing to prd-task-archiver.",
+        "Routes to prd-task-archiver with PRD plus technical design when the PRD is available.",
+        "States that PRD product behavior wins over technical design conflicts.",
+        "Uses the technical design only for implementation structure, API/data contracts, migration, UI structure, and verification constraints."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "使用 product-delivery-skill-chain，从已有 tasks.md 开始执行开发。任务第一批会改登录鉴权过滤器、Controller 路由和 mapper XML。请进入实现阶段，但不要在基础设施批次未验证前继续扩展后续功能批次。",
+      "expected_output": "The assistant should route to tdd-task-implementation-orchestrator with minimum verification gates for the touched runtime surfaces and require a runtime verification gate after the shared runtime infrastructure batch before continuing downstream feature batches.",
+      "files": [],
+      "expectations": [
+        "Identifies the request as implementation entry from tasks rather than PRD generation or task decomposition.",
+        "Builds a downstream invocation envelope for tdd-task-implementation-orchestrator that includes Minimum verification gates.",
+        "Includes backend startup smoke because runtime config/controller/mapper infrastructure is touched.",
+        "Includes protected endpoint unauthorized smoke because auth/filter behavior is touched.",
+        "Includes changed API smoke because Controller routes are touched.",
+        "Requires the implementation loop to pause after the shared runtime infrastructure batch for runtime verification before expanding to downstream feature batches.",
+        "States that compile-only verification is not enough for this batch.",
+        "Routes to fix mode instead of continuing feature batches if the runtime verification gate fails."
+      ],
+      "assertions": [
+        "Identifies the request as implementation entry from tasks rather than PRD generation or task decomposition.",
+        "Builds a downstream invocation envelope for tdd-task-implementation-orchestrator that includes Minimum verification gates.",
+        "Includes backend startup smoke because runtime config/controller/mapper infrastructure is touched.",
+        "Includes protected endpoint unauthorized smoke because auth/filter behavior is touched.",
+        "Includes changed API smoke because Controller routes are touched.",
+        "Requires the implementation loop to pause after the shared runtime infrastructure batch for runtime verification before expanding to downstream feature batches.",
+        "States that compile-only verification is not enough for this batch.",
+        "Routes to fix mode instead of continuing feature batches if the runtime verification gate fails."
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "使用 product-delivery-skill-chain，更新已有 delivery-chain-status.md：PRD 已保存，下一步进入技术设计。不要创建新的状态文件。",
+      "expected_output": "The assistant should use status-file update rules without loading or applying the full status template, because this is an update to an existing delivery-chain-status.md rather than new status creation.",
+      "files": [],
+      "expectations": [
+        "Uses references/status-file.md for status path, update timing, status values, and in-place update rules.",
+        "Does not read or apply references/status-template.md because the request updates an existing status file.",
+        "Updates the existing status sections in place rather than replacing the whole file with a fresh template.",
+        "Reads references/status-template.md only when creating a new status file or replacing a missing/corrupt status body."
+      ],
+      "assertions": [
+        "Uses references/status-file.md for status path, update timing, status values, and in-place update rules.",
+        "Does not read or apply references/status-template.md because the request updates an existing status file.",
+        "Updates the existing status sections in place rather than replacing the whole file with a fresh template.",
+        "Reads references/status-template.md only when creating a new status file or replacing a missing/corrupt status body."
       ]
     }
   ]

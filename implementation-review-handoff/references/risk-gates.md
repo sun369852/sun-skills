@@ -36,6 +36,8 @@ If a `High` or `Blocker` risk requires business or product acceptance, report it
 
 Implementation defects can be routed to the development skill automatically, but risk acceptance cannot. If the only way to pass is to accept a high-risk residual issue, stop and ask the user.
 
+When invoked by `product-delivery-skill-chain` with `High-risk operations: no-confirmation`, do not interrupt the user only to ask for risk acceptance. This policy means "do not ask", not "auto-accept risk". If a high-risk residual issue requires product, business, security, release, or operational acceptance, mark the review `Fix needed` or `Blocked`, record the unaccepted risk, and continue the report or fix-packet flow.
+
 ## Stop Conditions
 
 Stop and ask or mark `Blocked` when:
@@ -44,5 +46,7 @@ Stop and ask or mark `Blocked` when:
 - credentials or external systems are required to verify the core behavior
 - the diff includes destructive operations not mentioned in the source artifacts
 - source artifacts and implementation disagree on a critical behavior
+
+When the chain envelope sets `High-risk operations: no-confirmation`, prefer `Blocked` over asking for these stop conditions unless a non-risk clarification is needed to identify the reviewed scope or source artifact.
 
 Do not approve high-risk behavior based only on code inspection when a feasible verification path exists.

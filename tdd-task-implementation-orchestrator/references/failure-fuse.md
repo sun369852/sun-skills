@@ -36,4 +36,4 @@ Use `agents/fresh-failure-analyzer.md` for a clean-context analysis pass.
 
 ## Two-Stage Handling
 
-The fresh analyzer should first produce root-cause analysis and a repair plan. The main agent reviews the plan. If risk is low and write scope is clear, the main agent can authorize repair. If high-risk, record the risk and ask the user unless full-auto mode allows a conservative decision.
+The fresh analyzer should first produce root-cause analysis and a repair plan. The main agent reviews the plan. If risk is low and write scope is clear, the main agent can authorize repair. If high-risk, record the risk and ask the user unless full-auto mode or the chain envelope's `High-risk operations: no-confirmation` policy allows a conservative decision. With `no-confirmation`, do not ask just to accept risk; choose a conservative repair path or block the affected task.

@@ -49,6 +49,8 @@ Minimum handoff:
 - technical design when implementation structure, API/data contracts, migrations, or UI architecture matter
 - known dependencies, risks, blocked questions, and validation expectations
 
+If the current entry artifact is a technical design, it can feed task archiving only when a linked PRD path or PRD content is also available. The PRD remains the source of truth; the technical design is an implementation constraint. If only a technical design exists and no PRD can be found, stop and ask for the PRD path or content.
+
 If tasks would require inventing product semantics or architecture decisions, route back to PRD or technical design.
 
 Default sequencing: create formal tasks after the technical design is ready. Fast mode may create draft tasks from the PRD in parallel with technical design, but the draft must be labeled as pending technical design confirmation and reconciled before implementation.
@@ -73,11 +75,15 @@ Implementation handoff packet:
 - task archive path
 - audit standards path, if available
 - `delivery-chain-status.md` path
+- chain artifact directory
+- chain start contract path
+- downstream invocation envelope
+- git handoff policy, including commit, push, and pull request authorization
 - confirmed assumptions
 - known blockers
 - coding confirmation status
 
-Hand this packet to `tdd-task-implementation-orchestrator` once. Let that skill own batching, worker use, verification, run log updates, and task status updates.
+Hand this packet to `tdd-task-implementation-orchestrator` once. Let that skill own batching, worker use, verification, run log updates, task status updates, and commit granularity when commits are authorized.
 
 ## Implementation to Review
 

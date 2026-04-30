@@ -14,9 +14,11 @@ This chain expects the local downstream skills named in the routing table to be 
 | Clarified requirement should become a saved PRD | `prompt-to-prd-review` | Clarified requirement or strong feature brief |
 | Existing PRD should become a technical design | `prd-to-tech-design-review` | PRD path or pasted PRD |
 | Existing PRD should become tasks or `tasks.md` | `prd-task-archiver` | PRD path or pasted PRD |
+| Existing technical design should become tasks and a linked PRD is available | `prd-task-archiver` | PRD path/content plus technical design path/content |
 | Existing PRD needs pre-implementation audit standards or acceptance contract for post-development review | `prd-quality-audit-standards` | PRD path or pasted PRD |
 | Existing tasks/design/PRD should be implemented | `tdd-task-implementation-orchestrator` | Task list plus supporting PRD/design |
 | Completed implementation should be accepted or rejected | `implementation-review-handoff` | Diff, commit range, branch, run log, or changed files plus source artifacts |
+| Implementation request includes branch, worktree, local commit, push, or pull request policy | `tdd-task-implementation-orchestrator`, after recording the policy in the chain start contract | Task list plus supporting PRD/design and confirmed git handoff authorization |
 
 ## Route Conflicts
 
@@ -24,6 +26,7 @@ When a request could route to multiple skills:
 
 - PRD vs requirement exploration: if the requirement is vague, explore first; if it is mostly clear and the user asks for a PRD, use PRD review.
 - Technical design vs task archive: if the user wants architecture/API/data/UI decisions, use technical design; if they want executable work items, use task archive.
+- Technical design to task archive: route to `prd-task-archiver` only when a linked PRD is available; otherwise ask for the PRD instead of treating the design as the source of truth.
 - PRD to planning: after PRD approval, technical design and audit standards can run in parallel. Formal task archiving waits for technical design by default. Fast mode may produce draft tasks in parallel, then reconcile after technical design.
 - Task archive vs implementation: if tasks are missing, archive first; if tasks exist and are clear, implement.
 - Audit standards vs implementation review: generate audit standards before coding so review has an independent acceptance contract; use implementation review after code exists. Post-development standards updates should be supplemental and should not silently rewrite PRD intent.

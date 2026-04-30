@@ -47,6 +47,46 @@ Choose verification commands by:
 
 Workers may recommend commands, but the main agent owns the final verification strategy.
 
+## Runtime Verification Gate
+
+Compile is only a syntax/build gate. For runtime-integrated changes, task completion requires startup and smoke verification.
+
+Compile-only verification is not enough when a task changes:
+
+- controller, route, or API endpoint
+- Spring Security, auth, filter, interceptor, or middleware
+- dependency injection or service bean registration
+- mapper XML or ORM mapping
+- application config, logging config, or startup config
+- database migration used by runtime code
+- frontend route guard, request client, or build config
+
+Minimum verification for these tasks must include the relevant subset:
+
+1. build or package command
+2. application startup command
+3. port, process, or health check
+4. at least one public endpoint smoke when a public endpoint exists
+5. at least one protected endpoint unauthorized smoke when auth is involved
+
+After a batch changes shared runtime infrastructure, pause before expanding to downstream feature batches. Run the runtime verification gate first. If the gate fails, route the batch to fix mode before continuing.
+
+If required runtime smoke is skipped, blocked, or fails, the affected task status must be `partial`, `blocked`, or `failed`, not `done`.
+
+When audit standards are included in the implementation handoff, extract the TE/RG checks relevant to the current batch before coding. These checks inform required verification; they do not replace PRD, technical design, or task-list scope.
+
+## Missing Test Account Rule
+
+Missing seed data or test accounts may block success-path API tests only. It must not block:
+
+- backend startup verification
+- public endpoint smoke
+- unauthorized protected endpoint smoke
+- invalid-login smoke
+- platform regression smoke
+
+If success-path data is missing, mark only those success-path checks as blocked and still run account-independent runtime checks.
+
 ## Unrelated Failures
 
 A task can be marked done when targeted verification passes and other failures are demonstrably unrelated. Evidence can include:

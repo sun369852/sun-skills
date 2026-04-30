@@ -1,6 +1,6 @@
 ---
 name: prd-task-archiver
-description: Use this skill after a PRD already exists and the user wants to split it into implementation tasks, work items, milestones, or a tasks.md file and archive the result. Strongly prefer this skill whenever the user says PRD 已有, 基于 PRD 拆任务, 任务拆分, 生成 tasks.md, 落任务文件, 任务归档, 开发计划归档, implementation plan from PRD, or asks to turn an existing PRD into actionable frontend/backend/test/devops tasks saved to disk. Do not use for initial requirement clarification or PRD generation.
+description: Use this skill after a PRD already exists and the user wants to split it into implementation tasks, work items, milestones, or a tasks.md file and archive the result. Strongly prefer this skill whenever the user says PRD 已有, 基于 PRD 拆任务, 任务拆分, 生成 tasks.md, 落任务文件, 任务归档, 开发计划归档, implementation plan from PRD, or asks to turn an existing PRD into actionable frontend/backend/test/devops tasks saved to disk. Also use it when a technical design should become tasks and a linked PRD is available; the PRD remains the source of truth and the design is an implementation constraint. Do not use for initial requirement clarification or PRD generation.
 ---
 
 # PRD Task Archiver
@@ -15,6 +15,12 @@ Core rule: preserve the PRD as the source of truth, make uncertainty visible, an
 
 This skill sits after the requirement and PRD workflow. If the source PRD is missing, too vague, or still deciding product semantics, do not patch the gap by inventing tasks. Ask for the PRD or suggest returning to requirement exploration / PRD review before task archiving.
 
+## Chain Invocation Override
+
+When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default subagent, output path, confirmation, or source-priority rules.
+
+The envelope may constrain task archive output path, subagent/reviewer authorization, PRD and technical design source priority, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required task coverage review or safe saving, stop and ask instead of silently weakening the chain contract.
+
 ## When to Use
 
 Use this skill when:
@@ -24,13 +30,14 @@ Use this skill when:
 - the user wants frontend, backend, QA, data, integration, migration, or release tasks derived from product requirements
 - the user wants the resulting task split written to a file for archival or later execution
 - the PRD was produced by `prompt-to-prd-review` and is ready for implementation planning
+- the user provides a technical design and a linked PRD, and wants implementation tasks derived from the PRD while respecting the design
 
 Do not use this skill when:
 - the requirement is still vague and needs exploration first
 - the user needs a PRD generated or reviewed instead of task decomposition
 - the user asks for direct code implementation
 - the user only wants a high-level planning opinion without a saved task artifact
-- the source document is a technical design that should be handled with a more specific design-to-tasks workflow
+- the source document is only a technical design and no linked PRD path or PRD content is available
 
 If no PRD path or PRD content is available, ask one focused question for the PRD location or content. Do not invent requirements.
 
@@ -40,10 +47,13 @@ Expected input can be any of:
 - a PRD file path
 - pasted PRD content
 - a project path plus a PRD path
+- a technical design path plus linked PRD path or content
 - an existing PRD plus an explicit output path
 - a request such as "基于当前 PRD 拆任务并落盘"
 
 If the user gives a file path, read it completely before producing tasks.
+
+When a technical design is provided, use it as an implementation constraint for architecture, API/data contracts, migration, UI structure, and verification strategy. Do not let the technical design override PRD product behavior. If the technical design and PRD conflict on product behavior, use the PRD and surface the conflict.
 
 Choose the output path with this priority order:
 
@@ -73,12 +83,13 @@ Do not bulk-load all references by default. The skill is intentionally split so 
 1. Locate and read the PRD.
 2. If the PRD path/content or project path cannot be used safely, load `references/error-handling.md` and resolve the blocker before drafting.
 3. Load `references/source-prd-analysis.md` and extract the source boundary.
-4. Decide whether this is a new feature or existing project iteration.
-5. If existing project context matters, load `references/existing-project-context.md` and inspect only the relevant project files.
-6. Load `references/task-decomposition.md`; analyze functional blocks and coupling first, then draft ready tasks, blocked tasks, dependencies, priority, risk, deliverables, validation, and coverage inside those blocks.
-7. Load `references/archive-template.md` and format the Markdown archive.
-8. Load `references/quality-review-and-updates.md`, self-review the archive, and patch gaps before saving.
-9. Save the archive without silently overwriting unrelated existing files.
+4. If a technical design is provided, read it after the PRD and extract implementation constraints without changing PRD semantics.
+5. Decide whether this is a new feature or existing project iteration.
+6. If existing project context matters, load `references/existing-project-context.md` and inspect only the relevant project files.
+7. Load `references/task-decomposition.md`; analyze functional blocks and coupling first, then draft ready tasks, blocked tasks, dependencies, priority, risk, deliverables, validation, and coverage inside those blocks.
+8. Load `references/archive-template.md` and format the Markdown archive.
+9. Load `references/quality-review-and-updates.md`, self-review the archive, and patch gaps before saving.
+10. Save the archive without silently overwriting unrelated existing files.
 
 ## Subagent Use
 

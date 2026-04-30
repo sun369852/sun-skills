@@ -16,6 +16,14 @@
         "The archive includes Functional Blocks and Coupling before individual tasks.",
         "The archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record sections.",
         "The response explicitly says that no code implementation was started."
+      ],
+      "assertions": [
+        "The PRD file is read before task drafting begins.",
+        "The output is saved as a Markdown task archive instead of only being printed in the conversation.",
+        "The archive includes a Task Graph with task IDs, feature blocks, areas, priority, risk, dependencies, and status.",
+        "The archive includes Functional Blocks and Coupling before individual tasks.",
+        "The archive includes Ready Tasks, Coverage Map, Open Questions and Assumptions, and Archive Record sections.",
+        "The response explicitly says that no code implementation was started."
       ]
     },
     {
@@ -26,6 +34,15 @@
         "evals/files/standalone-prds/analytics-dashboard-prd.md"
       ],
       "expectations": [
+        "The archive is saved to evals/files/standalone-prds/analytics-dashboard-tasks.md or clearly explains why that exact path cannot be used.",
+        "The archive groups work into cohesive functional blocks before listing individual tasks.",
+        "Tasks cover frontend, backend, testing, and release areas.",
+        "Each task includes a deliverable and acceptance criteria.",
+        "Permissions, export behavior, chart behavior, and role visibility from the PRD are reflected in the task split.",
+        "Assumptions from the PRD are listed instead of being silently treated as confirmed facts.",
+        "The response explicitly says that no code implementation was started."
+      ],
+      "assertions": [
         "The archive is saved to evals/files/standalone-prds/analytics-dashboard-tasks.md or clearly explains why that exact path cannot be used.",
         "The archive groups work into cohesive functional blocks before listing individual tasks.",
         "Tasks cover frontend, backend, testing, and release areas.",
@@ -44,6 +61,15 @@
         "evals/files/sample-project/docs/prd/billing-cycle-prd.md"
       ],
       "expectations": [
+        "The work is classified as an existing-project iteration.",
+        "The archive distinguishes modest independent functional blocks and cross-block dependencies.",
+        "Relevant project context is inspected or a focused question is asked when the project path is missing.",
+        "The archive includes compatibility, migration, and regression testing tasks.",
+        "Ready work and blocked work are separated when unresolved PRD questions affect execution.",
+        "The final response reports the saved archive path and any open questions or blocked tasks.",
+        "The response explicitly says that no code implementation was started."
+      ],
+      "assertions": [
         "The work is classified as an existing-project iteration.",
         "The archive distinguishes modest independent functional blocks and cross-block dependencies.",
         "Relevant project context is inspected or a focused question is asked when the project path is missing.",
@@ -71,6 +97,16 @@
         "The response reports what changed and whether any tasks became blocked.",
         "The update summary includes counts for preserved, added, changed, skipped, and newly blocked tasks.",
         "The response explicitly says that no code implementation was started."
+      ],
+      "assertions": [
+        "The existing task archive is read before making updates.",
+        "Existing or updated tasks are assigned to functional blocks without breaking existing task IDs.",
+        "Existing done, skipped, and in_progress statuses are preserved unless explicitly changed by the user.",
+        "Existing task IDs are not renumbered.",
+        "A Change Log entry describes added, changed, removed, skipped, or newly blocked tasks.",
+        "The response reports what changed and whether any tasks became blocked.",
+        "The update summary includes counts for preserved, added, changed, skipped, and newly blocked tasks.",
+        "The response explicitly says that no code implementation was started."
       ]
     },
     {
@@ -83,6 +119,12 @@
         "The response explains that this skill requires an existing PRD or sufficiently complete PRD content.",
         "The response asks one focused question for the PRD location/content or suggests returning to requirement exploration.",
         "The response does not invent roles, workflows, data models, or acceptance criteria."
+      ],
+      "assertions": [
+        "No task archive is generated from the one-line requirement.",
+        "The response explains that this skill requires an existing PRD or sufficiently complete PRD content.",
+        "The response asks one focused question for the PRD location/content or suggests returning to requirement exploration.",
+        "The response does not invent roles, workflows, data models, or acceptance criteria."
       ]
     },
     {
@@ -91,6 +133,12 @@
       "expected_output": "Does not generate a task archive from a missing PRD path. Reports that the PRD path cannot be read and asks for the correct PRD path or pasted PRD content.",
       "files": [],
       "expectations": [
+        "No task archive is generated from the missing PRD path.",
+        "The response mentions that the provided PRD path is missing or unreadable.",
+        "The response asks one focused question for the correct PRD path or pasted PRD content.",
+        "The response does not infer requirements from the missing filename."
+      ],
+      "assertions": [
         "No task archive is generated from the missing PRD path.",
         "The response mentions that the provided PRD path is missing or unreadable.",
         "The response asks one focused question for the correct PRD path or pasted PRD content.",

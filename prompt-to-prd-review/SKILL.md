@@ -11,6 +11,12 @@ Convert clarified product requirement materials into a PRD, refine it through fr
 
 This skill starts after the product intent is mostly clarified, whether it came from requirement-exploration, a direct feature description, an existing PRD update, or multiple source materials. Do not restart broad discovery. Preserve the clarified requirement, make unresolved items visible, handle new requirements and existing-project iterations differently, and treat reviewer approval as a gate before writing the final file.
 
+## Chain Invocation Override
+
+When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default reviewer, output path, confirmation, or source-priority rules.
+
+The envelope may constrain PRD output path, frontend/backend reviewer authorization, source artifact priority, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required PRD review or safe saving, stop and ask instead of silently weakening the chain contract.
+
 ## Routing
 
 Read only the references needed for the current task:

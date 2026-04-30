@@ -29,6 +29,7 @@ Use this structure:
 ## Parallelization Decisions
 ## TDD Decisions
 ## Test Skips
+## Runtime Verification
 ## Auto-Approved Decisions
 ## Failure Attempts
 ## Blockers
@@ -70,5 +71,15 @@ If no format exists, use:
 - `done`
 - `partial`
 - `blocked`
+- `failed`
 
 Do not rewrite or reorder the entire task list. Do not paste the run log into the task list. Keep a link or short note to the run log when useful.
+
+Status meanings:
+
+- `done`: implementation complete and required test/runtime verification passed
+- `partial`: implementation complete but required verification is incomplete, skipped, or blocked
+- `blocked`: cannot proceed because a required decision, artifact, dependency, credential, service, or environment is missing
+- `failed`: required verification failed and needs a fix before continuing
+
+A task with skipped required verification cannot be marked `done`. Demote it to `partial`, `blocked`, or `failed` and record the reason in the run log.

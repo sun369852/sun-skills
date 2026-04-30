@@ -10,6 +10,13 @@ These evals focus on orchestration behavior rather than downstream artifact qual
 - `id: 4` resume: artifact discovery should be conservative and should not silently choose ambiguous files.
 - `id: 5` task entry: implementation handoff should be prepared, but coding should wait for human confirmation.
 - `id: 6` direct downstream skill: explicit non-chain usage should not create `delivery-chain-status.md`.
+- `id: 7` context management: after a long interview has been saved into a PRD, the chain should continue from the PRD path and compact summary instead of carrying full conversation history.
+- `id: 8` artifact directory: chain outputs should be centralized in one requested folder, with external source artifacts copied into `source/`.
+- `id: 9` default artifact directory: new requests should preview a project-root `delivery/<timestamp9>-<feature-slug>/` request folder before creating it.
+- `id: 10` first-time defaults: missing project defaults should trigger a concise options-based contract interview.
+- `id: 11` git handoff: implementation delivery should record commit authorization without replacing the implementation orchestrator's commit rules.
+- `id: 12` invocation envelope: downstream calls should carry contract policy, output paths, and source artifacts.
+- `id: 13` technical-design-to-tasks: task archiving can start from technical design only when a linked PRD is available.
 
 ## Running
 

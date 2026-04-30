@@ -31,6 +31,8 @@ If delegation is unavailable, save or output the developer fix packet and stop w
 
 Do not auto-route upstream problems. Ask the user when PRD, technical design, `quality-audit-standards.md`, third-party standards, product decisions, risk acceptance, or scope expansion are involved.
 
+When routing to `tdd-task-implementation-orchestrator`, tell it to use `fix-packet-mode.md` and to return the `Developer Fix Return` format below. Do not rely on its normal implementation final report for re-review.
+
 ## Developer Fix Packet
 
 Give the development skill a bounded repair packet, not a long undifferentiated review transcript:

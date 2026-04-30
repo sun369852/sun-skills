@@ -11,6 +11,12 @@ Turn an existing PRD into a durable post-development audit contract. The primary
 
 The artifact defines how a future reviewer verifies that completed code satisfies the PRD. It is not a PRD, technical design, task split, implementation plan, or live test execution report.
 
+## Chain Invocation Override
+
+When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default reviewer, parallel, output path, confirmation, or source-priority rules.
+
+The envelope may constrain audit-standards output path, clean-context reviewer authorization, parallel execution, PRD source priority, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required audit standard generation or safe saving, stop and ask instead of silently weakening the chain contract.
+
 ## Use This Skill When
 
 Use this skill when the user provides or references a PRD and asks for:

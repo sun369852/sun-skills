@@ -17,6 +17,12 @@ The core idea is a mediated collaboration loop:
 4. Resolve conflicts, preserve open questions, and document assumptions.
 5. Save a technical design document that covers UI, API, data, behavior, validation, risks, and verification.
 
+## Chain Invocation Override
+
+When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default subagent, parallel, output path, confirmation, or source-priority rules.
+
+The envelope may constrain technical-design output path, frontend/backend reviewer authorization, parallel execution, PRD source priority, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required design review or safe saving, stop and ask instead of silently weakening the chain contract.
+
 ## When to Use
 
 Use this skill when:
