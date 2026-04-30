@@ -11,6 +11,18 @@ Apply stricter gates when the change touches:
 - concurrency, retries, idempotency, caching, or distributed state
 - user-facing critical paths such as signup, checkout, publishing, or admin actions
 
+## Required Runtime Surfaces
+
+When a delivery topology contract exists, treat missing MVP-required runtime surfaces as release-blocking until resolved.
+
+Use `Fix needed` or `Blocked` when:
+
+- a PRD/technical-design-declared frontend, miniapp, backend, worker, database, or external service is missing
+- a required surface exists but has no startup or smoke evidence
+- product startup is claimed from responding ports while another MVP-required surface is missing, failed, blocked, or unverified
+
+Do not mark the product accepted based only on implemented backend or one existing frontend when the topology requires additional runtime surfaces.
+
 ## Required Evidence for High-Risk Changes
 
 High-risk work should usually have:

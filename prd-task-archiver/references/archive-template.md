@@ -26,6 +26,12 @@ Use this structure unless the project already has a stronger local convention:
 | --- | --- | --- | --- | --- |
 | B1 | ... | Shared journey/domain/API/risk | T001, T002 | Can start after ... |
 
+## Component Coverage Matrix
+
+| Runtime Surface | MVP Required | Expected Path | Task Coverage | Startup / Smoke Coverage | Status / Reason |
+| --- | --- | --- | --- | --- | --- |
+| ... | yes/no | ... | T001, T002 or blocked/skipped reason | T00x or check path | implementation-ready/blocked/skipped |
+
 ## Task Graph
 
 | ID | Task | Block | Area | Priority | Risk | Depends On | Status |

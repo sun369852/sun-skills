@@ -12,6 +12,8 @@ Before writing the archive, check:
 - each task has priority, risk, deliverable, and status
 - open questions and assumptions are visible
 - ready tasks and blocked tasks are separated when open questions affect execution
+- every MVP-required runtime surface from the delivery topology contract has task coverage or an explicit blocked/skipped reason
+- runtime surfaces that need a new project include scaffold/create, startup, smoke, and minimum flow tasks
 - task order is feasible
 - scope does not exceed the PRD
 - existing-project tasks respect current project conventions discovered during inspection
@@ -72,6 +74,7 @@ Update summary:
 - inventing implementation scope beyond the PRD
 - hiding implementation-only tasks as product requirements instead of labeling them as derived technical enablement
 - omitting QA, migration, rollout, or documentation tasks when they are needed
+- omitting a required frontend, miniapp, backend, worker, database, or external service from the task archive
 - ignoring existing project conventions for task files
 - overwriting an existing archive without explicit user intent
 - hiding open PRD questions inside normal tasks

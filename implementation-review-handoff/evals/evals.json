@@ -112,6 +112,19 @@
         "Marks the review Fix needed or Blocked when a high-risk residual issue requires product, business, security, release, or operational acceptance.",
         "Records the unaccepted risk and evidence gap in the review report or fix packet."
       ]
+    },
+    {
+      "id": 13,
+      "prompt": "按 Delivery Topology Contract 验收当前实现。PRD 要求 ruoyi-ui、merchant-ui、shop-miniapp、ruoyi-admin 都是 MVP required，但 git diff 只实现了后端和 ruoyi-ui，merchant-ui/shop-miniapp 目录不存在。",
+      "expected_output": "The assistant should treat missing MVP-required runtime surfaces as a delivery topology gap and return Fix needed or Blocked, not Pass, even if the backend and one frontend compile or start.",
+      "files": [],
+      "assertions": [
+        "Uses the delivery topology contract as review input.",
+        "Identifies missing merchant-ui and shop-miniapp as MVP-required runtime surfaces.",
+        "Classifies the issue as a delivery topology gap, implementation defect, or blocking verification gap.",
+        "Does not approve the product based only on backend and ruoyi-ui being present or started.",
+        "Returns Fix needed or Blocked and records missing runtime surface/startup evidence."
+      ]
     }
   ]
 }

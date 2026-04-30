@@ -25,6 +25,7 @@ Update the status file after:
 - every blocker or user decision
 - chain start contract confirmation or override
 - implementation handoff
+- runtime surface status changes
 - each review-fix loop
 - final pass, blocked, or stopped decision
 
@@ -48,6 +49,20 @@ Use simple stable values:
 - `pass_with_notes`
 - `fix_needed`
 - `confirmed`
+
+## Runtime Surface Status
+
+When a delivery topology contract exists, keep `Runtime Surface Status` current in `delivery-chain-status.md`.
+
+Use these surface statuses:
+
+- `running`
+- `missing project`
+- `not started`
+- `failed`
+- `blocked`
+
+Do not answer overall startup status from ports alone. If any MVP-required surface is missing, not started, failed, blocked, or unverified, report the overall product as not fully started.
 
 ## Preconditions
 

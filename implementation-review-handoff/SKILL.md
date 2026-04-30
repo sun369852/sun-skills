@@ -15,7 +15,7 @@ The skill is intentionally downstream of development. Do not restart planning or
 
 When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default reviewer, review-fix loop, output path, confirmation, or source-priority rules.
 
-The envelope may constrain review report path, reviewer/subagent authorization, review-fix loop policy, high-risk operations policy, audit standards priority, source artifact priority, reviewed scope, and stop point. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent a trustworthy review or safe repair handoff, stop and ask instead of silently weakening the chain contract.
+The envelope may constrain review report path, reviewer/subagent authorization, review-fix loop policy, high-risk operations policy, delivery topology contract, audit standards priority, source artifact priority, reviewed scope, and stop point. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent a trustworthy review or safe repair handoff, stop and ask instead of silently weakening the chain contract.
 
 ## Assumptions to State
 

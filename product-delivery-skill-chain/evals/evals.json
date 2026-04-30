@@ -369,6 +369,26 @@
         "Updates the existing status sections in place rather than replacing the whole file with a fresh template.",
         "Reads references/status-template.md only when creating a new status file or replacing a missing/corrupt status body."
       ]
+    },
+    {
+      "id": 16,
+      "prompt": "使用 product-delivery-skill-chain。PRD 和技术设计已经确认：平台后台、商家前端、用户小程序、后端 API 都是 MVP 必需运行面。请继续到任务拆分和实现准备。",
+      "expected_output": "The assistant should extract a Delivery Topology Contract before task archiving, pass it downstream, and not enter implementation until every MVP-required runtime surface has task coverage or a blocked/skipped reason.",
+      "files": [],
+      "expectations": [
+        "Extracts a Delivery Topology Contract after PRD and technical design are ready.",
+        "Lists each required runtime surface with name, type, expected path, start command or preview target, smoke check, MVP required flag, and source reference when known.",
+        "Passes the delivery topology contract in the downstream invocation envelope to prd-task-archiver and implementation.",
+        "Does not enter implementation until every MVP-required runtime surface has a mapped implementation task or explicit blocked/skipped reason.",
+        "States that startup/runnable status must be answered per runtime surface rather than from ports alone."
+      ],
+      "assertions": [
+        "Extracts a Delivery Topology Contract after PRD and technical design are ready.",
+        "Lists each required runtime surface with name, type, expected path, start command or preview target, smoke check, MVP required flag, and source reference when known.",
+        "Passes the delivery topology contract in the downstream invocation envelope to prd-task-archiver and implementation.",
+        "Does not enter implementation until every MVP-required runtime surface has a mapped implementation task or explicit blocked/skipped reason.",
+        "States that startup/runnable status must be answered per runtime surface rather than from ports alone."
+      ]
     }
   ]
 }

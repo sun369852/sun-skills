@@ -26,6 +26,9 @@ Keep the final response short and actionable:
 - API Smoke
 - Skipped / Blocked Verification
 
+## Target Surfaces / Startup Status
+- runtime surface status from the delivery topology contract when available
+
 ## Task List
 - updated task list path
 

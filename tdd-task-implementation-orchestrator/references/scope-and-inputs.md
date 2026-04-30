@@ -19,11 +19,26 @@ Inputs can include:
 - PRD path or pasted PRD content
 - task checklist path, often `tasks.md`
 - technical design, architecture, API, database, UI, or testing docs
+- delivery topology contract or runtime surface list
 - repository path
 - preferred test/build command
 - requested task range, priority, max parallel workers, full-auto mode, or forbidden files/modules
 
 If paths are not explicit, inspect the repository for likely files before asking. Search names such as `prd`, `requirements`, `technical-design`, `design`, `architecture`, `tasks`, `spec`, `plan`, `.speckit`, `.openspec`, and `docs`.
+
+## Preflight Topology Check
+
+Before selecting task batches, compare the delivery topology contract against the repository and task checklist.
+
+For each MVP-required runtime surface:
+
+- compare the expected path with repository paths
+- record whether the project exists, is missing, is not started, is blocked, or has known startup evidence
+- if the surface is missing but has scaffold/create tasks, keep those tasks pending and prioritize them before dependent feature work
+- if the surface is missing and has no scaffold/create or blocked/skipped task, block implementation and route back to task archive repair
+- if startup status is requested, validate every required surface rather than relying on existing ports alone
+
+Do not report the product as runnable or fully started while any MVP-required runtime surface is missing, not started, failed, blocked, or unverified.
 
 ## Task Eligibility
 

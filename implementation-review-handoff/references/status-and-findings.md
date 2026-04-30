@@ -17,6 +17,7 @@ Classify findings so the next route is clear:
 
 - `Implementation defect`: delivered code does not satisfy an in-scope requirement or check.
 - `Verification gap`: required evidence, test execution, environment, or reproduction path is missing.
+- `Delivery topology gap`: an MVP-required runtime surface from the PRD, technical design, or topology contract is missing, not started, failed, blocked, or unverified.
 - `Standards gap`: the audit standard is incomplete, lacks IDs, cannot be executed, or conflicts internally.
 - `Requirement/design conflict`: PRD, technical design, task list, third-party standard, or PRD-derived standard disagree.
 - `Product decision needed`: correctness depends on a business/product decision the reviewer cannot make.

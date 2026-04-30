@@ -19,7 +19,7 @@ This skill sits after the requirement and PRD workflow. If the source PRD is mis
 
 When invoked by `product-delivery-skill-chain` with a downstream invocation envelope, follow the envelope before this skill's default subagent, output path, confirmation, or source-priority rules.
 
-The envelope may constrain task archive output path, subagent/reviewer authorization, PRD and technical design source priority, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required task coverage review or safe saving, stop and ask instead of silently weakening the chain contract.
+The envelope may constrain task archive output path, subagent/reviewer authorization, PRD and technical design source priority, delivery topology contract, stop point, and chain status reporting. If the envelope conflicts with this skill's defaults, follow the envelope. If following it would prevent required task coverage review or safe saving, stop and ask instead of silently weakening the chain contract.
 
 ## When to Use
 
@@ -48,6 +48,7 @@ Expected input can be any of:
 - pasted PRD content
 - a project path plus a PRD path
 - a technical design path plus linked PRD path or content
+- a delivery topology contract listing required runtime surfaces
 - an existing PRD plus an explicit output path
 - a request such as "基于当前 PRD 拆任务并落盘"
 
@@ -86,7 +87,7 @@ Do not bulk-load all references by default. The skill is intentionally split so 
 4. If a technical design is provided, read it after the PRD and extract implementation constraints without changing PRD semantics.
 5. Decide whether this is a new feature or existing project iteration.
 6. If existing project context matters, load `references/existing-project-context.md` and inspect only the relevant project files.
-7. Load `references/task-decomposition.md`; analyze functional blocks and coupling first, then draft ready tasks, blocked tasks, dependencies, priority, risk, deliverables, validation, and coverage inside those blocks.
+7. Load `references/task-decomposition.md`; analyze functional blocks, delivery topology coverage, and coupling first, then draft ready tasks, blocked tasks, dependencies, priority, risk, deliverables, validation, and coverage inside those blocks.
 8. Load `references/archive-template.md` and format the Markdown archive.
 9. Load `references/quality-review-and-updates.md`, self-review the archive, and patch gaps before saving.
 10. Save the archive without silently overwriting unrelated existing files.

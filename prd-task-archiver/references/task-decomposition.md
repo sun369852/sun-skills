@@ -104,6 +104,21 @@ For later multi-agent execution, make task boundaries explicit:
 - include validation commands or verification paths when they can be inferred from the project
 - keep cross-task contracts visible so parallel workers do not make incompatible assumptions
 
+## Component Coverage Matrix
+
+When a delivery topology contract exists, or when the PRD/technical design declares multiple apps, services, miniapps, workers, or databases, create a component coverage matrix before finalizing tasks.
+
+For each required runtime surface, tasks must cover the relevant work:
+
+- scaffold or create project when the expected path is missing
+- configure API, auth, request client, environment, or service connection
+- implement minimum required screens, endpoints, jobs, or flows
+- define local startup command or preview target
+- define smoke verification
+- define acceptance evidence
+
+If an MVP-required runtime surface has no task coverage, the task archive is not implementation-ready. Add missing tasks or mark the surface blocked/skipped with an explicit reason. Do not treat an existing sibling project or responding port as evidence that another required runtime surface is covered.
+
 ## Test and Acceptance Coverage
 
 Create dedicated tasks for verification when the PRD contains user-facing or domain-critical behavior:

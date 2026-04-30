@@ -146,6 +146,28 @@
         "Does not mark the task done when required runtime verification is skipped, blocked, or failed; uses partial, blocked, or failed instead.",
         "Separates Build Verification, Runtime Verification, API Smoke, and Skipped / Blocked Verification in the final report."
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "product-delivery-skill-chain 通过 envelope 调用本 skill，并提供 Delivery Topology Contract：merchant-ui 和 shop-miniapp 是 MVP required，但仓库里没有这两个目录；tasks.md 也没有 scaffold 任务。请开始实现。",
+      "expected_output": "The assistant should run a preflight topology check, detect missing MVP-required runtime surfaces without scaffold tasks, block implementation, and route back to task archive repair instead of continuing backend or reporting the product runnable.",
+      "files": [],
+      "expectations": [
+        "Compares expected runtime surfaces with repository paths before selecting task batches.",
+        "Records merchant-ui and shop-miniapp as missing project surfaces.",
+        "Detects that missing required surfaces have no scaffold/create tasks.",
+        "Blocks implementation and routes back to task archive repair rather than inventing tasks inline.",
+        "Does not report the product as runnable or fully started while MVP-required surfaces are missing.",
+        "Includes Target Surfaces / Startup Status in the final or blocker report."
+      ],
+      "assertions": [
+        "Compares expected runtime surfaces with repository paths before selecting task batches.",
+        "Records merchant-ui and shop-miniapp as missing project surfaces.",
+        "Detects that missing required surfaces have no scaffold/create tasks.",
+        "Blocks implementation and routes back to task archive repair rather than inventing tasks inline.",
+        "Does not report the product as runnable or fully started while MVP-required surfaces are missing.",
+        "Includes Target Surfaces / Startup Status in the final or blocker report."
+      ]
     }
   ]
 }

@@ -45,9 +45,10 @@ After a request contract already exists, resume from that contract and continue 
 3. After the PRD is approved, run planning with controlled parallelism:
    - `prd-to-tech-design-review` creates the technical design.
    - `prd-quality-audit-standards` creates pre-implementation audit standards for post-development review from the PRD.
-4. `prd-task-archiver` creates the formal task archive after the technical design is ready by default. In fast mode, it may create a draft task archive in parallel, but it must be reconciled after the technical design.
-5. `tdd-task-implementation-orchestrator` implements ready tasks with verification. After any batch changes shared runtime infrastructure, require a runtime verification gate before expanding to downstream feature batches.
-6. `implementation-review-handoff` reviews completed implementation against source artifacts and audit standards.
+4. After the PRD and technical design are ready, extract the delivery topology contract for required runtime surfaces.
+5. `prd-task-archiver` creates the formal task archive after the technical design and delivery topology are ready by default. In fast mode, it may create a draft task archive in parallel, but it must be reconciled after the technical design and topology contract.
+6. `tdd-task-implementation-orchestrator` implements ready tasks with verification. After any batch changes shared runtime infrastructure, require a runtime verification gate before expanding to downstream feature batches.
+7. `implementation-review-handoff` reviews completed implementation against source artifacts and audit standards.
 
 Shared runtime infrastructure includes authentication, authorization, global filters, interceptors, middleware, application startup config, logging config, database schema used by runtime code, shared API response format, route registration, and dependency injection boundaries. If the runtime verification gate fails, route to fix mode before continuing implementation.
 
@@ -61,6 +62,7 @@ Read only the reference needed for the current decision:
 - Read `references/status-file.md` whenever this skill needs to choose, update, or interpret `delivery-chain-status.md`; read `references/status-template.md` only when creating a new status file or replacing a missing/corrupt status body.
 - Read `references/startup-contract.md` before starting a new chain, creating project defaults, previewing per-request execution rules, or handling commit/subagent/full-auto policy.
 - Read `references/downstream-invocation-envelope.md` before invoking any downstream skill from this chain.
+- Read `references/delivery-topology-contract.md` after PRD and technical design are ready, before task archiving, before implementation, before startup status answers, and before final review when runtime surfaces matter.
 - Read `references/context-management.md` for long chains, after any durable artifact is saved, before implementation/review loops, or whenever the conversation has accumulated substantial interview, review, log, or troubleshooting context.
 - Read `references/artifact-directory.md` before choosing output paths or invoking downstream skills that will save PRD, technical design, audit standards, task archive, implementation run log, review report, or handoff packets.
 
@@ -77,6 +79,7 @@ Do not bulk-load all downstream skill references. Once routed, follow the select
 - Use an LLM gate at every stage. Use a human gate after PRD approval, before coding, for high-risk conflicts, and after final review unless the user explicitly authorized full-auto behavior.
 - For a new request, show the current chain start contract preview only after project defaults exist or have just been confirmed and saved; do not proceed until the user confirms it.
 - Downstream skills must receive the confirmed invocation envelope. Do not let a downstream skill override disabled subagents, disabled commits, implementation confirmation, or explicit output paths from the chain contract.
+- Startup status must be answered from the delivery topology contract, not from ports alone. Report every MVP-required runtime surface before giving an overall started/not-started conclusion.
 - After each durable artifact is saved, switch the main thread to a light context: artifact paths, key decisions, unresolved blockers, and next action. Do not keep relying on full interview history once the artifact exists.
 
 ## Success Standard

@@ -49,6 +49,12 @@ Use this template only when creating a new `delivery-chain-status.md` or replaci
 - Original audit standards:
 - Copied audit standards:
 
+## Runtime Surface Status
+
+| Surface | Required | Path | Status | Start Command | Smoke Check | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| TBD | yes/no | TBD | missing/not started/running/failed/blocked | TBD | TBD | TBD |
+
 ## Stage Gates
 
 ### Chain Startup Gate
