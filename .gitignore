@@ -12,6 +12,5 @@ workspaces/
 .workbuddy/
 
 # 非 skill 内容
-PROJECT_DIRECTORY.md
 dist/
 docs/
