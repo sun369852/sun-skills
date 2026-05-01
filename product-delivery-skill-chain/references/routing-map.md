@@ -6,6 +6,14 @@ Use this map to choose the next skill. Prefer the most specific downstream skill
 
 This chain expects the local downstream skills named in the routing table to be available. If the selected downstream skill is not available in the current environment, tell the user which stage is blocked and either ask them to install/enable that skill or proceed manually with the same source artifact and handoff contract.
 
+## Handoff Gate
+
+Before routing to any downstream skill, run the handoff gate check from `references/handoff-gate.md`. The gate validates the upstream artifact against the minimum requirements for the target stage.
+
+- `GATE_PASS`: route normally.
+- `GATE_PASS_WITH_NOTES`: route and include the notes in the invocation envelope.
+- `GATE_BLOCKED`: do not route. Record the blocked status in `delivery-chain-status.md`. In full-auto mode, return to the upstream stage automatically; in semi-auto mode, report the gate result and ask the user.
+
 ## Stage Routing
 
 | User state or request | Route to | Required source |

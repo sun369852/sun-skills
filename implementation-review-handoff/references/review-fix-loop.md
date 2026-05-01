@@ -29,7 +29,10 @@ Auto-route to the development skill when all are true:
 
 If delegation is unavailable, save or output the developer fix packet and stop with `Fix needed`.
 
-Do not auto-route upstream problems. Ask the user when PRD, technical design, `quality-audit-standards.md`, third-party standards, product decisions, risk acceptance, or scope expansion are involved.
+Do not auto-route upstream problems using the standard fix loop. When defects trace to PRD, technical design, `quality-audit-standards.md`, third-party standards, product decisions, or scope expansion:
+
+1. If the backtrack is bounded to a single upstream stage (1-level or 2-level), produce an upstream backtrack packet (`references/upstream-backtrack-packet.md`) instead of a developer fix packet. The chain routing layer will evaluate whether auto-backtrack is allowed under the configured policy.
+2. If the defect has multiple root causes at different levels, do not produce a backtrack packet. Record all root causes and stop for user decision.
 
 When routing to `tdd-task-implementation-orchestrator`, tell it to use `fix-packet-mode.md` and to return the `Developer Fix Return` format below. Do not rely on its normal implementation final report for re-review.
 
@@ -111,12 +114,14 @@ Stop the loop when:
 
 - the overall decision is `Pass`
 - the decision is `Pass with notes` and notes are non-blocking
-- upstream artifact changes or product decisions are needed
+- upstream artifact changes or product decisions are needed, and the chain's backtrack policy does not allow auto-backtrack for the specific defect type
 - scope expansion is needed
 - dangerous operations, credentials, or user authorization are needed
 - 5 review-fix rounds have been reached
 - the development skill says the issue cannot be fixed in scope
 - the verification environment cannot complete core checks
+
+Note: Producing an upstream backtrack packet is not a loop stop condition. It redirects the defect to the chain routing layer for potential auto-backtrack. The review loop pauses during backtrack; the loop round counter does not increment. After backtrack, re-review starts the loop fresh for the regenerated artifacts.
 
 After 5 rounds, keep `Fix needed` if implementation defects remain. Use `Blocked` if the remaining issue is uncertainty, environment, or missing decision.
 

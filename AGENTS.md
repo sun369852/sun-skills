@@ -62,26 +62,34 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## Bash Command
 
-**核心原则：主执行链不阻塞，长进程后台托管。**
+**核心原则：主执行链只运行会自然退出的命令；任何长进程必须先脱离当前 shell，再用独立 smoke 验证。**
 
 ### 基本规则
 - 使用 `py` 执行 Python 脚本
 - 主执行链只运行会自然退出的命令
-- 长进程（dev server、watch、队列消费者等）必须后台托管
+- 长进程（dev server、watch、队列消费者、预览服务等）必须封装在 `bin/start-*.ps1` 中，主链只调用启动脚本，不内联 `Start-Process`
+- 优先调用项目内已验证的 `bin/start-*.ps1`，不要临时拼内联启动命令
+- 禁止在主执行链内联执行 `Start-Process npm.cmd ... run dev`、`Start-Process powershell/cmd ...` 这类承载长进程的命令
+
 
 ### 后台托管要求
-启动脚本必须在 10-15 秒内完成：
+启动脚本必须在 10-15 秒内完成以下步骤并退出：
 1. 停止旧 PID
-2. 启动新进程并重定向日志
-3. 写入真实服务 PID
-4. 快速退出
+2. 启动新进程并完全脱离当前 shell
+3. stdout/stderr 重定向到日志文件
+4. 写入真实服务 PID（不是 wrapper PID）
+
+**推荐实现：**
+- Node 服务直接启动 `node.exe script.js`，避免 `npm.cmd` 包装器
+- Java 服务使用专用启动脚本托管并写 PID/日志
+- 必须经过 npm 时，由专用 runner 托管，主链只调用快速返回的 `bin/start-*.ps1`
+- 禁止因后台启动失败而退回前台阻塞运行
 
 ### 验证与清理
-- 启动成功 ≠ 业务可用，用独立 smoke 命令验证（端口、HTTP、健康检查）
-- 启动卡住时先检查 PID/端口/日志，不要重复启动
+- 启动成功 ≠ 业务可用，必须用独立 smoke 命令验证（端口/HTTP/健康检查）
+- 启动疑似卡住时先查 PID/端口/日志，不要重复启动
 - 临时测试进程验证后清理 PID；用户服务不擅自停止
 - 环境限制导致后台启动失败时说明原因，不要改回前台阻塞
-
 ## Extra
 - 减少不必要的客套话、冗余修饰词，直接输出观点，建议，方案等内容
 - 在编写代码时，对主要功能相关函数变量等内容带上注释，使用中文

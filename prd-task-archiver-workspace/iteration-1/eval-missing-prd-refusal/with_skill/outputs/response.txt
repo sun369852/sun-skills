@@ -1,5 +1,0 @@
-I cannot create a task archive from the sentence "build a member points system" because the PRD is missing and the requirement is still too vague for PRD-based task decomposition.
-
-Please provide the PRD file path or paste the PRD content. If no PRD exists yet, return to requirement exploration or PRD generation/review first so the product semantics, scope, acceptance criteria, and constraints are defined before archiving implementation tasks.
-
-No task archive was created.

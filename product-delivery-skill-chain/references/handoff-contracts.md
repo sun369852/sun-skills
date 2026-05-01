@@ -2,6 +2,8 @@
 
 Use this file to check whether one stage can safely feed the next stage.
 
+The chain-level handoff gate (`references/handoff-gate.md`) runs these checks **before** routing. If the gate passes, the downstream skill still performs its own internal quality checks—the handoff gate is a pre-flight, not a replacement.
+
 ## Requirement Exploration to PRD
 
 Minimum handoff:

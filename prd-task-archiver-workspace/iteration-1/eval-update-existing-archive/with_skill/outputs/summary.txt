@@ -1,5 +1,0 @@
-Saved billing-cycle-tasks-updated.md with 8 total tasks.
-
-Preserved existing task IDs and statuses: T001 remains done, T002 remains in_progress, and T003 remains pending. Added T004-T008 for anchor-day validation, audit event emission, support-tool history, billing regression coverage, and release compatibility checks.
-
-No PRD items remain unmapped. No tasks are blocked. Highest sequencing risk is that audit/support visibility and QA coverage depend on completing the billing update path without breaking default monthly billing, historical invoices, or webhook idempotency.

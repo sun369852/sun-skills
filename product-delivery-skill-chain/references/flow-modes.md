@@ -11,12 +11,15 @@ Process:
 1. Identify whether the current requirement is clear enough.
 2. Establish or preview the chain start contract. If this is a new request, wait for user confirmation before creating files or running downstream stages.
 3. Establish the chain artifact directory and record it in `delivery-chain-status.md` after the contract is confirmed.
-4. Run each stage only after its source artifact is adequate.
-5. After PRD approval, run technical design and audit standards in parallel when possible.
-6. Reconcile technical design and audit standards after both complete.
-7. Create the formal task archive after technical design by default.
-8. Ask for confirmation before moving from planning artifacts into coding unless the confirmed contract allows full-auto execution.
-9. After implementation, run review and enter the bounded review-fix loop if needed.
+4. Before routing to each downstream stage, run the handoff gate (`references/handoff-gate.md`). If the gate blocks, return to the upstream stage instead of proceeding.
+5. Run each stage only after its source artifact is adequate.
+6. After PRD approval, run technical design and audit standards in parallel when possible.
+7. Reconcile technical design and audit standards after both complete.
+8. Create the formal task archive after technical design by default.
+9. Ask for confirmation before moving from planning artifacts into coding unless the confirmed contract allows full-auto execution.
+10. After implementation, run review and enter the bounded review-fix loop if needed.
+11. If the review returns an upstream backtrack packet (from `implementation-review-handoff/references/upstream-backtrack-packet.md`), evaluate against `references/backtrack-policy.md`. If backtrack is allowed, route to the backtrack target, re-run affected downstream stages, then return to review.
+12. At the final stop point, generate `<chain-dir>/delivery-summary.md` from `references/delivery-summary-template.md`.
 
 ## Partial Chain
 

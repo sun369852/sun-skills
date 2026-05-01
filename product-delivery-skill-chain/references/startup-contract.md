@@ -54,6 +54,13 @@ If `delivery/_chain-defaults.md` does not exist, stop before the per-request cha
    1. `explicit-only`（推荐：必须明确确认）：高风险操作必须得到明确确认
    2. `ask-with-risk-summary`：执行前带简短风险摘要询问
    3. `no-confirmation`：完全不询问，按链路继续执行；这是高风险选择，只在用户明确选择时使用
+9. 阶段间门禁
+   1. `validate-before-routing`（推荐：路由前验证上游产物）：每次路由前运行 handoff gate，不通过则不推进
+   2. `trust-upstream`：信任上游产物，不额外验证
+10. 回溯策略
+    1. `bounded-bug`（推荐：实现缺陷自动修复，上游缺陷问人）：review-fix loop 自动处理实现缺陷；上游缺陷停止询问
+    2. `controlled-upstream`：实现 + 有限的上游回溯自动处理（最多 2 层）；适合 full-auto
+    3. `stop-and-ask`：任何时候都询问
 
 固定默认项不单独询问：
 
@@ -82,6 +89,8 @@ For every new request, read `delivery/_chain-defaults.md`, merge explicit instru
 - Push / PR:
 - 审核修复循环:
 - 高风险操作:
+- 阶段间门禁:
+- 回溯策略:
 - 上下文策略:
 ```
 

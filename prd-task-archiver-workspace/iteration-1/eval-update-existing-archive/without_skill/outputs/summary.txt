@@ -1,3 +1,0 @@
-Updated the billing cycle task archive from the existing PRD and task file.
-
-Preserved existing task IDs and historical statuses: T001 remains done, T002 remains in_progress, and T003 remains pending. Added T004-T007 to cover missing PRD requirements for invalid day validation, upcoming invoice date display, audit events, support tool history, compatibility constraints, and regression tests.

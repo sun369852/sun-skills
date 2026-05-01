@@ -1,3 +1,0 @@
-Generated billing-cycle-generated-tasks.md from the provided Billing Cycle PRD and package metadata as an existing-project iteration task archive.
-
-The archive includes implementation, migration, compatibility, regression, audit/support, API, admin UI, release, and verification tasks. It explicitly covers migration backfill to anchor day 1, unchanged historical invoices, webhook idempotency, default first-day billing regression coverage, invalid anchor rejection, and Playwright/Vitest verification for the Next.js/React/Prisma project.

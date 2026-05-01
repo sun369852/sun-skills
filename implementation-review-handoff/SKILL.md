@@ -39,6 +39,7 @@ Read only what the current review needs:
 | A quality audit standards artifact exists or the user references audit standards | `references/audit-standards-alignment.md`, then `references/audit-standards-execution.md` |
 | Verification, tests, build, lint, reproducibility | `references/verification-and-evidence.md` |
 | Findings require implementation repair, re-review, or loop recording | `references/review-fix-loop.md` |
+| Findings trace to upstream artifacts (PRD, design, audit standards, or tasks) rather than implementation code | `references/upstream-backtrack-packet.md` (produce a backtrack packet instead of a normal fix packet) |
 | Release readiness, risky changes, user-facing behavior, migrations, auth, payments, data loss | `references/risk-gates.md` |
 | User asks for subagents/reviewers or clean-context review | `agents/implementation-reviewer.md` |
 
@@ -75,8 +76,10 @@ For a small one-file change, keep the review lightweight: inspect the diff, run 
 4. Read `references/review-workflow.md` and inspect the implementation from requirements outward: acceptance criteria, behavior, data/contracts, UI/API surface, error states, tests, and maintainability.
 5. If verification is required or useful, read `references/verification-and-evidence.md`, choose the smallest meaningful command set, and run it.
 6. If the change is high-risk, read `references/risk-gates.md` before deciding pass/fix-needed/block.
-7. If implementation defects are found, read `references/review-fix-loop.md` and prepare the developer fix packet. Auto-route to the development skill when supported; otherwise save or output the packet for handoff.
-8. If upstream artifacts are deficient, prepare a user decision point instead of auto-returning upstream.
+7. If implementation defects are found, determine whether they root in implementation code or in upstream artifacts:
+   - Implementation-scoped defects → read `references/review-fix-loop.md`, prepare the developer fix packet.
+   - Upstream-scoped defects (PRD, design, audit standards, or task gaps) → read `references/upstream-backtrack-packet.md`, prepare an upstream backtrack packet instead of a normal fix packet.
+8. If upstream artifacts are deficient and the defect is mixed (multiple root causes at different levels), do not auto-backtrack. Record all root causes and stop for user decision.
 9. Use a clean-context reviewer only when the user explicitly asks for subagents/reviewers, independent review, 二次复核, or clean-context review. The main agent remains responsible for the final conclusion.
 10. Produce the final report using `references/final-report.md`; load `references/final-report-template.md` only when writing a full report or saved artifact.
 

@@ -22,6 +22,8 @@ Use this structure in the handoff prompt or packet:
 - Target / stop point:
 - Subagent policy:
 - Parallel policy:
+- Handoff gate result:
+- Backtrack policy:
 - Implementation confirmation:
 - High-risk operations:
 - Git policy:
@@ -52,6 +54,8 @@ Use this structure in the handoff prompt or packet:
   - Do not ask about high-risk operations when policy is `no-confirmation`; record the decision and choose a conservative or blocked path if safe execution is not possible:
   - Do not report product startup or runnable status from ports alone; validate every MVP-required runtime surface in the topology contract:
   - Do not write outside output paths unless user confirms:
+  - Handoff gate result (`GATE_PASS`, `GATE_PASS_WITH_NOTES`, or `GATE_BLOCKED` — if blocked, this envelope should not be sent):
+  - Backtrack policy (`bounded-bug`, `controlled-upstream`, or `stop-and-ask`):
 ```
 
 ## Stage-Specific Notes

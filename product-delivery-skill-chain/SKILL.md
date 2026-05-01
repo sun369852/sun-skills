@@ -25,15 +25,16 @@ Entry order for a new chain request:
 6. Preview the per-request chain start contract.
 7. Wait for user confirmation.
 8. Create the request directory, `delivery-chain-status.md`, source archive, and `source-context.md`.
-9. Build the downstream invocation envelope.
-10. Route to the selected downstream skill with the envelope.
+9. Run the handoff gate (`references/handoff-gate.md`) against the upstream artifact. Only route if the gate passes.
+10. Build the downstream invocation envelope.
+11. Route to the selected downstream skill with the envelope.
 
 After a request contract already exists, resume from that contract and continue from the next requested stage without re-confirming unless the current user instruction conflicts with it.
 
 - If the user asks for the full flow, run the stages in order and stop at each artifact gate.
 - If the user provides a mature artifact, enter from that stage instead of restarting upstream work.
 - If the user explicitly asks for one skill or one artifact, route there and do not force the whole chain.
-- If an upstream artifact is missing or too weak for the requested downstream step, ask one blocking question or recommend the upstream skill that should run first.
+- If an upstream artifact is missing or too weak for the requested downstream step, run the handoff gate (`references/handoff-gate.md`) before deciding. If the gate blocks, do not route; return to the upstream stage or report the gate result.
 - When this skill is invoked for an existing confirmed request, maintain `delivery-chain-status.md`; when a downstream skill is invoked directly without this chain skill, do not create orchestration state.
 - When this skill is invoked for a confirmed request, establish one chain artifact directory and save new chain artifacts there unless the user explicitly chooses another path.
 - For a new chain request, first ensure project defaults exist or are explicitly confirmed, then preview the chain start contract and wait for user confirmation before creating the request folder, status file, source archive, or downstream artifacts.
@@ -58,6 +59,10 @@ Read only the reference needed for the current decision:
 
 - Read `references/routing-map.md` when deciding which skill should run next.
 - Read `references/handoff-contracts.md` when moving between stages or checking whether an artifact is strong enough for the next stage.
+- Read `references/handoff-gate.md` before routing to any downstream skill. Run the gate check on the upstream artifact and only route if the gate passes.
+- Read `references/backtrack-policy.md` when `implementation-review-handoff` returns an upstream backtrack packet, or when planning how the chain handles upstream defects in full-auto mode.
+- Read `references/stage4-routing-rules.md` after PRD approval to decide whether to run audit standards, task archiver, or both.
+- Read `references/delivery-summary-template.md` at the final chain stop point to generate the end-to-end delivery summary.
 - Read `references/flow-modes.md` when the user asks for full-auto, partial chain, single-skill mode, resume, or flexible execution.
 - Read `references/status-file.md` whenever this skill needs to choose, update, or interpret `delivery-chain-status.md`; read `references/status-template.md` only when creating a new status file or replacing a missing/corrupt status body.
 - Read `references/startup-contract.md` before starting a new chain, creating project defaults, previewing per-request execution rules, or handling commit/subagent/full-auto policy.
@@ -79,6 +84,8 @@ Do not bulk-load all downstream skill references. Once routed, follow the select
 - Use an LLM gate at every stage. Use a human gate after PRD approval, before coding, for high-risk conflicts, and after final review unless the user explicitly authorized full-auto behavior.
 - For a new request, show the current chain start contract preview only after project defaults exist or have just been confirmed and saved; do not proceed until the user confirms it.
 - Downstream skills must receive the confirmed invocation envelope. Do not let a downstream skill override disabled subagents, disabled commits, implementation confirmation, or explicit output paths from the chain contract.
+- When `implementation-review-handoff` returns an upstream backtrack packet (not a standard fix packet), load `references/backtrack-policy.md` to evaluate whether the backtrack is within allowed scope and depth. If allowed, route to the backtrack target with a bounded fix brief. After the fix, re-run all affected downstream stages before returning to review.
+- At the final chain stop point, load `references/delivery-summary-template.md` and generate `<chain-dir>/delivery-summary.md`. Include all stages, gate results, backtrack events, final artifacts, and residual risks.
 - Startup status must be answered from the delivery topology contract, not from ports alone. Report every MVP-required runtime surface before giving an overall started/not-started conclusion.
 - After each durable artifact is saved, switch the main thread to a light context: artifact paths, key decisions, unresolved blockers, and next action. Do not keep relying on full interview history once the artifact exists.
 
@@ -91,6 +98,9 @@ This skill succeeds when:
 - upstream and downstream artifact expectations are explicit
 - full-chain execution remains possible without making single-skill usage harder
 - no downstream skill is invoked with insufficient source material
+- handoff gate checks are run before every routing decision, and gate results are visible in `delivery-chain-status.md`
+- backtrack events (if any) are recorded in `delivery-chain-status.md` with trigger, target, depth, and result
+- at stop point, `<chain-dir>/delivery-summary.md` is generated with stage completion, gate results, backtrack history, final artifacts, and residual risks
 - `delivery-chain-status.md` explains the entry point, preconditions, stage gates, artifacts, decisions, blockers, and latest next step whenever this chain skill was used
 - long-running chains stay resumable from saved artifacts and status summaries instead of depending on accumulated conversation history
 - chain start contract decisions, including execution mode, subagent policy, implementation confirmation, and git handoff policy, are explicit before the chain executes

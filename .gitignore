@@ -3,3 +3,15 @@ __pycache__/
 *.pyc.*
 delivery/
 *-workspace/
+workspaces/
+
+# IDE / 编辑器配置
+.claude/
+.kiro/
+.vscode/
+.workbuddy/
+
+# 非 skill 内容
+PROJECT_DIRECTORY.md
+dist/
+docs/
